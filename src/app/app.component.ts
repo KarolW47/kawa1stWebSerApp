@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from './interface/user';
 import { UserService } from './service/user.service';
 
 @Component({
@@ -8,13 +10,16 @@ import { UserService } from './service/user.service';
 })
 export class AppComponent implements OnInit{
   title = 'kawa1stWebSerApp';
+  userlist$: User[] = [];  
 
-  constructor
-    (private userService: UserService) {
+  constructor(private userService: UserService) {
   }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.userService.getUsers$().subscribe(res => {
+      this.userlist$ = res;
+    });
   }
 
-  users = this.userService.getUsers();
+  
 }

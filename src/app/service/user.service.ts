@@ -11,12 +11,12 @@ export class UserService {
 
     constructor(private http: HttpClient) { }
 
-    save(user: User) {
+    save$ = (user: User) => void 
         this.http.post(`${this.apiUrl}/user/register`, user);
-    }
+    
 
-    getUsers() : Observable<User[]> {
-        return this.http.get<User[]>(`${this.apiUrl}/user/users`);
-    }
+    getUsers$ = () => <Observable<User[]>> 
+        this.http.get<User[]>(`${this.apiUrl}/user/users`);
+    
 
 }
