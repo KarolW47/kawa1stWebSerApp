@@ -8,9 +8,9 @@ import { UserService } from './service/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'kawa1stWebSerApp';
-  userlist$: User[] = [];  
+  userlist$: User[] = [];
 
   constructor(private userService: UserService) {
   }
@@ -21,5 +21,5 @@ export class AppComponent implements OnInit{
     });
   }
 
-  
+
 }

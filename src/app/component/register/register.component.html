@@ -1,0 +1,18 @@
+<div class="registrationForm">
+    <h3>Registration:</h3>
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit">
+        <label for="username">Username:</label>
+        <input type="text" id="username" formControlName="username">
+        <br>
+        <label for="emailAddress">Email address:</label>
+        <input type="text" id="emailAddress" formControlName="emailAddress">
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password">
+        <br>
+        <label for="repPassword">Repeat password:</label>
+        <input type="password" id="repPassword">
+        <br>
+        <button type="submit">Register</button>
+    </form>
+</div>
