@@ -1,10 +1,23 @@
 <div class="logInForm">
     <h3>Log in:</h3>
-    <form>
-        <label for="username">Username or Email address:</label>
-        <input type="text" id="username" name="username">
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" formControlName="username">
+            <span *ngIf="loginForm.controls['username'].hasError('required')">Username is required.</span>
+            <span *ngIf="loginForm.controls['username'].hasError('maxlength')">Username cannot be longer than 24 characters.</span>
+            <span *ngIf="loginForm.controls['username'].hasError('minlength')">Username cannot be shorter than 6 characters.</span>
+            <span *ngIf="loginForm.controls['username'].hasError('pattern')">Username cannot contain special characters.</span>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" formControlName="password">
+            <span *ngIf="loginForm.controls['password'].hasError('required')">Password is required</span>
+            <span *ngIf="loginForm.controls['password'].hasError('minlength')">Password cannot be shorter than 6 characters.</span>
+            <span *ngIf="loginForm.controls['password'].hasError('maxlength')">Password cannot be longer than 35 characters.</span>
+
+            <button [disabled]="loginForm.invalid" type="submit">Log in</button>
+            
+        </div>
     </form>
 </div>

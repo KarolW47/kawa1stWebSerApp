@@ -1,18 +1,34 @@
 <div class="registrationForm">
     <h3>Registration:</h3>
-    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit">
-        <label for="username">Username:</label>
-        <input type="text" id="username" formControlName="username">
-        <br>
-        <label for="emailAddress">Email address:</label>
-        <input type="text" id="emailAddress" formControlName="emailAddress">
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" formControlName="password">
-        <br>
-        <label for="repPassword">Repeat password:</label>
-        <input type="password" id="repPassword">
-        <br>
-        <button type="submit">Register</button>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" formControlName="username">
+            <span *ngIf="registerForm.controls['username'].hasError('required')">Username is required.</span>
+            <span *ngIf="registerForm.controls['username'].hasError('maxlength')">Username cannot be longer than 24 characters.</span>
+            <span *ngIf="registerForm.controls['username'].hasError('minlength')">Username cannot be shorter than 6 characters.</span>
+            <span *ngIf="registerForm.controls['username'].hasError('pattern')">Username cannot contain special characters.</span>
+            
+            <label for="emailAddress">Email address:</label>
+            <input type="text" id="emailAddress" formControlName="emailAddress">
+            <span *ngIf="registerForm.controls['emailAddress'].hasError('required')">Email adddress is required.</span>
+            <span *ngIf="registerForm.controls['emailAddress'].hasError('email')">Incorrect email format.</span>
+        
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" formControlName="password">
+            <span *ngIf="registerForm.controls['password'].hasError('required')">Password is required</span>
+            <span *ngIf="registerForm.controls['password'].hasError('minlength')">Password cannot be shorter than 6 characters.</span>
+            <span *ngIf="registerForm.controls['password'].hasError('maxlength')">Password cannot be longer than 35 characters.</span>
+            
+            <label for="repPassword">Repeat password:</label>
+            <input type="password" id="repPassword" formControlName="repPassword">
+            <span *ngIf="registerForm.controls['repPassword'].hasError('required')">Repeated password is required.</span>
+            <span *ngIf="registerForm.hasError('paswordsNotMatching')">Passwords does not match.</span>
+            
+            <button [disabled]="registerForm.invalid" type="submit">Register</button>
+
+        </div>
     </form>
 </div>

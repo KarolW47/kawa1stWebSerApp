@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
@@ -18,9 +18,10 @@ import { RegisterComponent } from './component/register/register.component';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: 'register', component: RegisterComponent },
-      { path: 'logIn', component: LogInComponent },
+      { path: 'login', component: LogInComponent },
     ])
   ],
   providers: [],
