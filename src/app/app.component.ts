@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUsers$().subscribe(res => {
+    this.userService.getUsers().subscribe(res => {
       this.userlist$ = res;
     });
   }
