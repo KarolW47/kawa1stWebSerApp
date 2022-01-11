@@ -13,7 +13,7 @@
             <label for="emailAddress">Email address:</label>
             <input type="text" id="emailAddress" formControlName="emailAddress">
             <span *ngIf="registerForm.controls['emailAddress'].hasError('required')">Email adddress is required.</span>
-            <span *ngIf="registerForm.controls['emailAddress'].hasError('email')">Incorrect email format.</span>
+            <span *ngIf="registerForm.controls['emailAddress'].hasError('pattern')">Incorrect email format.</span>
         
             
             <label for="password">Password:</label>

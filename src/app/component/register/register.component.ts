@@ -1,18 +1,19 @@
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { subscribeOn, Subscriber } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 
 class CustomValidators {
-  static passwordMatch (control: AbstractControl) : ValidationErrors {
+  static passwordMatch(control: AbstractControl): ValidationErrors {
     const password = control.get('password')?.value;
     const repPassword = control.get('repPassword')?.value;
 
-    if (password === repPassword){
+    if (password === repPassword) {
       return {};
     } else {
-      return {paswordsNotMatching : true};
+      return { paswordsNotMatching: true };
     }
   }
 }
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router,) { }
 
-  registerForm: FormGroup = new FormGroup({});
+  registerForm!: FormGroup;
 
 
   ngOnInit(): void {
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit {
       ]],
       emailAddress: [null, [
         Validators.required,
-        Validators.email,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$'),
       ]],
       password: [null, [
         Validators.required,
@@ -48,22 +49,30 @@ export class RegisterComponent implements OnInit {
       ]],
       repPassword: [null, [
         Validators.required,
-      ]]    
-    },{
+      ]]
+    }, {
       validators: CustomValidators.passwordMatch,
     })
   }
 
   onSubmit(): void {
-    debugger;
-    if(this.registerForm.invalid){
+    if (this.registerForm.invalid) {
       alert("Registration went wrong.");
       return;
     }
-    //cant call subscribe on this save method from userservice
-    this.userService.save(this.registerForm.value);
-    alert("Your account has been created!")
-    this.router.navigate(['login']);
+
+    let registeredValue = this.userService.saveUser(this.registerForm.value).subscribe();
+    console.log(registeredValue);
+
+    //gotta change null to some kind hasError method
+    if (registeredValue == null) {
+      alert(registeredValue);
+    } else {
+      alert("Your account has been created!")
+      this.router.navigate(['login']);
+    }
+
+
   }
-  
+
 }
