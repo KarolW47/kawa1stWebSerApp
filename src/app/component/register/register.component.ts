@@ -1,8 +1,8 @@
-import { HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { subscribeOn, Subscriber } from 'rxjs';
+import { User } from 'src/app/interface/user';
 import { UserService } from 'src/app/service/user.service';
 
 class CustomValidators {
@@ -25,7 +25,11 @@ class CustomValidators {
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router,) { }
+  public responseCode!: number;
+  public responseError!: string;
+
+
+  constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
 
   registerForm!: FormGroup;
 
@@ -61,18 +65,33 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    let registeredValue = this.userService.saveUser(this.registerForm.value).subscribe();
-    console.log(registeredValue);
-
-    //gotta change null to some kind hasError method
-    if (registeredValue == null) {
-      alert(registeredValue);
-    } else {
-      alert("Your account has been created!")
-      this.router.navigate(['login']);
+    //
+    this.userService.saveUser(this.registerForm.value).subscribe({
+      next: (resp: HttpResponse<User>): void => {
+        this.responseCode = resp.status;
+        console.log(resp);
+      },
+      error: (error: HttpErrorResponse): void => {
+        this.responseCode = error.status;
+        this.responseError = error.error;
+        console.log(error);
+      },
+      complete() { console.log('Subscribe to save user done.'); }
+    });
+    
+    console.log(this.responseCode);
+    console.log(this.responseError);
+    
+    switch (this.responseCode) {
+      case 200:
+        alert('Registered!');
+        this.router.navigate(['login']);
+        break;
+      case 422:
+        alert(this.responseError);
+        break;
+      default:
+        alert("Something went wrong, try again.");
     }
-
-
   }
-
 }

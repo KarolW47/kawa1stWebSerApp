@@ -1,15 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { User } from "../interface/user";
-import { catchError, Observable, tap, throwError } from "rxjs";
+import { catchError, map, Observable, switchMap, tap, throwError } from "rxjs";
 
-
-const httpOptions = {
-    headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic my-auth-token'
-    })
-};
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -18,12 +11,10 @@ export class UserService {
 
     constructor(private http: HttpClient) { }
 
-    saveUser(user: User): Observable<User> {
-        return this.http.post<User>(`${this.apiUrl}/user/register`, user, httpOptions)
-            .pipe(
-                catchError(this.handleError)
-            );
+    saveUser(user: User) {
+        return this.http.post<User>(`${this.apiUrl}/user/register`, user, { observe: 'response' })
     }
+
     getUsers() {
         return this.http.get<User[]>(`${this.apiUrl}/user/users`)
             .pipe(
@@ -45,6 +36,5 @@ export class UserService {
         // Return an observable with a user-facing error message.
         return throwError('Something bad happened; please try again later.');
     }
-
 
 }
