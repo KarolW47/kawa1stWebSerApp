@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { User } from "../interface/user";
-import { catchError, map, Observable, switchMap, tap, throwError } from "rxjs";
+import { catchError, throwError } from "rxjs";
 
 
 @Injectable({ providedIn: 'root' })
@@ -12,7 +12,7 @@ export class UserService {
     constructor(private http: HttpClient) { }
 
     saveUser(user: User) {
-        return this.http.post<User>(`${this.apiUrl}/user/register`, user, { observe: 'response' })
+        return this.http.post<User>(`${this.apiUrl}/user/register`, user, { observe: 'response' });
     }
 
     getUsers() {
@@ -21,7 +21,6 @@ export class UserService {
                 catchError(this.handleError)
             );
     }
-
 
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {

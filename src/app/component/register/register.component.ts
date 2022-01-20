@@ -1,8 +1,6 @@
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { User } from 'src/app/interface/user';
 import { UserService } from 'src/app/service/user.service';
 
 class CustomValidators {
@@ -65,33 +63,23 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    //
     this.userService.saveUser(this.registerForm.value).subscribe({
-      next: (resp: HttpResponse<User>): void => {
+      next: (resp) => {
         this.responseCode = resp.status;
-        console.log(resp);
-      },
-      error: (error: HttpErrorResponse): void => {
-        this.responseCode = error.status;
-        this.responseError = error.error;
-        console.log(error);
-      },
-      complete() { console.log('Subscribe to save user done.'); }
-    });
-    
-    console.log(this.responseCode);
-    console.log(this.responseError);
-    
-    switch (this.responseCode) {
-      case 200:
         alert('Registered!');
         this.router.navigate(['login']);
-        break;
-      case 422:
+        console.log(this.responseCode);
+      },
+      error: (error) => {
+        this.responseCode = error.status;
+        this.responseError = error.error;
+        console.log(this.responseError);
+        console.log(this.responseCode);
         alert(this.responseError);
-        break;
-      default:
-        alert("Something went wrong, try again.");
-    }
+      },
+      complete() {
+        console.log('Subscribe for saving user done.');
+      }
+    });
   }
 }
