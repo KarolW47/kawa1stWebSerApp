@@ -22,6 +22,10 @@ export class UserService {
             );
     }
 
+    logUserIn(user: User) {
+        return this.http.post<User>(`${this.apiUrl}/user/login`, user, {observe: 'response'});
+    }
+
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
             // A client-side or network error occurred. Handle it accordingly.
