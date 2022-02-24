@@ -3,14 +3,7 @@
     <li><a routerLinkActive="active" routerLink="">Home</a></li>
     <li><a routerLinkActive="active" routerLink="login">Login</a></li>
     <li><a routerLinkActive="active" routerLink="register">Register</a></li>
+    <li><a routerLinkActive="active" routerLink="users">Users</a></li>
   </ul>
-</div>
-<div class="container">
-  <h3>(list of users just for tests) Users:</h3>
-  <div class="listOfUsers" *ngFor="let user of userlist$">
-    <li>{{ user.username | titlecase }}</li>
-  </div>
-  <br>
-  <br>
 </div>
 <router-outlet></router-outlet>

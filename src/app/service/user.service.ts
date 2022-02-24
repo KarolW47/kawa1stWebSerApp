@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { User } from "../interface/user";
 import { catchError, throwError } from "rxjs";
 
@@ -23,7 +23,12 @@ export class UserService {
     }
 
     logUserIn(user: User) {
-        return this.http.post<User>(`${this.apiUrl}/user/login`, user, {observe: 'response'});
+        const myheader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+        let body = new HttpParams();
+        body = body.set('username', user.username);
+        body = body.set('password', user.password);
+        return this.http.post<any>(`${this.apiUrl}/user/login`, body , {
+            headers: myheader, observe: 'response' });
     }
 
     private handleError(error: HttpErrorResponse) {

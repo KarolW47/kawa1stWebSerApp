@@ -46,6 +46,7 @@ export class LogInComponent implements OnInit {
         alert('Logged in successfully!');
         this.router.navigate(['/']);
         console.log(this.responseCode);
+        console.log(resp.body, resp.headers)
       },
       error: (error) => {
         this.responseCode = error.status;
