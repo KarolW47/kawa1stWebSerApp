@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -10,12 +11,13 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class LogInComponent implements OnInit {
 
-  public responseCode!: number;
-  public responseError!: string;
+  private responseCode!: number;
+  private responseError!: string;
+  private responseToken!: any;
 
   loginForm: FormGroup = new FormGroup({});
 
-  constructor(private userservice: UserService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private userservice: UserService, private tokenStorage: TokenStorageService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -44,9 +46,12 @@ export class LogInComponent implements OnInit {
       next: (resp) => {
         this.responseCode = resp.status;
         alert('Logged in successfully!');
-        this.router.navigate(['/']);
+        this.responseToken = resp.headers.get('access-token');
+        this.tokenStorage.saveToken(this.responseToken);
         console.log(this.responseCode);
-        console.log(resp.body, resp.headers)
+        console.log(this.responseToken);
+        console.log(resp.headers);
+        this.router.navigate(['/']);
       },
       error: (error) => {
         this.responseCode = error.status;
@@ -56,7 +61,7 @@ export class LogInComponent implements OnInit {
         alert(this.responseError);
       },
       complete() {
-        console.log('Subscribe for loging user in done.');
+        console.log('Subscribe for loging user in - done.');
       }
     });
     

@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
         alert(this.responseError);
       },
       complete() {
-        console.log('Subscribe for saving user done.');
+        console.log('Subscribe for saving user - done.');
       }
     });
   }
