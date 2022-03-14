@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaderResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { User } from "../interface/user";
 import { catchError, throwError } from "rxjs";
+import { TokenStorageService } from "./token-storage.service";
 
 
 @Injectable({ providedIn: 'root' })
@@ -9,14 +10,14 @@ export class UserService {
 
     private readonly apiUrl = 'http://localhost:8080';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
     saveUser(user: User) {
         return this.http.post<User>(`${this.apiUrl}/user/register`, user, { observe: 'response' });
     }
 
     getUsers() {
-        return this.http.get<User[]>(`${this.apiUrl}/user/users`)
+        return this.http.get<User[]>(`${this.apiUrl}/user/users`, {headers: this.tokenStorageService.getTokensAsHeaders()})
             .pipe(
                 catchError(this.handleError)
             );
@@ -29,6 +30,10 @@ export class UserService {
         body = body.set('password', user.password);
         return this.http.post<any>(`${this.apiUrl}/user/login`, body , {
             headers: myheader, observe: 'response' });
+    }
+
+    logUserOut() {
+        this.tokenStorageService.deleteTokens();
     }
 
     private handleError(error: HttpErrorResponse) {

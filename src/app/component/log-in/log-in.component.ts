@@ -13,7 +13,8 @@ export class LogInComponent implements OnInit {
 
   private responseCode!: number;
   private responseError!: string;
-  private responseToken!: any;
+  private responseAccessToken!: any;
+  private responseRefreshToken!: any;
 
   loginForm: FormGroup = new FormGroup({});
 
@@ -37,21 +38,25 @@ export class LogInComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.loginForm.invalid){
+    if (this.loginForm.invalid) {
       alert("Loging in went wrong.");
       return;
     }
-    
+
     this.userservice.logUserIn(this.loginForm.value).subscribe({
       next: (resp) => {
         this.responseCode = resp.status;
         alert('Logged in successfully!');
-        this.responseToken = resp.headers.get('access-token');
-        this.tokenStorage.saveToken(this.responseToken);
+        this.responseAccessToken = resp.headers.get('access_token');
+        this.responseRefreshToken = resp.headers.get('refresh_token');
+        this.tokenStorage.saveTokens(this.responseAccessToken, this.responseRefreshToken);
         console.log(this.responseCode);
-        console.log(this.responseToken);
+        console.log(this.responseAccessToken);
+        console.log(this.responseRefreshToken);
         console.log(resp.headers);
-        this.router.navigate(['/']);
+        this.router.navigate(['/']).then(
+          () => window.location.reload()
+        );
       },
       error: (error) => {
         this.responseCode = error.status;
@@ -64,7 +69,7 @@ export class LogInComponent implements OnInit {
         console.log('Subscribe for loging user in - done.');
       }
     });
-    
+
   }
 
 }

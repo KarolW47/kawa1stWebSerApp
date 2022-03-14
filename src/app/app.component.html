@@ -1,9 +1,24 @@
 <div class="container">
   <ul class="listForRedirects">
+
     <li><a routerLinkActive="active" routerLink="">Home</a></li>
-    <li><a routerLinkActive="active" routerLink="login">Login</a></li>
-    <li><a routerLinkActive="active" routerLink="register">Register</a></li>
-    <li><a routerLinkActive="active" routerLink="users">Users</a></li>
+
+    <div *ngIf="!isTokenPresent">
+      <li><a routerLinkActive="active" routerLink="login">Login</a></li>
+    </div>
+
+    <div *ngIf="isTokenPresent">
+      <li (click)="onClick()"><a routerLinkActive="active" routerLink="login">Logout</a></li>
+    </div>
+    
+    <div *ngIf="!isTokenPresent">
+      <li><a routerLinkActive="active" routerLink="register">Register</a></li>
+    </div>
+
+    <div *ngIf="isTokenPresent">
+      <li><a routerLinkActive="active" routerLink="users">Users</a></li>
+    </div>
+    
   </ul>
 </div>
 <router-outlet></router-outlet>
