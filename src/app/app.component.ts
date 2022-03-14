@@ -18,11 +18,11 @@ export class AppComponent implements OnInit {
   constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
-    this.isTokenPresent = this.tokenStorageService.isTokenPresent();
+    this.isTokenPresent = this.tokenStorageService.isAccessTokenPresent();
   }
 
   onClick() {
-    this.tokenStorageService.deleteToken();
+    this.tokenStorageService.deleteTokens();
     this.router.navigate(['login']).then(
       () => window.location.reload()
     );

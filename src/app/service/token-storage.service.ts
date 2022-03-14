@@ -11,7 +11,7 @@ export class TokenStorageService {
 
   constructor() { }
 
-  public deleteToken(): void {
+  public deleteTokens(): void {
     window.sessionStorage.clear();
   }
 
@@ -21,23 +21,29 @@ export class TokenStorageService {
     window.sessionStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
   }
 
-  public getToken(): string | null {
+  public getAccessToken(): string | null {
     return window.sessionStorage.getItem(ACCESS_TOKEN_KEY);
   }
 
-  public isTokenPresent(): boolean {
-    if(this.getToken() === null){
+  public getRefreshToken(): string | null {
+    return window.sessionStorage.getItem(REFRESH_TOKEN_KEY);
+  }
+
+  public isAccessTokenPresent(): boolean {
+    if(this.getAccessToken() === null){
       return false;
     } else return true;
   }
 
-  public getTokenAsHeader(): any {
-    let token = this.getToken();
-    if (token === null) {
+  public getTokensAsHeaders(): any {
+    let accessToken = this.getAccessToken();
+    let refreshToken = this.getRefreshToken();
+    if (accessToken === null || refreshToken === null) {
       return;
     } else {
-      let headers = new HttpHeaders({'Authorization': token});
+      let headers = new HttpHeaders({'access_token': accessToken, 'refresh_token': refreshToken});
       return headers;
     }
   }
+
 }
