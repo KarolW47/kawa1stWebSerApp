@@ -54,7 +54,7 @@ export class LogInComponent implements OnInit {
         console.log(this.responseAccessToken);
         console.log(this.responseRefreshToken);
         console.log(resp.headers);
-        this.router.navigate(['/']).then(
+        this.router.navigate(['/posts']).then(
           () => window.location.reload()
         );
       },

@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { LogInComponent } from './component/log-in/log-in.component';
 import { RegisterComponent } from './component/register/register.component';
 import { UsersListComponent } from './component/users-list/users-list.component';
+import { PostsComponent } from './component/posts/posts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LogInComponent,
-    UsersListComponent
+    UsersListComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ import { UsersListComponent } from './component/users-list/users-list.component'
     RouterModule.forRoot([
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LogInComponent },
-      { path: 'users', component: UsersListComponent}
+      { path: 'users', component: UsersListComponent},
+      { path: 'posts', component: PostsComponent }
     ])
   ],
   providers: [],

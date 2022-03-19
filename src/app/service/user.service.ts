@@ -3,21 +3,20 @@ import { HttpClient, HttpErrorResponse, HttpHeaderResponse, HttpHeaders, HttpPar
 import { User } from "../interface/user";
 import { catchError, throwError } from "rxjs";
 import { TokenStorageService } from "./token-storage.service";
+import { environment } from "src/environments/environment";
 
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-    private readonly apiUrl = 'http://localhost:8080';
-
     constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
     saveUser(user: User) {
-        return this.http.post<User>(`${this.apiUrl}/user/register`, user, { observe: 'response' });
+        return this.http.post<User>(`${environment.apiUrl}/user/register`, user, { observe: 'response' });
     }
 
     getUsers() {
-        return this.http.get<User[]>(`${this.apiUrl}/user/users`, {headers: this.tokenStorageService.getTokensAsHeaders()})
+        return this.http.get<User[]>(`${environment.apiUrl}/user/users`, {headers: this.tokenStorageService.getTokensAsHeaders()})
             .pipe(
                 catchError(this.handleError)
             );
@@ -28,7 +27,7 @@ export class UserService {
         let body = new HttpParams();
         body = body.set('username', user.username);
         body = body.set('password', user.password);
-        return this.http.post<any>(`${this.apiUrl}/user/login`, body , {
+        return this.http.post<any>(`${environment.apiUrl}/user/login`, body , {
             headers: myheader, observe: 'response' });
     }
 

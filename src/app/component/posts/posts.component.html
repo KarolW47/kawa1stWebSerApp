@@ -1,0 +1,8 @@
+<div>
+    <h3>Posts:</h3>
+    <div class="listOfUsers" *ngFor="let post of postsList$">
+        <li>{{ post.user.username }}</li>
+        <li>{{ post.createDate }}</li>
+        <li>{{ post.postTextMessage }}</li>
+    </div>
+</div>
