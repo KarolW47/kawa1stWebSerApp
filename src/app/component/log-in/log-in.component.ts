@@ -39,7 +39,7 @@ export class LogInComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.invalid) {
-      alert("Loging in went wrong.");
+      alert("Something went wrong.");
       return;
     }
 

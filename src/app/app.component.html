@@ -19,6 +19,10 @@
       <li><a routerLinkActive="active" routerLink="users">Users</a></li>
     </div>
     
+    <div *ngIf="isTokenPresent">
+      <li><a routerLinkActive="active" routerLink="posts">Posts</a></li>
+    </div>
+    
   </ul>
 </div>
 <router-outlet></router-outlet>
