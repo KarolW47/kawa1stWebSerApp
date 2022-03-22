@@ -1,4 +1,8 @@
+<router-outlet></router-outlet>
 <div>
+    <br>
+    <li (click)="onClick()" *ngIf="!wasClicked"><a routerLinkActive="active" routerLink="add_post">Add post</a></li>
+    <br>
     <h3>Posts:</h3>
     <div class="listOfUsers" *ngFor="let post of postsList$">
         <li>{{ post.user.username }}</li>
@@ -6,3 +10,5 @@
         <li>{{ post.postTextMessage }}</li>
     </div>
 </div>
+
+
