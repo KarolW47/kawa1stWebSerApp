@@ -1,2 +1,14 @@
-<p>add-post works!</p>
+<h3>Type your message:</h3>
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+        
+        <label for="text">Text:</label>
+        <input type="text" id="text" formControlName="text">
+        <span *ngIf="postForm.controls['text'].hasError('required')">Text is required.</span>
+        <span *ngIf="postForm.controls['text'].hasError('minlength')">Message must contain at least 1 character.</span>
+        <span *ngIf="postForm.controls['text'].hasError('maxlength')">Message cannot exceed 512 characters.</span>
 
+        <button [disabled]="postForm.invalid" type="submit">Add post.</button>
+
+    </div>
+</form>

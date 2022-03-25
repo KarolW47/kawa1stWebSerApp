@@ -23,8 +23,8 @@ class CustomValidators {
 })
 export class RegisterComponent implements OnInit {
 
-  public responseCode!: number;
-  public responseError!: string;
+  responseCode!: number;
+  responseError!: string;
 
 
   constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
