@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { User } from './interface/user';
 import { TokenStorageService } from './service/token-storage.service';
-import { UserService } from './service/user.service';
+
 
 @Component({
   selector: 'app-root',
@@ -18,7 +16,7 @@ export class AppComponent implements OnInit {
   constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
-    this.isTokenPresent = this.tokenStorageService.isAccessTokenPresent();
+    
   }
 
   onClick() {

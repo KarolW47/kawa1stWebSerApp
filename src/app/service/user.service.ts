@@ -23,12 +23,12 @@ export class UserService {
     }
 
     logUserIn(user: User) {
-        const myheader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+        // const myheader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         let body = new HttpParams();
         body = body.set('username', user.username);
         body = body.set('password', user.password);
         return this.http.post<any>(`${environment.apiUrl}/user/login`, body , {
-            headers: myheader, observe: 'response' });
+            /** headers: myheader */  observe: 'response' });
     }
 
     logUserOut() {
