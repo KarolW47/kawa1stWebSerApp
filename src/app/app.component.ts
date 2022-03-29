@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
-    
+    this.isTokenPresent = this.tokenStorageService.isAccessTokenPresent();
   }
 
   onClick() {

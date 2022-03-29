@@ -10,15 +10,16 @@ import { PostService } from 'src/app/service/post.service';
 })
 export class AddPostComponent implements OnInit {
 
-  constructor(private postService: PostService, private formBuilder: FormBuilder, private router: Router) { }
-
   responseCode!: number;
   responseError!: string;
   postForm!: FormGroup;
-  
+
+
+  constructor(private postService: PostService, private formBuilder: FormBuilder, private router: Router) { }
+
   ngOnInit(): void {
     this.postForm = this.formBuilder.group({
-      text:[null, [
+      postTextMessage: [null, [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(512),
@@ -27,17 +28,19 @@ export class AddPostComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.postForm.invalid){
+    if (this.postForm.invalid) {
       alert("Something went wrong.");
       return;
     }
-    
+
     this.postService.addPost(this.postForm.value).subscribe({
       next: (resp) => {
         this.responseCode = resp.status;
         alert("Post added successfully.");
         console.log(this.responseCode);
-        // this.router.navigate(['posts'])
+        this.router.navigate(['posts']).then(
+          () => window.location.reload()
+        );
       },
       error: (error) => {
         this.responseCode = error.status;

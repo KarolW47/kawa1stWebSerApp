@@ -9,13 +9,16 @@ import { TokenStorageService } from './token-storage.service';
 })
 export class PostService {
 
-  constructor(private http: HttpClient , private tokenStorageService: TokenStorageService) { }
+  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
   getPosts() {
-    return this.http.get<Post[]>(`${environment.apiUrl}/post/posts`, {headers: this.tokenStorageService.getTokensAsHeaders()});
+    return this.http.get<Post[]>(`${environment.apiUrl}/post/posts`, { headers: this.tokenStorageService.getTokensAsHeaders() });
   }
 
   addPost(post: Post) {
-    return this.http.post<Post>(`${environment.apiUrl}/post/add`, post, { observe: 'response' });
+    return this.http.post<Post>(`${environment.apiUrl}/post/add`, post, {
+      observe: 'response',
+      headers: this.tokenStorageService.getTokensAsHeaders()
+    });
   }
 }

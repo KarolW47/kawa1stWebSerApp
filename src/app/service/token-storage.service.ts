@@ -16,7 +16,7 @@ export class TokenStorageService {
     window.sessionStorage.clear();
   }
 
-  public saveTokens(accessToken: string, refreshToken: string ): void {
+  public saveTokens(accessToken: string, refreshToken: string): void {
     this.deleteTokens();
     window.sessionStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
     window.sessionStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
@@ -31,9 +31,9 @@ export class TokenStorageService {
   }
 
   public isAccessTokenPresent(): boolean {
-    if(this.getAccessToken() === null){
-      return false;
-    } else return true;
+    if (this.getAccessToken() != null) {
+      return true;
+    } else return false;
   }
 
   public getTokensAsHeaders(): any {
@@ -42,7 +42,7 @@ export class TokenStorageService {
     if (accessToken === null || refreshToken === null) {
       return;
     } else {
-      let headers = new HttpHeaders({'access_token': accessToken, 'refresh_token': refreshToken});
+      let headers = new HttpHeaders({ 'access_token': accessToken, 'refresh_token': refreshToken });
       return headers;
     }
   }

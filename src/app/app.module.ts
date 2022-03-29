@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,6 +10,9 @@ import { RegisterComponent } from './component/register/register.component';
 import { UsersListComponent } from './component/users-list/users-list.component';
 import { PostsComponent } from './component/posts/posts.component';
 import { AddPostComponent } from './component/add-post/add-post.component';
+import { AuthGuardService } from './service/auth-guard.service';
+import { RefreshTokenInterceptor } from './interceptor/refresh-token.interceptor';
+import { TokenStorageService } from './service/token-storage.service';
 
 @NgModule({
   declarations: [
@@ -29,12 +32,21 @@ import { AddPostComponent } from './component/add-post/add-post.component';
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LogInComponent },
       { path: 'users', component: UsersListComponent },
-      { path: 'posts', component: PostsComponent, children: [
-        { path: 'add_post', component: AddPostComponent },
-      ]},
+      {
+        path: 'posts', component: PostsComponent, children: [
+          { path: 'add_post', component: AddPostComponent },]
+      },
     ])
   ],
-  providers: [],
+  providers: [
+    AuthGuardService,
+    TokenStorageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RefreshTokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

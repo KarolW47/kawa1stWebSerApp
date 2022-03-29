@@ -25,12 +25,10 @@ export class RegisterComponent implements OnInit {
 
   responseCode!: number;
   responseError!: string;
+  registerForm!: FormGroup;
 
 
   constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
-
-  registerForm!: FormGroup;
-
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({

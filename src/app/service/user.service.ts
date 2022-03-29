@@ -16,7 +16,7 @@ export class UserService {
     }
 
     getUsers() {
-        return this.http.get<User[]>(`${environment.apiUrl}/user/users`, {headers: this.tokenStorageService.getTokensAsHeaders()})
+        return this.http.get<User[]>(`${environment.apiUrl}/user/users`, { headers: this.tokenStorageService.getTokensAsHeaders() })
             .pipe(
                 catchError(this.handleError)
             );
@@ -27,8 +27,9 @@ export class UserService {
         let body = new HttpParams();
         body = body.set('username', user.username);
         body = body.set('password', user.password);
-        return this.http.post<any>(`${environment.apiUrl}/user/login`, body , {
-            /** headers: myheader */  observe: 'response' });
+        return this.http.post<any>(`${environment.apiUrl}/user/login`, body, {
+            /** headers: myheader */  observe: 'response'
+        });
     }
 
     logUserOut() {
