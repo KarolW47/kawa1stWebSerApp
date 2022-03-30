@@ -50,9 +50,9 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
       return this.refreshTokenService.refeshToken().pipe(
         switchMap((tokens: any) => {
           this.isRefreshing = false;
-          this.accessTokenSubject.next(tokens.access_token)
+          this.accessTokenSubject.next(tokens.accessToken)
           this.refreshTokenSubject.next(tokens.refeshToken)
-          return next.handle(this.insertTokens(request, tokens.access_token, tokens.refresh_token))
+          return next.handle(this.insertTokens(request, tokens.accessToken, tokens.refeshToken))
         })
       )
 
@@ -61,7 +61,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
         filter((accessToken, refreshToken) => accessToken != null && refreshToken != null),
         take(1),
         switchMap(tokens => {
-          return next.handle(this.insertTokens(request, tokens.access_token, tokens.refeshToken));
+          return next.handle(this.insertTokens(request, tokens.accessToken, tokens.refeshToken));
         }));
     }
   }

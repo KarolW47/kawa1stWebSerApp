@@ -50,10 +50,6 @@ export class LogInComponent implements OnInit {
         this.responseAccessToken = resp.headers.get('access_token');
         this.responseRefreshToken = resp.headers.get('refresh_token');
         this.tokenStorage.saveTokens(this.responseAccessToken, this.responseRefreshToken);
-        console.log(this.responseCode);
-        console.log(this.responseAccessToken);
-        console.log(this.responseRefreshToken);
-        console.log(resp.headers);
         this.router.navigate(['/posts']).then(
           () => window.location.reload()
         );
