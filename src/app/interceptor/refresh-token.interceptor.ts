@@ -21,7 +21,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.tokenStorageService.isAccessTokenPresent()) {
-      request = this.insertTokens(request, this.tokenStorageService.getAccessToken()!, this.tokenStorageService.getRefreshToken()!);
+      request = this.insertTokens(request, this.tokenStorageService.getAccessToken(), this.tokenStorageService.getRefreshToken());
     }
 
     return next.handle(request).pipe(catchError(error => {
@@ -37,7 +37,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
     return request.clone({
       setHeaders: {
         'access_token': `${accessToken}`,
-        'refresh_token': `${refreshToken}`
+        'refresh_token': `${refreshToken}`,
       }
     });
   }
@@ -45,6 +45,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
   private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
     if (!this.isRefreshing) {
       this.isRefreshing = true;
+      this.accessTokenSubject.next(null);
       this.refreshTokenSubject.next(null);
 
       return this.refreshTokenService.refeshToken().pipe(
@@ -61,7 +62,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
         filter((accessToken, refreshToken) => accessToken != null && refreshToken != null),
         take(1),
         switchMap(tokens => {
-          return next.handle(this.insertTokens(request, tokens.accessToken, tokens.refeshToken));
+          return next.handle(this.insertTokens(request, tokens.accessToken , tokens.refeshToken));
         }));
     }
   }

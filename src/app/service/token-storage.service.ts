@@ -22,11 +22,11 @@ export class TokenStorageService {
     window.sessionStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
   }
 
-  public getAccessToken(): string | null {
+  public getAccessToken(): any {
     return window.sessionStorage.getItem(ACCESS_TOKEN_KEY);
   }
 
-  public getRefreshToken(): string | null {
+  public getRefreshToken(): any {
     return window.sessionStorage.getItem(REFRESH_TOKEN_KEY);
   }
 
