@@ -49,13 +49,13 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
       this.refreshTokenSubject.next(null);
 
       return this.refreshTokenService.refeshToken().pipe(
-        switchMap((tokens: any) => {
+        switchMap((resp: any) => {
           this.isRefreshing = false;
-          this.accessTokenSubject.next(tokens.accessToken)
-          this.refreshTokenSubject.next(tokens.refeshToken)
-          return next.handle(this.insertTokens(request, tokens.accessToken, tokens.refeshToken))
+          this.accessTokenSubject.next(resp.headers.get('access_token'))
+          this.refreshTokenSubject.next(resp.headers.get('refresh_token'))
+          return next.handle(this.insertTokens(request, resp.headers.get('access_token'), resp.headers.get('refresh_token')));
         })
-      )
+      );
 
     } else {
       return this.refreshTokenSubject.pipe(
