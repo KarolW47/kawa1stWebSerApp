@@ -5,6 +5,9 @@ import { TokenStorageService } from './token-storage.service';
 @Injectable({
   providedIn: 'root'
 })
+
+/*TO DO edit this and add to app module. */
+
 export class AuthGuardService implements CanActivate {
 
   constructor(private tokenStorageService: TokenStorageService, private router: Router) { }

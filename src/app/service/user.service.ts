@@ -16,10 +16,11 @@ export class UserService {
     }
 
     getUsers() {
-        return this.http.get<User[]>(`${environment.apiUrl}/user/users`, { headers: this.tokenStorageService.getTokensAsHeaders() })
-            .pipe(
-                catchError(this.handleError)
-            );
+        return this.http.get<User[]>(`${environment.apiUrl}/user/users`, {
+            headers: this.tokenStorageService.getTokensAsHeaders()
+        }).pipe(
+            catchError(this.handleError)
+        );
     }
 
     logUserIn(user: User) {

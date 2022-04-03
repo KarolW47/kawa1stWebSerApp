@@ -13,6 +13,8 @@ import { AddPostComponent } from './component/add-post/add-post.component';
 import { AuthGuardService } from './service/auth-guard.service';
 import { RefreshTokenInterceptor } from './interceptor/refresh-token.interceptor';
 import { TokenStorageService } from './service/token-storage.service';
+import { EditPostComponent } from './component/edit-post/edit-post.component';
+import { DeletePostComponent } from './component/delete-post/delete-post.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { TokenStorageService } from './service/token-storage.service';
     LogInComponent,
     UsersListComponent,
     PostsComponent,
-    AddPostComponent
+    AddPostComponent,
+    EditPostComponent,
+    DeletePostComponent
   ],
   imports: [
     BrowserModule,

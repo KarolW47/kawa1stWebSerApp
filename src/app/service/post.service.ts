@@ -12,7 +12,9 @@ export class PostService {
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
   getPosts() {
-    return this.http.get<Post[]>(`${environment.apiUrl}/post/posts`, { headers: this.tokenStorageService.getTokensAsHeaders() });
+    return this.http.get<Post[]>(`${environment.apiUrl}/post/posts`, {
+      headers: this.tokenStorageService.getTokensAsHeaders()
+    });
   }
 
   addPost(post: Post) {
@@ -20,5 +22,18 @@ export class PostService {
       observe: 'response',
       headers: this.tokenStorageService.getTokensAsHeaders()
     });
+  }
+
+  deletePost(post: Post) {
+    return this.http.delete<any>(`${environment.apiUrl}/post/delete`, {
+      body: post,
+      headers: this.tokenStorageService.getTokensAsHeaders()
+    })
+  }
+
+  editPost(post: Post) {
+    return this.http.patch<Post>(`${environment.apiUrl}/post/edit`, post, {
+      headers: this.tokenStorageService.getTokensAsHeaders()
+    })
   }
 }
