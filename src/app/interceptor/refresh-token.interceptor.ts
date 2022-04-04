@@ -26,6 +26,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(catchError(error => {
       if (error instanceof HttpErrorResponse && error.status === 401) {
+        console.log('Refreshing token.')
         return this.handle401Error(request, next);
       } else {
         return throwError(error);
@@ -62,8 +63,9 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
         filter((accessToken, refreshToken) => accessToken != null && refreshToken != null),
         take(1),
         switchMap(tokens => {
+          console.log('Token refreshed.');
           return next.handle(this.insertTokens(request, tokens.accessToken , tokens.refeshToken));
-        }));
+        }));  
     }
   }
 }
