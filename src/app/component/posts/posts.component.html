@@ -1,12 +1,17 @@
 <router-outlet></router-outlet>
 <div>
     <br>
-    <li (click)="onClick()" *ngIf="!wasClicked"><a routerLinkActive="active" routerLink="add_post">Add post</a></li>
+    <button (click)="onAddPost()" *ngIf="!wasClicked">
+        <a routerLinkActive="active" routerLink="add_post">Add post</a>
+    </button>
     <br>
     <h3>Posts:</h3>
     <div class="listOfUsers" *ngFor="let post of postsList$">
         <li>{{ post.user.username | titlecase }}</li>
         <li>{{ post.createDate }}</li>
         <li>{{ post.postTextMessage }}</li>
+        <app-delete-post [currentPost]="post"></app-delete-post>
+        <app-edit-post></app-edit-post>
+        <br>
     </div>
 </div>

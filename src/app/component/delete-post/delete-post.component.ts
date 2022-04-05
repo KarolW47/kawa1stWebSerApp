@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Post } from 'src/app/interface/post';
+import { PostService } from 'src/app/service/post.service';
 
 @Component({
   selector: 'app-delete-post',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeletePostComponent implements OnInit {
 
-  constructor() { }
+  constructor(private postService: PostService, private router: Router) { }
+
+  @Input() currentPost!: Post;
 
   ngOnInit(): void {
   }
 
+  onDelete(post: Post): void {
+    if (confirm('Are you sure, you want to delete this post?')) {
+      this.postService.deletePost(post).subscribe({
+        next: (resp) => {
+          alert('Post deleted.');
+          console.log(resp);
+          this.router.navigate(['posts']).then(
+            () => window.location.reload()
+          )
+        },
+        error: (error) => {
+          alert('Something goes wrong.')
+          console.log(error.error)
+        }
+      });
+    } else return;
+  }
 }

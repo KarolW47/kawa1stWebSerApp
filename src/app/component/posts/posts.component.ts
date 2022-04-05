@@ -21,7 +21,7 @@ export class PostsComponent implements OnInit {
     })
   }
 
-  onClick(): void {
+  onAddPost(): void {
     this.wasClicked = true;
   }
 }
