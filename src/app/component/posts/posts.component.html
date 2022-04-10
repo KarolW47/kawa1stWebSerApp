@@ -10,8 +10,8 @@
         <li>{{ post.user.username | titlecase }}</li>
         <li>{{ post.createDate }}</li>
         <li>{{ post.postTextMessage }}</li>
-        <app-delete-post [currentPost]="post"></app-delete-post>
-        <app-edit-post></app-edit-post>
+        <app-delete-post [currentPostToDelete]="post"></app-delete-post>
+        <button mat-rised-button (click)="openEditDialog(post)">Edti</button>
         <br>
     </div>
 </div>

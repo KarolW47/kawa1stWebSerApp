@@ -12,7 +12,7 @@ export class DeletePostComponent implements OnInit {
 
   constructor(private postService: PostService, private router: Router) { }
 
-  @Input() currentPost!: Post;
+  @Input() currentPostToDelete!: Post;
 
   ngOnInit(): void {
   }

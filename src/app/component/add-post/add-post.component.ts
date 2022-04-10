@@ -21,7 +21,7 @@ export class AddPostComponent implements OnInit {
     this.postForm = this.formBuilder.group({
       postTextMessage: [null, [
         Validators.required,
-        Validators.minLength(1),
+        Validators.minLength(2),
         Validators.maxLength(512),
       ]],
     })

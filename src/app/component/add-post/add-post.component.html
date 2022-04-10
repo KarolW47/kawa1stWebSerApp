@@ -5,7 +5,7 @@
         <label for="postTextMessage">Text:</label>
         <input type="text" id="postTextMessage" formControlName="postTextMessage">
         <span *ngIf="postForm.controls['postTextMessage'].hasError('required')">Text is required.</span>
-        <span *ngIf="postForm.controls['postTextMessage'].hasError('minlength')">Message must contain at least 1 character.</span>
+        <span *ngIf="postForm.controls['postTextMessage'].hasError('minlength')">Message must contain at least 2 character.</span>
         <span *ngIf="postForm.controls['postTextMessage'].hasError('maxlength')">Message cannot exceed 512 characters.</span>
 
         <button [disabled]="postForm.invalid" type="submit">Add post.</button>

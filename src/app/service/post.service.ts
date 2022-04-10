@@ -33,6 +33,7 @@ export class PostService {
 
   editPost(post: Post) {
     return this.http.patch<Post>(`${environment.apiUrl}/post/edit`, post, {
+      observe: 'response',
       headers: this.tokenStorageService.getTokensAsHeaders()
     })
   }

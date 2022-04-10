@@ -3,18 +3,6 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 
-class CustomValidators {
-  static passwordMatch(control: AbstractControl): ValidationErrors {
-    const password = control.get('password')?.value;
-    const repPassword = control.get('repPassword')?.value;
-
-    if (password === repPassword) {
-      return {};
-    } else {
-      return { paswordsNotMatching: true };
-    }
-  }
-}
 
 @Component({
   selector: 'app-register',
@@ -51,7 +39,7 @@ export class RegisterComponent implements OnInit {
         Validators.required,
       ]]
     }, {
-      validators: CustomValidators.passwordMatch,
+      validators: RegisterComponent.passwordMatch,
     })
   }
 
@@ -79,5 +67,16 @@ export class RegisterComponent implements OnInit {
         console.log('Subscribe for saving user - done.');
       }
     });
+  }
+
+  static passwordMatch(control: AbstractControl): ValidationErrors {
+    const password = control.get('password')?.value;
+    const repPassword = control.get('repPassword')?.value;
+
+    if (password === repPassword) {
+      return {};
+    } else {
+      return { paswordsNotMatching: true };
+    }
   }
 }

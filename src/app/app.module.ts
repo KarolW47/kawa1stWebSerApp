@@ -14,6 +14,8 @@ import { RefreshTokenInterceptor } from './interceptor/refresh-token.interceptor
 import { TokenStorageService } from './service/token-storage.service';
 import { EditPostComponent } from './component/edit-post/edit-post.component';
 import { DeletePostComponent } from './component/delete-post/delete-post.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { DeletePostComponent } from './component/delete-post/delete-post.compone
         path: 'posts', component: PostsComponent, children: [
           { path: 'add_post', component: AddPostComponent },]
       },
-    ])
+    ]),
+    NoopAnimationsModule,
+    MatDialogModule,
   ],
   providers: [
     TokenStorageService,
