@@ -1,7 +1,7 @@
 <h3 mat-dialog-title>Edit post:</h3>
 <mat-dialog-content>
-    <div class="dialog">
-        <form [formGroup]="editPostForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="editPostForm">
+        <div class="dialog">
             <label for="postTextMessage">Text:</label>
             <input type="text" id="postTextMessage" formControlName="postTextMessage">
             <span *ngIf="editPostForm.controls['postTextMessage'].hasError('required')">Text is required.</span>
@@ -9,12 +9,12 @@
                 character.</span>
             <span *ngIf="editPostForm.controls['postTextMessage'].hasError('maxlength')">Message cannot exceed 512
                 characters.</span>
-            <span *ngIf="editPostForm.controls['postTextMessage'].hasError('sameTextValidation')">
+            <span *ngIf="editPostForm.hasError('sameTextValidation')">
                 Message must be different.</span>
 
-            <button  [disabled]="editPostForm.invalid" type="submit" mat-button mat-dialog-close="{{respForDialog}}">
-                Save</button>
-            <button mat-button mat-dialog-close="{{respForDialog}}">Cancel</button>
-        </form>
-    </div>
+            <button [mat-dialog-close]="true" [disabled]="editPostForm.invalid" type="button"
+                (click)="onSubmit()">Save</button>
+            <button [mat-dialog-close]="false" type="button">Cancel</button>
+        </div>
+    </form>
 </mat-dialog-content>

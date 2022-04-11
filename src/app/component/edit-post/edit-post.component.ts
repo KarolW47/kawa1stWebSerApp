@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Post } from 'src/app/interface/post';
 import { PostService } from 'src/app/service/post.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -19,6 +19,7 @@ export class EditPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.editPostForm = this.formBuilder.group({
+      id: [this.data.id],
       postTextMessage: [this.data.postTextMessage, [
         Validators.required,
         Validators.minLength(2),
@@ -38,17 +39,18 @@ export class EditPostComponent implements OnInit {
     this.postService.editPost(this.editPostForm.value).subscribe({
       next: (resp) => {
         console.log(resp.status);
-        this.respForDialog = "Changes saved successfully.";
+        alert("Changes saved successfully.");
       },
       error: (error) => {
         console.log(error.status);
         console.log(error.error);
-        this.respForDialog = error.error;
+        alert("Something went wrong.")
       },
       complete() {
         console.log("Subscribe for editing post - done.");
       }
     })
+
   }
 
   static sameTextValidation(postTextMessage: String): ValidatorFn {
@@ -57,7 +59,7 @@ export class EditPostComponent implements OnInit {
       if (editPostTextMessage === postTextMessage) {
         return { sameTextValidation: true };
       } else {
-        return { };
+        return {};
       }
     }
   }
