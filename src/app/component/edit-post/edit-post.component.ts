@@ -3,6 +3,7 @@ import { Post } from 'src/app/interface/post';
 import { PostService } from 'src/app/service/post.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,9 +14,11 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn,
 export class EditPostComponent implements OnInit {
 
   editPostForm!: FormGroup;
-  respForDialog: String = "Editing canceled.";
 
-  constructor(private postService: PostService, private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) private data: Post) { }
+  constructor(private postService: PostService,
+    private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) private data: Post,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.editPostForm = this.formBuilder.group({
@@ -40,6 +43,9 @@ export class EditPostComponent implements OnInit {
       next: (resp) => {
         console.log(resp.status);
         alert("Changes saved successfully.");
+        this.router.navigate(['posts']).then(() =>
+          window.location.reload()
+        )
       },
       error: (error) => {
         console.log(error.status);

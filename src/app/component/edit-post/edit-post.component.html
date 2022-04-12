@@ -12,9 +12,9 @@
             <span *ngIf="editPostForm.hasError('sameTextValidation')">
                 Message must be different.</span>
 
-            <button [mat-dialog-close]="true" [disabled]="editPostForm.invalid" type="button"
+            <button [mat-dialog-close] [disabled]="editPostForm.invalid" type="button"
                 (click)="onSubmit()">Save</button>
-            <button [mat-dialog-close]="false" type="button">Cancel</button>
+            <button [mat-dialog-close] type="button">Cancel</button>
         </div>
     </form>
 </mat-dialog-content>

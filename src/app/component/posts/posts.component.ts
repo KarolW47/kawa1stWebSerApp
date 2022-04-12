@@ -29,12 +29,6 @@ export class PostsComponent implements OnInit {
 
   openEditDialog(post: Post) {
     let dialogRef = this.dialog.open(EditPostComponent, { data: post });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == true) {
-        this.router.navigate(['posts']).then(
-          () => window.location.reload()
-        );
-      }
-    })
+    dialogRef.afterClosed().subscribe();
   }
 }
