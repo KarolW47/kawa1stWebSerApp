@@ -7,10 +7,13 @@
     <br>
     <h3>Posts:</h3>
     <div class="listOfUsers" *ngFor="let post of postsList$">
-        <li>{{ post.user.username | titlecase }}</li>
-        <li>{{ post.createDate }}</li>
-        <li>{{ post.postTextMessage }}</li>
+        <li>User: {{ post.user.username | titlecase }}</li>
+        <li>Created: {{ post.createDate }}</li>
+        <li>Post: {{ post.postTextMessage }}</li>
+        <li *ngIf="post.updateDate != null">Edited: {{ post.updateDate}}</li>
+
         <app-delete-post [currentPostToDelete]="post"></app-delete-post>
+
         <button mat-rised-button (click)="openEditDialog(post)">Edti</button>
         <br>
     </div>

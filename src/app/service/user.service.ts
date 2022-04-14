@@ -11,6 +11,12 @@ export class UserService {
 
     constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
+    getUser() {
+        return this.http.get<User>(`${environment.apiUrl}/user/profile`, {
+            headers: this.tokenStorageService.getTokensAsHeaders()
+        })
+    }
+
     saveUser(user: User) {
         return this.http.post<User>(`${environment.apiUrl}/user/register`, user, { observe: 'response' });
     }

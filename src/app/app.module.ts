@@ -16,6 +16,7 @@ import { EditPostComponent } from './component/edit-post/edit-post.component';
 import { DeletePostComponent } from './component/delete-post/delete-post.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     PostsComponent,
     AddPostComponent,
     EditPostComponent,
-    DeletePostComponent
+    DeletePostComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
