@@ -11,10 +11,11 @@ export class UserService {
 
     constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
-    getUser() {
-        return this.http.get<User>(`${environment.apiUrl}/user/profile`, {
-            headers: this.tokenStorageService.getTokensAsHeaders()
-        })
+    getUser(username: string) {
+        return this.http.get<User>(`${environment.apiUrl}/user/profile`, { 
+            params: new HttpParams().set("username", username),
+            headers: this.tokenStorageService.getTokensAsHeaders(),    
+        });
     }
 
     saveUser(user: User) {

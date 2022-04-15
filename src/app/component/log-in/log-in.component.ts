@@ -59,7 +59,7 @@ export class LogInComponent implements OnInit {
         this.responseError = error.error;
         console.log(this.responseError);
         console.log(this.responseCode);
-        alert(this.responseError);
+        alert('Something went wrong.');
       },
       complete() {
         console.log('Subscribe for loging user in - done.');

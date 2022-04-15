@@ -37,8 +37,9 @@ import { UserProfileComponent } from './component/user-profile/user-profile.comp
     FormsModule,
     RouterModule.forRoot([
       { path: 'register', component: RegisterComponent },
-      { path: 'login', component: LogInComponent},
+      { path: 'login', component: LogInComponent },
       { path: 'users', component: UsersListComponent },
+      { path: 'user_profile/:username', component: UserProfileComponent, },
       {
         path: 'posts', component: PostsComponent, children: [
           { path: 'add_post', component: AddPostComponent },]

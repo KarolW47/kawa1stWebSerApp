@@ -6,11 +6,13 @@
     </button>
     <br>
     <h3>Posts:</h3>
-    <div class="listOfUsers" *ngFor="let post of postsList$">
-        <li>User: {{ post.user.username | titlecase }}</li>
-        <li>Created: {{ post.createDate }}</li>
+    <div class="listOfPosts" *ngFor="let post of postsList$">
+        <li>
+            <a routerLinkActive="active" [routerLink]="['/user_profile', post.user.username]" > User: {{ post.user.username | titlecase }}</a>
+        </li>
+        <li>Created: {{ post.createDate | date }}</li>
         <li>Post: {{ post.postTextMessage }}</li>
-        <li *ngIf="post.updateDate != null">Edited: {{ post.updateDate}}</li>
+        <li *ngIf="post.updateDate != null">Edited: {{ post.updateDate | date }}</li>
 
         <app-delete-post [currentPostToDelete]="post"></app-delete-post>
 
