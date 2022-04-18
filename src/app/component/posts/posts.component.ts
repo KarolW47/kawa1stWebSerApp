@@ -12,14 +12,14 @@ import { EditPostComponent } from '../edit-post/edit-post.component';
 })
 export class PostsComponent implements OnInit {
 
-  postsList$: Post[] = [];
+  postsList: Post[] = [];
   wasClicked: boolean = false;
 
   constructor(private postService: PostService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe(res => {
-      this.postsList$ = res.reverse();
+      this.postsList = res.reverse();
     })
   }
 

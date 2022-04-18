@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Post } from '../interface/post';
@@ -13,6 +13,13 @@ export class PostService {
 
   getPosts() {
     return this.http.get<Post[]>(`${environment.apiUrl}/post/posts`, {
+      headers: this.tokenStorageService.getTokensAsHeaders()
+    });
+  }
+
+  getUserPosts(username: string) {
+    return this.http.get<Post[]>(`${environment.apiUrl}/post/ofUser`, {
+      params: new HttpParams().set("username", username),
       headers: this.tokenStorageService.getTokensAsHeaders()
     });
   }
