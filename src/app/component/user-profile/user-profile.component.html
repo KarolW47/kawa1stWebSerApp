@@ -8,7 +8,7 @@
     <li>Post: {{ post.postTextMessage }}</li>
     <li *ngIf="post.updateDate != null">Edited: {{ post.updateDate | date }}</li>
 
-    <!-- <app-delete-post [currentPostToDelete]="post"></app-delete-post> -->
+    <app-delete-post [currentPostToDelete]="post"></app-delete-post>
 
     <!-- <button mat-rised-button (click)="openEditDialog(post)">Edti</button> -->
 

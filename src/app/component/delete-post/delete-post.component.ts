@@ -10,7 +10,7 @@ import { PostService } from 'src/app/service/post.service';
 })
 export class DeletePostComponent implements OnInit {
 
-  constructor(private postService: PostService, private router: Router) { }
+  constructor(private postService: PostService) { }
 
   @Input() currentPostToDelete!: Post;
 
@@ -23,9 +23,7 @@ export class DeletePostComponent implements OnInit {
         next: (resp) => {
           alert('Post deleted.');
           console.log(resp);
-          this.router.navigate(['posts']).then(
-            () => window.location.reload()
-          )
+          window.location.reload()
         },
         error: (error) => {
           alert('Something goes wrong.')

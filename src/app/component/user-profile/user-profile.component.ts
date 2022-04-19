@@ -37,7 +37,7 @@ export class UserProfileComponent implements OnInit {
 
     this.postService.getUserPosts(this.username).subscribe({
       next: (resp) => {
-        this.postsOfUser = resp;
+        this.postsOfUser = resp.reverse();
       },
       error: (error) => {
         console.log(error.status);
