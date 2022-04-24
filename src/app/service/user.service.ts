@@ -24,24 +24,30 @@ export class UserService {
 
     getUsers() {
         return this.http.get<User[]>(`${environment.apiUrl}/user/users`, {
-            headers: this.tokenStorageService.getTokensAsHeaders()
+            headers: this.tokenStorageService.getAccessToken()
         }).pipe(
             catchError(this.handleError)
         );
     }
 
     logUserIn(user: User) {
-        // const myheader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-        let body = new HttpParams();
-        body = body.set('username', user.username);
-        body = body.set('password', user.password);
-        return this.http.post<any>(`${environment.apiUrl}/user/login`, body, {
-            /** headers: myheader */  observe: 'response'
+        let parameters = new HttpParams();
+        parameters = parameters.set('username', user.username);
+        parameters = parameters.set('password', user.password);
+        return this.http.post<any>(`${environment.apiUrl}/user/login`, parameters, {
+          observe: 'response'
         });
     }
 
     logUserOut() {
         this.tokenStorageService.deleteTokens();
+    }
+
+    deleteUser(password: string) {
+        this.http.delete(`${environment.apiUrl}/user/profile/delete`, {
+            params: new HttpParams().set("password", password),
+            headers: this.tokenStorageService.getAccessToken()
+        })
     }
 
     private handleError(error: HttpErrorResponse) {
