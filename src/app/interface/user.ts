@@ -7,4 +7,5 @@ export interface User {
     password: string;
     aboutMeInfo: string;
     userPosts: Post[];
+    userRoles: String[];
 }
