@@ -47,7 +47,26 @@ export class UserService {
         this.http.delete(`${environment.apiUrl}/user/profile/delete`, {
             params: new HttpParams().set("password", password),
             headers: this.tokenStorageService.getAccessToken()
-        })
+        });
+    }
+
+    changeAboutMeInfo(uptdatedAboutMeInfo: string){
+        this.http.patch(`${environment.apiUrl}/profile/about_me_info/change`, uptdatedAboutMeInfo, {
+            headers: this.tokenStorageService.getAccessToken()
+        });
+    }
+
+    changePassword(oldPassword: string, newPassword:string){
+        this.http.patch(`${environment.apiUrl}/profile/password/change`, {
+            params: [new HttpParams().set("newPassword", newPassword), new HttpParams().set("oldPassword", oldPassword)],
+            headers: this.tokenStorageService.getAccessToken()
+        });
+    }
+
+    changeUsername(newUsername: string){
+        this.http.patch(`${environment.apiUrl}/profile/username/change`, newUsername, {
+            headers: this.tokenStorageService.getAccessToken()
+        });
     }
 
     private handleError(error: HttpErrorResponse) {
