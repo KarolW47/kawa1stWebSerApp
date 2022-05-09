@@ -1,0 +1,20 @@
+<h3 mat-dialog-title>Delete profile?</h3>
+<mat-dialog-content>
+    <form [formGroup]="confirmWithPassowrdForm">
+        <div class="dialog">
+            <label for="password">Text:</label>
+            <input type="password" id="password" formControlName="password">
+            <span *ngIf="confirmWithPassowrdForm.controls['password'].hasError('required')">Password is required</span>
+            <span *ngIf="confirmWithPassowrdForm.controls['password'].hasError('minlength')">Password cannot be shorter
+                than 6
+                characters.</span>
+            <span *ngIf="confirmWithPassowrdForm.controls['password'].hasError('maxlength')">Password cannot be longer
+                than 35
+                characters.</span>
+
+            <button [mat-dialog-close] [disabled]="confirmWithPassowrdForm.invalid" type="button"
+                (click)="onSubmit()">Confirm</button>
+            <button [mat-dialog-close] type="button">Cancel</button>
+        </div>
+    </form>
+</mat-dialog-content>

@@ -14,20 +14,18 @@ export class EditPostComponent implements OnInit {
 
   editPostForm!: FormGroup;
 
-  constructor(private postService: PostService,
-    private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) private data: Post,) { }
+  constructor(private postService: PostService,private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) private post: Post) { }
 
   ngOnInit(): void {
     this.editPostForm = this.formBuilder.group({
-      id: [this.data.id],
-      postTextMessage: [this.data.postTextMessage, [
+      id: [this.post.id],
+      postTextMessage: [this.post.postTextMessage, [
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(512),
       ]]
     }, {
-      validators: EditPostComponent.sameTextValidation(this.data.postTextMessage),
+      validators: EditPostComponent.sameTextValidation(this.post.postTextMessage),
     })
   }
 

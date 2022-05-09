@@ -12,9 +12,9 @@ export class UserService {
     constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
     getUser(username: string) {
-        return this.http.get<User>(`${environment.apiUrl}/user/profile`, { 
+        return this.http.get<User>(`${environment.apiUrl}/user/profile`, {
             params: new HttpParams().set("username", username),
-            headers: this.tokenStorageService.getTokensAsHeaders(),    
+            headers: this.tokenStorageService.getTokensAsHeaders(),
         });
     }
 
@@ -35,7 +35,7 @@ export class UserService {
         parameters = parameters.set('username', user.username);
         parameters = parameters.set('password', user.password);
         return this.http.post<any>(`${environment.apiUrl}/user/login`, parameters, {
-          observe: 'response'
+            observe: 'response'
         });
     }
 
@@ -43,27 +43,27 @@ export class UserService {
         this.tokenStorageService.deleteTokens();
     }
 
-    deleteUser(password: string) {
+    deleteUser(user: User) {
         this.http.delete(`${environment.apiUrl}/user/profile/delete`, {
-            params: new HttpParams().set("password", password),
+            params: new HttpParams().set("password", user.password),
             headers: this.tokenStorageService.getAccessToken()
-        });
+        }).subscribe(resp => alert(resp));
     }
 
-    changeAboutMeInfo(uptdatedAboutMeInfo: string){
+    changeAboutMeInfo(uptdatedAboutMeInfo: string) {
         this.http.patch(`${environment.apiUrl}/profile/about_me_info/change`, uptdatedAboutMeInfo, {
             headers: this.tokenStorageService.getAccessToken()
         });
     }
 
-    changePassword(oldPassword: string, newPassword:string){
+    changePassword(oldPassword: string, newPassword: string) {
         this.http.patch(`${environment.apiUrl}/profile/password/change`, {
             params: [new HttpParams().set("newPassword", newPassword), new HttpParams().set("oldPassword", oldPassword)],
             headers: this.tokenStorageService.getAccessToken()
         });
     }
 
-    changeUsername(newUsername: string){
+    changeUsername(newUsername: string) {
         this.http.patch(`${environment.apiUrl}/profile/username/change`, newUsername, {
             headers: this.tokenStorageService.getAccessToken()
         });

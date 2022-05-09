@@ -1,4 +1,5 @@
 <h3>{{user.username | titlecase}} profile.</h3>
+<app-delete-user-dialog [currentUserToDelete]="user"></app-delete-user-dialog>
 <li>Email: {{user.emailAddress}}</li>
 <li>About: {{user.aboutMeInfo}}</li>
 <h4>Posts: </h4>

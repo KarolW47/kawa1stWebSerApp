@@ -18,6 +18,11 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { EditPostDialogComponent } from './component/edit-post/edit-post-dialog/edit-post-dialog.component';
+import { DeleteUserComponent } from './component/delete-user/delete-user.component';
+import { ChangeUsernameComponent } from './component/change-username/change-username.component';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
+import { ChangeAboutMeInfoComponent } from './component/change-about-me-info/change-about-me-info.component';
+import { DeleteUserDialogComponent } from './component/delete-user/delete-user-dialog/delete-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,12 @@ import { EditPostDialogComponent } from './component/edit-post/edit-post-dialog/
     EditPostComponent,
     DeletePostComponent,
     UserProfileComponent,
-    EditPostDialogComponent
+    EditPostDialogComponent,
+    DeleteUserComponent,
+    ChangeUsernameComponent,
+    ChangePasswordComponent,
+    ChangeAboutMeInfoComponent,
+    DeleteUserDialogComponent
   ],
   imports: [
     BrowserModule,

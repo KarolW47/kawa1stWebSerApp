@@ -17,8 +17,8 @@ export class DeletePostComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDelete(post: Post): void {
-    if (confirm('Are you sure, you want to delete this post?')) {
+  onDeleteClick(post: Post): void {
+    if (confirm('Are You sure, You want to delete this post?')) {
       this.postService.deletePost(post).subscribe({
         next: (resp) => {
           alert('Post deleted.');
