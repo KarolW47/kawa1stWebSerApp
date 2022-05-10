@@ -24,7 +24,6 @@ export class DeleteUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.confirmWithPassowrdForm = this.formBuilder.group({
-      id: [this.user.id],
       password: [null, [
         Validators.required,
         Validators.minLength(6),
@@ -38,9 +37,8 @@ export class DeleteUserComponent implements OnInit {
       alert("Something went wrong.");
       return;
     }
-
-    this.userService.deleteUser(this.confirmWithPassowrdForm.value)
-
+    
+    alert(this.userService.deleteUser(this.confirmWithPassowrdForm.value));
   }
 
 }

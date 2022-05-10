@@ -43,11 +43,20 @@ export class UserService {
         this.tokenStorageService.deleteTokens();
     }
 
-    deleteUser(user: User) {
+    deleteUser(confirmationPassword: string) {
+        let result;
         this.http.delete(`${environment.apiUrl}/user/profile/delete`, {
-            params: new HttpParams().set("password", user.password),
+            params: new HttpParams().set("password", confirmationPassword),
             headers: this.tokenStorageService.getAccessToken()
-        }).subscribe(resp => alert(resp));
+        }).subscribe({
+            next: resp => {
+                result = 'Profile deleted';
+            },
+            error: error => {
+                result = error.message
+            }
+        });
+        return result;
     }
 
     changeAboutMeInfo(uptdatedAboutMeInfo: string) {
