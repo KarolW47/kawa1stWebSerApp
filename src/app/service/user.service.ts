@@ -43,37 +43,29 @@ export class UserService {
         this.tokenStorageService.deleteTokens();
     }
 
-    deleteUser(confirmationPassword: string) {
-        let result;
-        this.http.delete(`${environment.apiUrl}/user/profile/delete`, {
-            params: new HttpParams().set("password", confirmationPassword),
-            headers: this.tokenStorageService.getAccessToken()
-        }).subscribe({
-            next: resp => {
-                result = 'Profile deleted';
-            },
-            error: error => {
-                result = error.message
-            }
+    deleteUser(user: User) {
+        return this.http.delete(`${environment.apiUrl}/user/profile/delete`, {
+            params: new HttpParams().set("confirmationPassword", user.password),
+            headers: this.tokenStorageService.getAccessToken(),
+            observe: 'response'
         });
-        return result;
     }
 
     changeAboutMeInfo(uptdatedAboutMeInfo: string) {
-        this.http.patch(`${environment.apiUrl}/profile/about_me_info/change`, uptdatedAboutMeInfo, {
+        this.http.patch(`${environment.apiUrl}/user/profile/about_me_info/change`, uptdatedAboutMeInfo, {
             headers: this.tokenStorageService.getAccessToken()
         });
     }
 
     changePassword(oldPassword: string, newPassword: string) {
-        this.http.patch(`${environment.apiUrl}/profile/password/change`, {
+        this.http.patch(`${environment.apiUrl}/user/profile/password/change`, {
             params: [new HttpParams().set("newPassword", newPassword), new HttpParams().set("oldPassword", oldPassword)],
             headers: this.tokenStorageService.getAccessToken()
         });
     }
 
     changeUsername(newUsername: string) {
-        this.http.patch(`${environment.apiUrl}/profile/username/change`, newUsername, {
+        this.http.patch(`${environment.apiUrl}/user/profile/username/change`, newUsername, {
             headers: this.tokenStorageService.getAccessToken()
         });
     }

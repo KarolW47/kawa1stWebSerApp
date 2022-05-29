@@ -23,6 +23,9 @@ import { ChangeUsernameComponent } from './component/change-username/change-user
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
 import { ChangeAboutMeInfoComponent } from './component/change-about-me-info/change-about-me-info.component';
 import { DeleteUserDialogComponent } from './component/delete-user/delete-user-dialog/delete-user-dialog.component';
+import { ChangeAboutMeInfoDialogComponent } from './component/change-about-me-info/change-about-me-info-dialog/change-about-me-info-dialog.component';
+import { ChangePasswordDialogComponent } from './component/change-password/change-password-dialog/change-password-dialog.component';
+import { ChangeUsernameDialogComponent } from './component/change-username/change-username-dialog/change-username-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { DeleteUserDialogComponent } from './component/delete-user/delete-user-d
     ChangeUsernameComponent,
     ChangePasswordComponent,
     ChangeAboutMeInfoComponent,
-    DeleteUserDialogComponent
+    DeleteUserDialogComponent,
+    ChangeAboutMeInfoDialogComponent,
+    ChangePasswordDialogComponent,
+    ChangeUsernameDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -37,8 +37,21 @@ export class DeleteUserComponent implements OnInit {
       alert("Something went wrong.");
       return;
     }
-    
-    alert(this.userService.deleteUser(this.confirmWithPassowrdForm.value));
+
+    this.userService.deleteUser(this.confirmWithPassowrdForm.value).subscribe({
+      next: () => {
+        alert("User deleted.");
+        this.userService.logUserOut();
+        this.router.navigate(['/login']).then(
+          () => window.location.reload()
+        );
+      },
+      error: error => {
+        console.log(error.error);
+        console.log(error.status);
+        alert("Something went wrong.");
+      }
+    });
   }
 
 }

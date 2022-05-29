@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/interface/user';
+import { DeleteUserComponent } from '../delete-user.component';
 
 @Component({
   selector: 'app-delete-user-dialog',
@@ -18,7 +19,7 @@ export class DeleteUserDialogComponent implements OnInit {
 
   openDeleteUserDialog(user: User) {
     if (confirm('Are You sure, You want to delete this profile?')) {
-      let dialogRef = this.dialog.open(DeleteUserDialogComponent, { data: user });
+      let dialogRef = this.dialog.open(DeleteUserComponent, { data: user });
       dialogRef.afterClosed().subscribe();
     } else return;
   }
