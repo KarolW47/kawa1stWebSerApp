@@ -40,7 +40,7 @@ export class ChangeAboutMeInfoComponent implements OnInit {
     this.userService.changeAboutMeInfo(this.changeAboutMeInfoForm.value).subscribe({
       next: () => {
         alert("About me info changed.");
-        () => window.location.reload()
+        window.location.reload()
       },
       error: error => {
         console.log(error.error);

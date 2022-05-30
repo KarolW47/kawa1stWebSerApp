@@ -44,7 +44,7 @@ export class UserService {
     }
 
     deleteUser(user: User) {
-        return  this.http.delete(`${environment.apiUrl}/user/profile/delete`, {
+        return this.http.delete(`${environment.apiUrl}/user/profile/delete`, {
             params: new HttpParams().set("confirmationPassword", user.password),
             headers: this.tokenStorageService.getAccessToken(),
             observe: 'response'
@@ -52,8 +52,8 @@ export class UserService {
     }
 
     changeAboutMeInfo(user: User) {
-        if(user.aboutMeInfo === null || user.aboutMeInfo === '') {
-            user.aboutMeInfo = " "
+        if (user.aboutMeInfo === null || user.aboutMeInfo === '') {
+            user.aboutMeInfo = ' ';
         }
         return this.http.patch(`${environment.apiUrl}/user/profile/about_me_info/change`, user.aboutMeInfo, {
             headers: this.tokenStorageService.getAccessToken(),
