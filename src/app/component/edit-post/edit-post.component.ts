@@ -25,7 +25,7 @@ export class EditPostComponent implements OnInit {
         Validators.maxLength(512),
       ]]
     }, {
-      validators: EditPostComponent.sameTextValidation(this.post.postTextMessage),
+      validators: this.sameTextValidation(this.post.postTextMessage),
     })
   }
 
@@ -53,10 +53,10 @@ export class EditPostComponent implements OnInit {
 
   }
 
-  static sameTextValidation(postTextMessage: String): ValidatorFn {
+  protected sameTextValidation(currentPostTextMessage: String): ValidatorFn {
     return (control: AbstractControl): ValidationErrors => {
-      let editPostTextMessage = control.get("postTextMessage")?.value;
-      if (editPostTextMessage === postTextMessage) {
+      let newPostTextMessage = control.get("postTextMessage")?.value;
+      if (newPostTextMessage === currentPostTextMessage) {
         return { sameTextValidation: true };
       } else {
         return {};

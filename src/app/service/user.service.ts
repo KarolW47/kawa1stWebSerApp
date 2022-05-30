@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse, HttpHeaderResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { User } from "../interface/user";
 import { catchError, throwError } from "rxjs";
 import { TokenStorageService } from "./token-storage.service";
@@ -44,16 +44,20 @@ export class UserService {
     }
 
     deleteUser(user: User) {
-        return this.http.delete(`${environment.apiUrl}/user/profile/delete`, {
+        return  this.http.delete(`${environment.apiUrl}/user/profile/delete`, {
             params: new HttpParams().set("confirmationPassword", user.password),
             headers: this.tokenStorageService.getAccessToken(),
             observe: 'response'
         });
     }
 
-    changeAboutMeInfo(uptdatedAboutMeInfo: string) {
-        this.http.patch(`${environment.apiUrl}/user/profile/about_me_info/change`, uptdatedAboutMeInfo, {
-            headers: this.tokenStorageService.getAccessToken()
+    changeAboutMeInfo(user: User) {
+        if(user.aboutMeInfo === null || user.aboutMeInfo === '') {
+            user.aboutMeInfo = " "
+        }
+        return this.http.patch(`${environment.apiUrl}/user/profile/about_me_info/change`, user.aboutMeInfo, {
+            headers: this.tokenStorageService.getAccessToken(),
+            observe: 'response'
         });
     }
 

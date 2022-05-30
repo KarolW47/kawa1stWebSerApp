@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { User } from 'src/app/interface/user';
+import { ChangeAboutMeInfoComponent } from '../change-about-me-info.component';
 
 @Component({
   selector: 'app-change-about-me-info-dialog',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangeAboutMeInfoDialogComponent implements OnInit {
 
-  constructor() { }
+  @Input() currentUserToEdit!: User;
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+
+  }
+
+  openChangeAboutMeInfoDialog(user: User) {
+    let dialogRef = this.dialog.open(ChangeAboutMeInfoComponent, { data: user });
+    dialogRef.afterClosed().subscribe();
   }
 
 }

@@ -2,6 +2,7 @@
 <app-delete-user-dialog [currentUserToDelete]="user"></app-delete-user-dialog>
 <li>Email: {{user.emailAddress}}</li>
 <li>About: {{user.aboutMeInfo}}</li>
+<app-change-about-me-info-dialog [currentUserToEdit]="user"></app-change-about-me-info-dialog>
 <h4>Posts: </h4>
 <div class="listOfPosts" *ngFor="let post of postsOfUser">
     <li> User: {{ post.user.username | titlecase }}</li>
