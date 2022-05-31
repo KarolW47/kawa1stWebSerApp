@@ -68,8 +68,8 @@ export class UserService {
         });
     }
 
-    changeUsername(newUsername: string) {
-        this.http.patch(`${environment.apiUrl}/user/profile/username/change`, newUsername, {
+    changeUsername(user: User) {
+        return this.http.patch(`${environment.apiUrl}/user/profile/username/change`, user.username, {
             headers: this.tokenStorageService.getAccessToken()
         });
     }

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { User } from 'src/app/interface/user';
+import { ChangeUsernameComponent } from '../change-username.component';
 
 @Component({
   selector: 'app-change-username-dialog',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangeUsernameDialogComponent implements OnInit {
 
-  constructor() { }
+  @Input() currentUserToEditUsername!: User;
+
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  openChangeUsernameDialog(user: User){
+    let dialogRef = this.dialog.open(ChangeUsernameComponent, {data: user});
+    dialogRef.afterClosed().subscribe();
   }
 
 }

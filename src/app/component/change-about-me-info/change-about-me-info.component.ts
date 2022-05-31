@@ -18,7 +18,6 @@ export class ChangeAboutMeInfoComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router,
     @Inject(MAT_DIALOG_DATA) private user: User) { }
 
   ngOnInit(): void {

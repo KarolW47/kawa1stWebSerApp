@@ -10,9 +10,9 @@ import { ChangeAboutMeInfoComponent } from '../change-about-me-info.component';
 })
 export class ChangeAboutMeInfoDialogComponent implements OnInit {
 
-  @Input() currentUserToEdit!: User;
+  @Input() currentUserToEditAboutMeInfo!: User;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
 

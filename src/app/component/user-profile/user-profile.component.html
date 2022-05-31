@@ -1,8 +1,9 @@
 <h3>{{user.username | titlecase}} profile.</h3>
-<app-delete-user-dialog [currentUserToDelete]="user"></app-delete-user-dialog>
+<app-change-username-dialog [currentUserToEditUsername]="user"></app-change-username-dialog>
+<app-delete-user-dialog [currentUserToDeleteProfile]="user"></app-delete-user-dialog>
 <li>Email: {{user.emailAddress}}</li>
 <li>About: {{user.aboutMeInfo}}</li>
-<app-change-about-me-info-dialog [currentUserToEdit]="user"></app-change-about-me-info-dialog>
+<app-change-about-me-info-dialog [currentUserToEditAboutMeInfo]="user"></app-change-about-me-info-dialog>
 <h4>Posts: </h4>
 <div class="listOfPosts" *ngFor="let post of postsOfUser">
     <li> User: {{ post.user.username | titlecase }}</li>

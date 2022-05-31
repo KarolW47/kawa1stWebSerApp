@@ -2,14 +2,17 @@
 <mat-dialog-content>
     <form [formGroup]="changeAboutMeInfoForm">
         <div class="dialog">
-            <label for="aboutMeInfo">About me info:</label>
+            <label for="aboutMeInfo">
+                About me info:
+            </label>
             <input type="aboutMeInfo" id="aboutMeInfo" formControlName="aboutMeInfo">
-            <span *ngIf="changeAboutMeInfoForm.controls['aboutMeInfo'].hasError('maxlength')">Info cannot be longer
-                than 512
-                characters.</span>
+            <span *ngIf="changeAboutMeInfoForm.controls['aboutMeInfo'].hasError('maxlength')">
+                Info cannot be longerthan 512 characters.
+            </span>
 
-            <button [mat-dialog-close] [disabled]="changeAboutMeInfoForm.invalid" type="button"
-                (click)="onSubmit()">Change</button>
+            <button [mat-dialog-close] [disabled]="changeAboutMeInfoForm.invalid" type="button" (click)="onSubmit()">
+                Change
+            </button>
             <button [mat-dialog-close] type="button">Cancel</button>
         </div>
     </form>

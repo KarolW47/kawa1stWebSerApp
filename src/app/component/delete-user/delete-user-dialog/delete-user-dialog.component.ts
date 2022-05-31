@@ -10,7 +10,7 @@ import { DeleteUserComponent } from '../delete-user.component';
 })
 export class DeleteUserDialogComponent implements OnInit {
 
-  @Input() currentUserToDelete!: User;
+  @Input() currentUserToDeleteProfile!: User;
 
   constructor(public dialog: MatDialog) { }
 
