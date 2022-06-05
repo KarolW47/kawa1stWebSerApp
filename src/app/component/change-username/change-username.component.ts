@@ -2,6 +2,7 @@ import { error } from '@angular/compiler/src/util';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { User } from 'src/app/interface/user';
 import { UserService } from 'src/app/service/user.service';
 
@@ -17,7 +18,8 @@ export class ChangeUsernameComponent implements OnInit {
   @Input() currentUserToEdit!: User;
 
   constructor(private userService: UserService, 
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
+    private router: Router, 
     @Inject(MAT_DIALOG_DATA) private user: User) { }
 
   ngOnInit(): void {
@@ -41,7 +43,9 @@ export class ChangeUsernameComponent implements OnInit {
     this.userService.changeUsername(this.changeUsernameForm.value).subscribe({
       next: () => {
         alert("Username changed successfully.")
-        window.location.reload();
+        this.router.navigate(['user_profile/' + this.changeUsernameForm.get('username')?.value]).then(
+          () => window.location.reload()
+        );
       },
       error: error => {
         console.log(error.error);

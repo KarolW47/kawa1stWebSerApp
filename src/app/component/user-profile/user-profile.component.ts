@@ -19,8 +19,7 @@ export class UserProfileComponent implements OnInit {
   constructor(private userService: UserService, private postService: PostService, private activatedRoute: ActivatedRoute) {
   }
 
-
-  ngOnInit(): void {
+  ngOnInit(): void{
     this.activatedRoute.params.subscribe(params => {
       this.username = params['username'];
     });
