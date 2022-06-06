@@ -5,9 +5,9 @@
             <label for="username">
                 Username:
             </label>
-            
+
             <input type="text" id="username" formControlName="username">
-            
+
             <span *ngIf="changeUsernameForm.controls['username'].hasError('required')">
                 Username is required.
             </span>
@@ -24,7 +24,7 @@
                 That's your current username.
             </span>
 
-            <button [mat-dialog-close] [disabled]="changeUsernameForm.invalid" type="button" (click)="onSubmit()"> 
+            <button [mat-dialog-close] [disabled]="changeUsernameForm.invalid" type="button" (click)="onSubmit()">
                 Change
             </button>
             <button [mat-dialog-close] type="button">

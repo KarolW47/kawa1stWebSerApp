@@ -62,7 +62,7 @@ export class UserService {
     }
 
     changePassword(oldPassword: string, newPassword: string) {
-        this.http.patch(`${environment.apiUrl}/user/profile/password/change`, {
+        return this.http.patch(`${environment.apiUrl}/user/profile/password/change`, {
             params: [new HttpParams().set("newPassword", newPassword), new HttpParams().set("oldPassword", oldPassword)],
             headers: this.tokenStorageService.getAccessToken()
         });

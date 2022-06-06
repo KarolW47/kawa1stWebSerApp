@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
         Validators.required,
       ]]
     }, {
-      validators: RegisterComponent.passwordMatch,
+      validators: RegisterComponent.passwordMatchValidation,
     })
   }
 
@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  static passwordMatch(control: AbstractControl): ValidationErrors {
+  static passwordMatchValidation(control: AbstractControl): ValidationErrors {
     const password = control.get('password')?.value;
     const repPassword = control.get('repPassword')?.value;
 

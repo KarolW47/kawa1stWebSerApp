@@ -1,5 +1,6 @@
 <h3>{{username | titlecase}} profile.</h3>
 <app-change-username-dialog [currentUserToEditUsername]="user"></app-change-username-dialog>
+<app-change-password-dialog [currentUserToChangePassword]="user"></app-change-password-dialog>
 <app-delete-user-dialog [currentUserToDeleteProfile]="user"></app-delete-user-dialog>
 <li *ngIf="user">Email: {{user.emailAddress}}</li>
 <li *ngIf="user">About: {{user.aboutMeInfo}}</li>
