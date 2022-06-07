@@ -15,7 +15,6 @@ export class RegisterComponent implements OnInit {
   responseError!: string;
   registerForm!: FormGroup;
 
-
   constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
@@ -39,7 +38,7 @@ export class RegisterComponent implements OnInit {
         Validators.required,
       ]]
     }, {
-      validators: RegisterComponent.passwordMatchValidation,
+      validators: this.passwordsMatchValidation,
     })
   }
 
@@ -69,14 +68,13 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  static passwordMatchValidation(control: AbstractControl): ValidationErrors {
-    const password = control.get('password')?.value;
-    const repPassword = control.get('repPassword')?.value;
-
-    if (password === repPassword) {
-      return {};
+  private passwordsMatchValidation(control: AbstractControl): ValidationErrors {
+    let pass = control.get('password')?.value;
+    let repPass = control.get('repPassword')?.value;
+    if (pass === repPass) {
+      return { };
     } else {
-      return { paswordsNotMatching: true };
+      return { passwordsNotMatching: true };
     }
   }
 }

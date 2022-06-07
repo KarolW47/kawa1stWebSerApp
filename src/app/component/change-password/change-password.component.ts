@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interface/user';
@@ -36,30 +36,39 @@ export class ChangePasswordComponent implements OnInit {
         Validators.required,
       ]]
     }, {
-      validators: RegisterComponent.passwordMatchValidation,
+      validators: this.passwordsMatchValidation,
     })
   }
 
   onSubmit() {
-    if (this.changePasswordForm.valid) {
+    if (this.changePasswordForm.invalid) {
       alert("Something went wrong.")
       return;
     }
 
     this.userService.changePassword(
       this.changePasswordForm.get('oldPassword')?.value,
-      this.changePasswordForm.get('newPassword')?.value
-      ).subscribe({
+      this.changePasswordForm.get('newPassword')?.value).subscribe({
         next: (resp) => {
           alert('Password changed.');
           this.router.navigate(['login']);
         },
         error: (error) => {
-        console.log(error.status);
-        console.log(error.error);
-        alert(error.error);
+          console.log(error.status);
+          console.log(error.error);
+          alert(error.error);
         }
       });
+  }
+
+  private passwordsMatchValidation(control: AbstractControl): ValidationErrors {
+    let pass = control.get('newPassword')?.value;
+    let repPass = control.get('repNewPassword')?.value;
+    if (pass === repPass) {
+      return { };
+    } else {
+      return { passwordsNotMatching: true };
+    }
   }
 
 }

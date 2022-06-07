@@ -51,8 +51,8 @@
             <span *ngIf="registerForm.controls['repPassword'].hasError('required')">
                 Repeated password is required.
             </span>
-            <span *ngIf="registerForm.hasError('paswordsNotMatchingValidation')">
-                Passwords does not match.
+            <span  *ngIf="registerForm.hasError('passwordsNotMatching')">
+                Passwords do not match.
             </span>
 
             <button [disabled]="registerForm.invalid" type="submit">Register</button>
