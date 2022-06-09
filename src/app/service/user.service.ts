@@ -41,6 +41,7 @@ export class UserService {
 
     logUserOut() {
         this.tokenStorageService.deleteTokens();
+        this.tokenStorageService.deleteUserId();
     }
 
     deleteUser(user: User) {

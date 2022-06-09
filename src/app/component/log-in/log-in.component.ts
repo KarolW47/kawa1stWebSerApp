@@ -15,6 +15,7 @@ export class LogInComponent implements OnInit {
   private responseError!: string;
   private responseAccessToken!: any;
   private responseRefreshToken!: any;
+  private responseUserId!: any;
 
   loginForm: FormGroup = new FormGroup({});
 
@@ -49,7 +50,9 @@ export class LogInComponent implements OnInit {
         alert('Logged in successfully!');
         this.responseAccessToken = resp.headers.get('access_token');
         this.responseRefreshToken = resp.headers.get('refresh_token');
+        this.responseUserId = resp.headers.get('user_id');
         this.tokenStorage.saveTokens(this.responseAccessToken, this.responseRefreshToken);
+        this.tokenStorage.saveUserId(this.responseUserId);
         this.router.navigate(['/posts']).then(
           () => window.location.reload()
         );

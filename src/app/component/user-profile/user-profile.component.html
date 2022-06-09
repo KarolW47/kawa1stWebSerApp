@@ -1,10 +1,17 @@
 <h3>{{username | titlecase}} profile.</h3>
-<app-change-username-dialog [currentUserToEditUsername]="user"></app-change-username-dialog>
-<app-change-password-dialog [currentUserToChangePassword]="user"></app-change-password-dialog>
-<app-delete-user-dialog [currentUserToDeleteProfile]="user"></app-delete-user-dialog>
+<div *ngIf="currentUserId === user.id">
+    <app-change-username-dialog [currentUserToEditUsername]="user"></app-change-username-dialog>
+    <app-change-password-dialog [currentUserToChangePassword]="user"></app-change-password-dialog>
+    <app-delete-user-dialog [currentUserToDeleteProfile]="user"></app-delete-user-dialog>
+</div>
+
 <li *ngIf="user">Email: {{user.emailAddress}}</li>
+
 <li *ngIf="user">About: {{user.aboutMeInfo}}</li>
-<app-change-about-me-info-dialog [currentUserToEditAboutMeInfo]="user"></app-change-about-me-info-dialog>
+<div *ngIf="currentUserId === user.id">
+    <app-change-about-me-info-dialog [currentUserToEditAboutMeInfo]="user"></app-change-about-me-info-dialog>
+</div>
+
 <h4>Posts: </h4>
 <div class="listOfPosts" *ngFor="let post of postsOfUser">
     <li> User: {{ post.user.username | titlecase }}</li>
@@ -12,9 +19,9 @@
     <li>Post: {{ post.postTextMessage }}</li>
     <li *ngIf="post.updateDate != null">Edited: {{ post.updateDate | date }}</li>
 
-    <app-delete-post [currentPostToDelete]="post"></app-delete-post>
-
-    <app-edit-post-dialog [currentPostToEdit]="post"></app-edit-post-dialog>
-
+    <div *ngIf="currentUserId === post.user.id">
+        <app-delete-post [currentPostToDelete]="post"></app-delete-post>
+        <app-edit-post-dialog [currentPostToEdit]="post"></app-edit-post-dialog>
+    </div>
     <br>
 </div>

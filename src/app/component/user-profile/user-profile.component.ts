@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/interface/post';
 import { User } from 'src/app/interface/user';
 import { PostService } from 'src/app/service/post.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -15,8 +16,9 @@ export class UserProfileComponent implements OnInit {
   user!: User;
   username!: string;
   postsOfUser!: Post[];
+  currentUserId: number = +this.tokenStorageService.getUserId();
 
-  constructor(private userService: UserService, private postService: PostService, private activatedRoute: ActivatedRoute) {
+  constructor(private userService: UserService, private postService: PostService, private activatedRoute: ActivatedRoute, private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit(): void {

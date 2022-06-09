@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
 
   onClick() {
     this.tokenStorageService.deleteTokens();
+    this.tokenStorageService.deleteUserId();
     this.router.navigate(['login']).then(
       () => window.location.reload()
     );
