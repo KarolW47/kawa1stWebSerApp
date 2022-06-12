@@ -17,9 +17,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.isTokenPresent = this.tokenStorageService.isAccessTokenPresent();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
-  onClick() {
+  onLogoutClick() {
     this.tokenStorageService.deleteTokens();
     this.tokenStorageService.deleteUserId();
     this.router.navigate(['login']).then(

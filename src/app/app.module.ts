@@ -54,7 +54,7 @@ import { ChangeUsernameDialogComponent } from './component/change-username/chang
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: 'register', component: RegisterComponent },
+      { path: 'register', component: RegisterComponent, },
       { path: 'login', component: LogInComponent },
       { path: 'users', component: UsersListComponent },
       { path: 'user_profile/:username', component: UserProfileComponent, },
@@ -62,7 +62,9 @@ import { ChangeUsernameDialogComponent } from './component/change-username/chang
         path: 'posts', component: PostsComponent, children: [
           { path: 'add_post', component: AddPostComponent },]
       },
-    ]),
+    ],
+      { onSameUrlNavigation: 'reload' }
+    ),
     NoopAnimationsModule,
     MatDialogModule,
   ],
