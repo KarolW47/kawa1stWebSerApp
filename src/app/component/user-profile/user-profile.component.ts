@@ -14,19 +14,23 @@ import { UserService } from 'src/app/service/user.service';
 export class UserProfileComponent implements OnInit {
 
   user!: User;
-  username!: string;
+  userId!: string;
   postsOfUser!: Post[];
   currentUserId: number = +this.tokenStorageService.getUserId();
 
-  constructor(private userService: UserService, private postService: PostService, private activatedRoute: ActivatedRoute, private tokenStorageService: TokenStorageService) {
+  constructor(
+    private userService: UserService,
+    private postService: PostService,
+    private activatedRoute: ActivatedRoute,
+    private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.username = params['username'];
+      this.userId = params['user_id'];
     });
 
-    this.userService.getUser(this.username).subscribe({
+    this.userService.getUser(this.userId).subscribe({
       next: (resp) => {
         this.user = resp;
       },
@@ -36,7 +40,7 @@ export class UserProfileComponent implements OnInit {
       }
     });
 
-    this.postService.getUserPosts(this.username).subscribe({
+    this.postService.getUserPosts(this.userId).subscribe({
       next: (resp) => {
         this.postsOfUser = resp.reverse();
       },

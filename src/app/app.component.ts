@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   title = 'kawa1stWebSerApp';
 
   isTokenPresent = false;
+  currentUserId: string = this.tokenStorageService.getUserId();
 
   constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
 

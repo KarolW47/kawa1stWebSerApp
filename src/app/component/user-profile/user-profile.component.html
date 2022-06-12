@@ -1,15 +1,19 @@
-<h3>{{username | titlecase}} profile.</h3>
-<div *ngIf="currentUserId === user.id">
-    <app-change-username-dialog [currentUserToEditUsername]="user"></app-change-username-dialog>
-    <app-change-password-dialog [currentUserToChangePassword]="user"></app-change-password-dialog>
-    <app-delete-user-dialog [currentUserToDeleteProfile]="user"></app-delete-user-dialog>
+<h3 *ngIf="user">{{user.username | titlecase}} profile.</h3>
+<div *ngIf="user">
+    <div *ngIf="currentUserId === user.id">
+        <app-change-username-dialog [currentUserToEditUsername]="user"></app-change-username-dialog>
+        <app-change-password-dialog [currentUserToChangePassword]="user"></app-change-password-dialog>
+        <app-delete-user-dialog [currentUserToDeleteProfile]="user"></app-delete-user-dialog>
+    </div>
 </div>
 
 <li *ngIf="user">Email: {{user.emailAddress}}</li>
 
 <li *ngIf="user">About: {{user.aboutMeInfo}}</li>
-<div *ngIf="currentUserId === user.id">
-    <app-change-about-me-info-dialog [currentUserToEditAboutMeInfo]="user"></app-change-about-me-info-dialog>
+<div *ngIf="user">
+    <div *ngIf="currentUserId === user.id">
+        <app-change-about-me-info-dialog [currentUserToEditAboutMeInfo]="user"></app-change-about-me-info-dialog>
+    </div>
 </div>
 
 <h4>Posts: </h4>

@@ -57,7 +57,8 @@ import { ChangeUsernameDialogComponent } from './component/change-username/chang
       { path: 'register', component: RegisterComponent, },
       { path: 'login', component: LogInComponent },
       { path: 'users', component: UsersListComponent },
-      { path: 'user_profile/:username', component: UserProfileComponent, },
+      { path: 'user_profile/:user_id', component: UserProfileComponent, },
+      { path: 'profile', component: UserProfileComponent },
       {
         path: 'posts', component: PostsComponent, children: [
           { path: 'add_post', component: AddPostComponent },]

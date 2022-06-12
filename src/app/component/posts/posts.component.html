@@ -8,7 +8,7 @@
     <h3>Posts:</h3>
     <div class="listOfPosts" *ngFor="let post of postsList">
         <li>
-            <a routerLinkActive="active" [routerLink]="['/user_profile', post.user.username]"> User: {{
+            <a routerLinkActive="active" [routerLink]="['/user_profile', (post.user.id).toString()]"> User: {{
                 post.user.username | titlecase }}</a>
         </li>
         <li>Created: {{ post.createDate | date }}</li>

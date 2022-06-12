@@ -11,9 +11,9 @@ export class UserService {
 
     constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
-    getUser(username: string) {
+    getUser(userId: string) {
         return this.http.get<User>(`${environment.apiUrl}/user/profile`, {
-            params: new HttpParams().set("username", username),
+            params: new HttpParams().set("user_id", userId),
             headers: this.tokenStorageService.getTokensAsHeaders(),
         });
     }
@@ -24,7 +24,7 @@ export class UserService {
 
     getUsers() {
         return this.http.get<User[]>(`${environment.apiUrl}/user/users`, {
-            headers: this.tokenStorageService.getAccessToken()
+            headers: this.tokenStorageService.getAccessToken(),
         }).pipe(
             catchError(this.handleError)
         );
