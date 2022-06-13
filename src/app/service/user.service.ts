@@ -30,10 +30,10 @@ export class UserService {
         );
     }
 
-    logUserIn(user: User) {
+    logUserIn(login: string, password: string) {
         let parameters = new HttpParams();
-        parameters = parameters.set('username', user.username);
-        parameters = parameters.set('password', user.password);
+        parameters = parameters.set('login', login);
+        parameters = parameters.set('password', password);
         return this.http.post<any>(`${environment.apiUrl}/user/login`, parameters, {
             observe: 'response'
         });
