@@ -22,11 +22,12 @@ export class AppComponent implements OnInit {
   }
 
   onLogoutClick() {
-    this.tokenStorageService.deleteTokens();
-    this.tokenStorageService.deleteUserId();
-    this.router.navigate(['login']).then(
-      () => window.location.reload()
-    );
+    if (confirm("You sure, you want to log out?")) {
+      this.tokenStorageService.deleteTokens();
+      this.tokenStorageService.deleteUserId();
+      this.router.navigate(['/login']).then(
+        () => window.location.reload()
+      );
+    } else return;
   }
-
 }

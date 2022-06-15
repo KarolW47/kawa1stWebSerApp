@@ -24,11 +24,11 @@ export class DeletePostComponent implements OnInit {
         next: (resp) => {
           alert('Post deleted.');
           console.log(resp);
-          window.location.reload()
+          window.location.reload();
         },
         error: (error) => {
-          alert('Something goes wrong.')
-          console.log(error.error)
+          alert('Something goes wrong.');
+          console.log(error.error);
         }
       });
     } else return;
