@@ -11,10 +11,10 @@
             <span *ngIf="changeUsernameForm.controls['username'].hasError('required')">
                 Username is required.
             </span>
-            <span *ngIf="changeUsernameForm.controls['username'].hasError('minLength')">
+            <span *ngIf="changeUsernameForm.controls['username'].hasError('minlength')">
                 Username cannot be shorter than 6 characters.
             </span>
-            <span *ngIf="changeUsernameForm.controls['username'].hasError('maxLength')">
+            <span *ngIf="changeUsernameForm.controls['username'].hasError('maxlength')">
                 Username cannot be longer than 24 characters.
             </span>
             <span *ngIf="changeUsernameForm.controls['username'].hasError('pattern')">

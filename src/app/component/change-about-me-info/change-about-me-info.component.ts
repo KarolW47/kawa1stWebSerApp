@@ -23,7 +23,7 @@ export class ChangeAboutMeInfoComponent implements OnInit {
   ngOnInit(): void {
     this.changeAboutMeInfoForm = this.formBuilder.group({
       aboutMeInfo: [this.user.aboutMeInfo, [
-        Validators.maxLength(512),
+        Validators.maxLength(256),
       ]]
     }, {
       validators: this.sameTextValidation(this.user.aboutMeInfo),

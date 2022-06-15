@@ -5,9 +5,9 @@
             <label for="aboutMeInfo">
                 About me info:
             </label>
-            <input type="aboutMeInfo" id="aboutMeInfo" formControlName="aboutMeInfo">
+            <input type="text" id="aboutMeInfo" formControlName="aboutMeInfo">
             <span *ngIf="changeAboutMeInfoForm.controls['aboutMeInfo'].hasError('maxlength')">
-                Info cannot be longerthan 512 characters.
+                Info cannot be longer than 256 characters.
             </span>
 
             <button [mat-dialog-close] [disabled]="changeAboutMeInfoForm.invalid" type="button" (click)="onSubmit()">
