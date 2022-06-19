@@ -43,7 +43,7 @@ export class ChangeUsernameComponent implements OnInit {
     this.userService.changeUsername(this.changeUsernameForm.value).subscribe({
       next: () => {
         alert("Username changed successfully.")
-        this.router.navigate(['user_profile/' + this.changeUsernameForm.get('username')?.value]).then(
+        this.router.navigate(['/user_profile', this.user.id]).then(
           () => window.location.reload()
         );
       },
