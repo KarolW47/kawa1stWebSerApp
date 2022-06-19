@@ -26,6 +26,7 @@ import { DeleteUserDialogComponent } from './component/delete-user/delete-user-d
 import { ChangeAboutMeInfoDialogComponent } from './component/change-about-me-info/change-about-me-info-dialog/change-about-me-info-dialog.component';
 import { ChangePasswordDialogComponent } from './component/change-password/change-password-dialog/change-password-dialog.component';
 import { ChangeUsernameDialogComponent } from './component/change-username/change-username-dialog/change-username-dialog.component';
+import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ChangeUsernameDialogComponent } from './component/change-username/chang
     DeleteUserDialogComponent,
     ChangeAboutMeInfoDialogComponent,
     ChangePasswordDialogComponent,
-    ChangeUsernameDialogComponent
+    ChangeUsernameDialogComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,7 @@ import { ChangeUsernameDialogComponent } from './component/change-username/chang
       { path: 'users', component: UsersListComponent },
       { path: 'user_profile/:user_id', component: UserProfileComponent, },
       { path: 'profile', component: UserProfileComponent },
+      { path: 'reset_password', component: ResetPasswordComponent },
       {
         path: 'posts', component: PostsComponent, children: [
           { path: 'add_post', component: AddPostComponent },]
