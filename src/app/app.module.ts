@@ -27,6 +27,7 @@ import { ChangeAboutMeInfoDialogComponent } from './component/change-about-me-in
 import { ChangePasswordDialogComponent } from './component/change-password/change-password-dialog/change-password-dialog.component';
 import { ChangeUsernameDialogComponent } from './component/change-username/change-username-dialog/change-username-dialog.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+import { ChangePasswordViaResetTokenComponent } from './component/change-password-via-reset-token/change-password-via-reset-token.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
     ChangeAboutMeInfoDialogComponent,
     ChangePasswordDialogComponent,
     ChangeUsernameDialogComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ChangePasswordViaResetTokenComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +64,7 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
       { path: 'user_profile/:user_id', component: UserProfileComponent, },
       { path: 'profile', component: UserProfileComponent },
       { path: 'reset_password', component: ResetPasswordComponent },
+      { path: 'change_password/:token', component: ChangePasswordViaResetTokenComponent },
       {
         path: 'posts', component: PostsComponent, children: [
           { path: 'add_post', component: AddPostComponent },]

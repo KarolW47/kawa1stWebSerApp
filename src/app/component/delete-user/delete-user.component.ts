@@ -38,7 +38,7 @@ export class DeleteUserComponent implements OnInit {
       return;
     }
 
-    this.userService.deleteUser(this.confirmWithPassowrdForm.value).subscribe({
+    this.userService.deleteUser(this.confirmWithPassowrdForm.get('password')?.value).subscribe({
       next: () => {
         alert("User deleted.");
         this.userService.logUserOut();

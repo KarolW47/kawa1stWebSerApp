@@ -36,7 +36,7 @@ export class ChangeAboutMeInfoComponent implements OnInit {
       return;
     }
 
-    this.userService.changeAboutMeInfo(this.changeAboutMeInfoForm.value).subscribe({
+    this.userService.changeAboutMeInfo(this.changeAboutMeInfoForm.get('aboutMeInfo')?.value).subscribe({
       next: () => {
         alert("About me info changed.");
         window.location.reload()

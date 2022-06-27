@@ -44,19 +44,19 @@ export class UserService {
         this.tokenStorageService.deleteUserId();
     }
 
-    deleteUser(user: User) {
+    deleteUser(confirmationPassword: string) {
         return this.http.delete(`${environment.apiUrl}/user/profile/delete`, {
-            params: new HttpParams().set("confirmationPassword", user.password),
+            params: new HttpParams().set("confirmationPassword", confirmationPassword),
             headers: this.tokenStorageService.getAccessToken(),
             observe: 'response'
         });
     }
 
-    changeAboutMeInfo(user: User) {
-        if (user.aboutMeInfo === null || user.aboutMeInfo === '') {
-            user.aboutMeInfo = ' ';
+    changeAboutMeInfo(aboutMeInfo: string) {
+        if (aboutMeInfo === null || aboutMeInfo === '') {
+            aboutMeInfo = ' ';
         }
-        return this.http.patch(`${environment.apiUrl}/user/profile/about_me_info/change`, user.aboutMeInfo, {
+        return this.http.patch(`${environment.apiUrl}/user/profile/about_me_info/change`, aboutMeInfo, {
             headers: this.tokenStorageService.getAccessToken(),
             observe: 'response'
         });
@@ -68,14 +68,27 @@ export class UserService {
         });
     }
 
-    changeUsername(user: User) {
-        return this.http.patch(`${environment.apiUrl}/user/profile/username/change`, user.username, {
+    changeUsername(username: string) {
+        return this.http.patch(`${environment.apiUrl}/user/profile/username/change`, username, {
             headers: this.tokenStorageService.getAccessToken()
         });
     }
 
     resetPassword(emailAddress: string) {
         return this.http.post(`${environment.apiUrl}/user/reset_password`, emailAddress);
+    }
+
+    verifyResetPasswordToken(resetPasswordToken: string) {
+        return this.http.get(`${environment.apiUrl}/user/change_password`, {
+            params: new HttpParams().set('resetPaswordToken', resetPasswordToken),
+            observe: 'response',
+        });
+    }
+
+    changePasswordViaResetToken(resetPasswordToken: string, newPassword: string) {
+        return this.http.patch(`${environment.apiUrl}/user/change_password`, newPassword, {
+            params: new HttpParams().set('resetPasswordToken', resetPasswordToken)
+        });
     }
 
     private handleError(error: HttpErrorResponse) {

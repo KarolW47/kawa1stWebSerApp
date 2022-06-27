@@ -40,7 +40,7 @@ export class ChangeUsernameComponent implements OnInit {
       alert("Something went wrong.")
       return;
     }
-    this.userService.changeUsername(this.changeUsernameForm.value).subscribe({
+    this.userService.changeUsername(this.changeUsernameForm.get('username')?.value).subscribe({
       next: () => {
         alert("Username changed successfully.")
         this.router.navigate(['/user_profile', this.user.id]).then(
