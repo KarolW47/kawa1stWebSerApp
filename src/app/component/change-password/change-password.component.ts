@@ -51,7 +51,10 @@ export class ChangePasswordComponent implements OnInit {
       this.changePasswordForm.get('newPassword')?.value).subscribe({
         next: (resp) => {
           alert('Password changed.');
-          this.router.navigate(['login']);
+          this.userService.logUserOut();
+          this.router.navigate(['login']).then(
+            () => window.location.reload()
+          );
         },
         error: (error) => {
           console.log(error.status);
