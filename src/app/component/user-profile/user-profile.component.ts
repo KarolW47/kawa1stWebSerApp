@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { throwError } from 'rxjs';
 import { Post } from 'src/app/interface/post';
 import { User } from 'src/app/interface/user';
 import { PostService } from 'src/app/service/post.service';
@@ -35,8 +36,8 @@ export class UserProfileComponent implements OnInit {
         this.user = resp;
       },
       error: (error) => {
-        console.log(error.status);
-        console.log(error.error);
+        console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+        alert('Something bad happened, try again later.');
       }
     });
 

@@ -15,8 +15,14 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(res => {
-      this.userlist$ = res;
-    });
+    this.userService.getUsers().subscribe({
+      next: (res) => {
+        this.userlist$ = res;
+      },
+      error: (error) => {
+        console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+        alert('Something bad happened, try again later.');
+      }
+    })
   }
 }

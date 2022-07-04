@@ -11,8 +11,6 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class LogInComponent implements OnInit {
 
-  private responseCode!: number;
-  private responseError!: string;
   private responseAccessToken!: any;
   private responseRefreshToken!: any;
   private responseUserId!: any;
@@ -40,7 +38,6 @@ export class LogInComponent implements OnInit {
 
     this.userservice.logUserIn(this.loginForm.get('login')?.value, this.loginForm.get('password')?.value).subscribe({
       next: (resp) => {
-        this.responseCode = resp.status;
         alert('Logged in successfully!');
         this.responseAccessToken = resp.headers.get('access_token');
         this.responseRefreshToken = resp.headers.get('refresh_token');
@@ -52,14 +49,8 @@ export class LogInComponent implements OnInit {
         );
       },
       error: (error) => {
-        this.responseCode = error.status;
-        this.responseError = error.error;
-        console.log(this.responseError);
-        console.log(this.responseCode);
-        alert('Something went wrong.');
-      },
-      complete() {
-        console.log('Subscribe for loging user in - done.');
+        console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+        alert('Something bad happened, try again later.');
       }
     });
 

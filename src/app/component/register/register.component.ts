@@ -11,8 +11,6 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  responseCode!: number;
-  responseError!: string;
   registerForm!: FormGroup;
 
   constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
@@ -49,21 +47,13 @@ export class RegisterComponent implements OnInit {
     }
 
     this.userService.saveUser(this.registerForm.value).subscribe({
-      next: (resp) => {
-        this.responseCode = resp.status;
+      next: () => {
         alert('Registered!');
         this.router.navigate(['login']);
-        console.log(this.responseCode);
       },
       error: (error) => {
-        this.responseCode = error.status;
-        this.responseError = error.error;
-        console.log(this.responseError);
-        console.log(this.responseCode);
-        alert(this.responseError);
-      },
-      complete() {
-        console.log('Subscribe for saving user - done.');
+        console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+        alert('Something bad happened, try again later.');
       }
     });
   }
@@ -72,7 +62,7 @@ export class RegisterComponent implements OnInit {
     let pass = control.get('password')?.value;
     let repPass = control.get('repPassword')?.value;
     if (pass === repPass) {
-      return { };
+      return {};
     } else {
       return { passwordsNotMatching: true };
     }

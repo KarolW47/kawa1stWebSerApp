@@ -49,7 +49,7 @@ export class ChangePasswordComponent implements OnInit {
     this.userService.changePassword(
       this.changePasswordForm.get('oldPassword')?.value,
       this.changePasswordForm.get('newPassword')?.value).subscribe({
-        next: (resp) => {
+        next: () => {
           alert('Password changed.');
           this.userService.logUserOut();
           this.router.navigate(['login']).then(
@@ -57,9 +57,8 @@ export class ChangePasswordComponent implements OnInit {
           );
         },
         error: (error) => {
-          console.log(error.status);
-          console.log(error.error);
-          alert(error.error);
+          console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+          alert('Something bad happened, try again later.');
         }
       });
   }
@@ -68,7 +67,7 @@ export class ChangePasswordComponent implements OnInit {
     let pass = control.get('newPassword')?.value;
     let repPass = control.get('repNewPassword')?.value;
     if (pass === repPass) {
-      return { };
+      return {};
     } else {
       return { passwordsNotMatching: true };
     }

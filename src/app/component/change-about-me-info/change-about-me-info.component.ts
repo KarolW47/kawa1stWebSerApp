@@ -41,10 +41,9 @@ export class ChangeAboutMeInfoComponent implements OnInit {
         alert("About me info changed.");
         window.location.reload()
       },
-      error: error => {
-        console.log(error.error);
-        console.log(error.status);
-        alert("Something went wrong.");
+      error: (error) => {
+        console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+        alert('Something bad happened, try again later.');
       }
     });
   }

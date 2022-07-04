@@ -17,9 +17,9 @@ export class ChangeUsernameComponent implements OnInit {
 
   @Input() currentUserToEdit!: User;
 
-  constructor(private userService: UserService, 
+  constructor(private userService: UserService,
     private formBuilder: FormBuilder,
-    private router: Router, 
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) private user: User) { }
 
   ngOnInit(): void {
@@ -35,8 +35,8 @@ export class ChangeUsernameComponent implements OnInit {
     })
   }
 
-  onSubmit(){
-    if(this.changeUsernameForm.invalid){
+  onSubmit() {
+    if (this.changeUsernameForm.invalid) {
       alert("Something went wrong.")
       return;
     }
@@ -47,10 +47,9 @@ export class ChangeUsernameComponent implements OnInit {
           () => window.location.reload()
         );
       },
-      error: error => {
-        console.log(error.error);
-        console.log(error.status);
-        alert("Something went wrong.");
+      error: (error) => {
+        console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+        alert('Something bad happened, try again later.');
       }
     });
   }

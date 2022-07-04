@@ -16,20 +16,20 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSend(emailAddress: string){
+  onSend(emailAddress: string) {
     this.userService.resetPassword(emailAddress).subscribe({
       next: () => {
-        alert("Instructions with password reset has been sent to provided email address.");
+        alert("Instructions with password reset has been sent on provided email address.");
         this.router.navigate(['/']);
       },
       error: (error) => {
-        console.log(error.error);
-        console.log(error.status);
+        console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+        alert('Something bad happened, try again later.');
       }
     });
   }
 
-  onCancel(){
+  onCancel() {
     this.router.navigate(['/login']);
   }
 

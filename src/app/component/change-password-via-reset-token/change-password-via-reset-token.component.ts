@@ -28,9 +28,8 @@ export class ChangePasswordViaResetTokenComponent implements OnInit {
         this.displayResetPasswordForm();
       },
       error: error => {
-        alert('Something goes wrong.')
-        console.log(error.error);
-        console.log(error.status);
+        console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+        alert('Something bad happened, try again later.');
         this.router.navigate(['/login']);
       }
     })
@@ -45,14 +44,13 @@ export class ChangePasswordViaResetTokenComponent implements OnInit {
     this.userService.changePasswordViaResetToken(
       this.resetPasswordToken,
       this.resetPasswordForm.get('password')?.value).subscribe({
-        next: resp => {
+        next: () => {
           alert('Password changed.');
           this.router.navigate(['/login']);
         },
-        error: errror => {
-          console.log(errror.error);
-          console.log(errror.status);
-          alert('Something went wrong.')
+        error: (error) => {
+          console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+          alert('Something bad happened, try again later.');
         }
       })
   }

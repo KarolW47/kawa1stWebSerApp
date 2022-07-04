@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from "../interface/user";
-import { catchError, throwError } from "rxjs";
 import { TokenStorageService } from "./token-storage.service";
 import { environment } from "src/environments/environment";
 
@@ -25,9 +24,7 @@ export class UserService {
     getUsers() {
         return this.http.get<User[]>(`${environment.apiUrl}/user/users`, {
             headers: this.tokenStorageService.getAccessToken(),
-        }).pipe(
-            catchError(this.handleError)
-        );
+        });
     }
 
     logUserIn(login: string, password: string) {
@@ -90,19 +87,4 @@ export class UserService {
             params: new HttpParams().set('resetPasswordToken', resetPasswordToken)
         });
     }
-
-    private handleError(error: HttpErrorResponse) {
-        if (error.status === 0) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error);
-        } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong.
-            console.error(
-                `Backend returned code ${error.status}, body was: `, error.error);
-        }
-        // Return an observable with a user-facing error message.
-        return throwError('Something bad happened; please try again later.');
-    }
-
 }
