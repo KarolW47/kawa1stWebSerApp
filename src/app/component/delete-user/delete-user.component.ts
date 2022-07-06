@@ -47,8 +47,12 @@ export class DeleteUserComponent implements OnInit {
         );
       },
       error: (error) => {
-        console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
-        alert('Something bad happened, try again later.');
+        if (error.status === 401) {
+          alert(error.error);
+        } else {
+          console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+          alert('Something bad happened, try again later.');
+        }
       }
     });
   }

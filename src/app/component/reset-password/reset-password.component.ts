@@ -23,6 +23,9 @@ export class ResetPasswordComponent implements OnInit {
         this.router.navigate(['/']);
       },
       error: (error) => {
+        if (error.status === 404) {
+          alert(error.error);
+        }
         console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
         alert('Something bad happened, try again later.');
       }

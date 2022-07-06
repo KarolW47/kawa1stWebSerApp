@@ -57,8 +57,12 @@ export class ChangePasswordComponent implements OnInit {
           );
         },
         error: (error) => {
-          console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
-          alert('Something bad happened, try again later.');
+          if (error.status === 401 || error.status === 422) {
+            alert(error.error);
+          } else {
+            console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+            alert('Something bad happened, try again later.');
+          }
         }
       });
   }

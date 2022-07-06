@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -49,8 +50,13 @@ export class LogInComponent implements OnInit {
         );
       },
       error: (error) => {
-        console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
-        alert('Something bad happened, try again later.');
+        if (error.status === 403) {
+          alert("Wrong login or password.");
+        }
+        else {
+          console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
+          alert('Something bad happened, try again later.');
+        }
       }
     });
 

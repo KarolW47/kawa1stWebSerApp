@@ -28,6 +28,9 @@ export class ChangePasswordViaResetTokenComponent implements OnInit {
         this.displayResetPasswordForm();
       },
       error: error => {
+        if (error.status === 401 || error.status === 404) {
+          alert(error.error);
+        }
         console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
         alert('Something bad happened, try again later.');
         this.router.navigate(['/login']);
@@ -49,6 +52,9 @@ export class ChangePasswordViaResetTokenComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         error: (error) => {
+          if (error.status === 401 || error.status === 422) {
+            alert(error.error);
+          }
           console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
           alert('Something bad happened, try again later.');
         }

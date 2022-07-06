@@ -48,6 +48,9 @@ export class ChangeUsernameComponent implements OnInit {
         );
       },
       error: (error) => {
+        if (error.status === 422) {
+          alert(error.error);
+        }
         console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
         alert('Something bad happened, try again later.');
       }
