@@ -1,5 +1,102 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html body {
+    height: 100%;
+}
 
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: linear-gradient(90deg, rgba(46, 75, 92, 1) 0%, rgba(59, 98, 119, 1) 85%, rgba(49, 106, 139, 1) 100%);
+}
+
+h1,
+h2,
+h3,
+h4,
+label {
+    margin: 11px;
+    color: white;
+    text-shadow:
+        0 0 0 rgb(64, 169, 234),
+        0 0 7px rgb(64, 169, 234),
+        0 0 10px rgb(64, 169, 234),
+        0 0 21px rgb(64, 169, 234);
+}
+
+p, li {
+    margin: 11px;
+    color: white !important;
+    text-shadow:
+        0 0 0 rgb(255, 200, 0),
+        0 0 7px rgb(255, 200, 0),
+        0 0 10px rgb(255, 200, 0),
+        0 0 21px rgb(255, 200, 0);
+}
+
+a {
+    margin: 11px;
+    color: white !important;
+    text-shadow:
+        0 0 0 rgb(207, 19, 185),
+        0 0 7px rgb(207, 19, 185),
+        0 0 10px rgb(207, 19, 185),
+        0 0 21px rgb(207, 19, 185);
+}
+
+button {
+    margin: 15px !important;
+    color: white;
+    text-shadow:
+        0 0 0 rgb(207, 19, 185),
+        0 0 7px rgb(207, 19, 185),
+        0 0 10px rgb(207, 19, 185),
+        0 0 21px rgb(207, 19, 185);
+    border-radius: 8px !important;
+    border-color: transparent;
+    background-color: inherit;
+    box-shadow:
+        -10px -3px 7px black,
+        -10px -3px 10px black,
+        -10px -3px 18px black;
+}
+
+input {
+    margin: 11px;
+    color: white;
+    text-shadow:
+        0 0 0 rgb(10, 10, 2),
+        0 0 7px rgb(10, 10, 2),
+        0 0 10px rgb(10, 10, 2),
+        0 0 21px rgb(10, 10, 2);
+    background-color: inherit;
+    border-radius: 8px;
+    border-color: #0fa;
+    box-shadow:
+        0 0 7px #0fa,
+        0 0 10px #0fa,
+        0 0 21px #0fa;
+}
+
+.container {
+    margin: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px, 10px;
+}
+
+.container>* {
+    width: 40%;
+}
+
+span {
+    margin: 11px;
+    color: red;
+    text-shadow:
+        0 0 0 rgb(231, 35, 71),
+        0 0 7px rgb(231, 35, 71),
+        0 0 10px rgb(231, 35, 71),
+        0 0 21px rgb(231, 35, 71);
+}
