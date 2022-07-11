@@ -1,19 +1,22 @@
-<h3 mat-dialog-title>Change About me info.</h3>
-<mat-dialog-content>
-    <form [formGroup]="changeAboutMeInfoForm">
-        <div class="dialog">
-            <label for="aboutMeInfo">
-                About me info:
-            </label>
-            <input type="text" id="aboutMeInfo" formControlName="aboutMeInfo">
-            <span *ngIf="changeAboutMeInfoForm.controls['aboutMeInfo'].hasError('maxlength')">
-                Info cannot be longer than 256 characters.
-            </span>
+<div class="container">
+    <h3 mat-dialog-title>Change About me info.</h3>
+    <mat-dialog-content>
+        <form [formGroup]="changeAboutMeInfoForm">
+            <div class="dialog">
+                <label for="aboutMeInfo">
+                    About me info:
+                </label>
+                <input type="text" id="aboutMeInfo" formControlName="aboutMeInfo">
+                <span *ngIf="changeAboutMeInfoForm.controls['aboutMeInfo'].hasError('maxlength')">
+                    Info cannot be longer than 256 characters.
+                </span>
 
-            <button [mat-dialog-close] [disabled]="changeAboutMeInfoForm.invalid" type="button" (click)="onSubmit()">
-                Change
-            </button>
-            <button [mat-dialog-close] type="button">Cancel</button>
-        </div>
-    </form>
-</mat-dialog-content>
+                <button [mat-dialog-close] [disabled]="changeAboutMeInfoForm.invalid" type="button"
+                    (click)="onSubmit()">
+                    Change
+                </button>
+                <button [mat-dialog-close] type="button">Cancel</button>
+            </div>
+        </form>
+    </mat-dialog-content>
+</div>

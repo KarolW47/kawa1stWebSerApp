@@ -1,46 +1,48 @@
-<div class="container">
-  <ul class="listForRedirects">
+<div class="menuContainer">
+  <div class="myBox">
+    <ul class="listForRedirects">
 
-    <li>
-      <a routerLinkActive="active" routerLink="/">Home</a>
-    </li>
+      <li>
+        <a routerLinkActive="active" routerLink="/">Home</a>
+      </li>
 
-    <div *ngIf="!isTokenPresent">
-      <li>
-        <a routerLinkActive="active" routerLink="/login">Login</a>
-      </li>
-    </div>
+      <div *ngIf="!isTokenPresent">
+        <li>
+          <a routerLinkActive="active" routerLink="/login">Login</a>
+        </li>
+      </div>
 
-    <div *ngIf="isTokenPresent">
-      <li (click)="onLogoutClick()">
-        <a routerLinkActive="active" routerLink="null">Logout</a>
-      </li>
-    </div>
-    
-    <div *ngIf="!isTokenPresent">
-      <li>
-        <a routerLinkActive="active" routerLink="/register">Register</a>
-      </li>
-    </div>
+      <div *ngIf="isTokenPresent">
+        <li (click)="onLogoutClick()">
+          <a routerLinkActive="active" routerLink="null">Logout</a>
+        </li>
+      </div>
 
-    <div *ngIf="isTokenPresent">
-      <li>
-        <a routerLinkActive="active" routerLink="/users">Users</a>
-      </li>
-    </div>
-    
-    <div *ngIf="isTokenPresent">
-      <li>
-        <a routerLinkActive="active" routerLink="/posts">Posts</a>
-      </li>
-    </div>
+      <div *ngIf="!isTokenPresent">
+        <li>
+          <a routerLinkActive="active" routerLink="/register">Register</a>
+        </li>
+      </div>
 
-    <div *ngIf="isTokenPresent">
-      <li>
-        <a routerLinkActive="active" [routerLink]="['/user_profile', currentUserId]">My Profile</a>
-      </li>
-    </div>
-    
-  </ul>
+      <div *ngIf="isTokenPresent">
+        <li>
+          <a routerLinkActive="active" routerLink="/users">Users</a>
+        </li>
+      </div>
+
+      <div *ngIf="isTokenPresent">
+        <li>
+          <a routerLinkActive="active" routerLink="/posts">Posts</a>
+        </li>
+      </div>
+
+      <div *ngIf="isTokenPresent">
+        <li>
+          <a routerLinkActive="active" [routerLink]="['/user_profile', currentUserId]">My Profile</a>
+        </li>
+      </div>
+
+    </ul>
+  </div>
 </div>
 <router-outlet></router-outlet>

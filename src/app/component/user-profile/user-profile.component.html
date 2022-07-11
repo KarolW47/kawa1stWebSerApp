@@ -1,31 +1,33 @@
-<h3 *ngIf="user">{{user.username | titlecase}} profile.</h3>
-<div *ngIf="user">
-    <div *ngIf="currentUserId === user.id">
-        <app-change-username-dialog [currentUserToEditUsername]="user"></app-change-username-dialog>
-        <app-change-password-dialog [currentUserToChangePassword]="user"></app-change-password-dialog>
-        <app-delete-user-dialog [currentUserToDeleteProfile]="user"></app-delete-user-dialog>
+<div class="container">
+    <h3 *ngIf="user">{{user.username | titlecase}} profile.</h3>
+    <div *ngIf="user">
+        <div *ngIf="currentUserId === user.id">
+            <app-change-username-dialog [currentUserToEditUsername]="user"></app-change-username-dialog>
+            <app-change-password-dialog [currentUserToChangePassword]="user"></app-change-password-dialog>
+            <app-delete-user-dialog [currentUserToDeleteProfile]="user"></app-delete-user-dialog>
+        </div>
     </div>
-</div>
 
-<li *ngIf="user">Email: {{user.emailAddress}}</li>
+    <li *ngIf="user">Email: {{user.emailAddress}}</li>
 
-<li *ngIf="user">About: {{user.aboutMeInfo}}</li>
-<div *ngIf="user">
-    <div *ngIf="currentUserId === user.id">
-        <app-change-about-me-info-dialog [currentUserToEditAboutMeInfo]="user"></app-change-about-me-info-dialog>
+    <li *ngIf="user">About: {{user.aboutMeInfo}}</li>
+    <div *ngIf="user">
+        <div *ngIf="currentUserId === user.id">
+            <app-change-about-me-info-dialog [currentUserToEditAboutMeInfo]="user"></app-change-about-me-info-dialog>
+        </div>
     </div>
-</div>
 
-<h4>Posts: </h4>
-<div class="listOfPosts" *ngFor="let post of postsOfUser">
-    <li> User: {{ post.user.username | titlecase }}</li>
-    <li>Created: {{ post.createDate | date }}</li>
-    <li>Post: {{ post.postTextMessage }}</li>
-    <li *ngIf="post.updateDate != null">Edited: {{ post.updateDate | date }}</li>
+    <h4>Posts: </h4>
+    <div class="listOfPosts" *ngFor="let post of postsOfUser">
+        <li> User: {{ post.user.username | titlecase }}</li>
+        <li>Created: {{ post.createDate | date }}</li>
+        <li>Post: {{ post.postTextMessage }}</li>
+        <li *ngIf="post.updateDate != null">Edited: {{ post.updateDate | date }}</li>
 
-    <div *ngIf="currentUserId === post.user.id">
-        <app-delete-post [currentPostToDelete]="post"></app-delete-post>
-        <app-edit-post-dialog [currentPostToEdit]="post"></app-edit-post-dialog>
+        <div *ngIf="currentUserId === post.user.id">
+            <app-delete-post [currentPostToDelete]="post"></app-delete-post>
+            <app-edit-post-dialog [currentPostToEdit]="post"></app-edit-post-dialog>
+        </div>
+        <br>
     </div>
-    <br>
 </div>

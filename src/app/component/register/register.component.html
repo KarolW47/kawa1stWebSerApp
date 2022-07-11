@@ -1,4 +1,4 @@
-<div class="registrationForm">
+<div class="container">
     <h3>Registration:</h3>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="container">
@@ -24,7 +24,7 @@
             </label>
             <input type="text" id="emailAddress" formControlName="emailAddress">
             <span *ngIf="registerForm.controls['emailAddress'].hasError('required')">
-                Email adddress is required.
+                Email address is required.
             </span>
             <span *ngIf="registerForm.controls['emailAddress'].hasError('pattern')">
                 Incorrect email format.
@@ -51,7 +51,7 @@
             <span *ngIf="registerForm.controls['repPassword'].hasError('required')">
                 Repeated password is required.
             </span>
-            <span  *ngIf="registerForm.hasError('passwordsNotMatching')">
+            <span *ngIf="registerForm.hasError('passwordsNotMatching')">
                 Passwords do not match.
             </span>
 
