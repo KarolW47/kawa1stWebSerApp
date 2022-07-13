@@ -19,7 +19,7 @@ export class DeleteUserDialogComponent implements OnInit {
 
   openDeleteUserDialog(user: User) {
     if (confirm('Are You sure, You want to delete this profile?')) {
-      let dialogRef = this.dialog.open(DeleteUserComponent, { data: user });
+      let dialogRef = this.dialog.open(DeleteUserComponent, { data: user, panelClass: 'dialogBox' });
       dialogRef.afterClosed().subscribe();
     } else return;
   }

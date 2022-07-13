@@ -18,7 +18,7 @@ export class ChangePasswordDialogComponent implements OnInit {
   }
 
   openChangePasswordDialog(user: User){
-    let dialogRef = this.dialog.open(ChangePasswordComponent, {data: user});
+    let dialogRef = this.dialog.open(ChangePasswordComponent, {data: user, panelClass: 'dialogBox'});
     dialogRef.afterClosed().subscribe();
   }
 

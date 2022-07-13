@@ -2,7 +2,7 @@
     <h3 mat-dialog-title>Confirm with passowrd:</h3>
     <mat-dialog-content>
         <form [formGroup]="confirmWithPassowrdForm">
-            <div class="dialog">
+            <div class="myBox">
                 <label for="password">Password:</label>
                 <input type="password" id="password" formControlName="password">
                 <span *ngIf="confirmWithPassowrdForm.controls['password'].hasError('required')">Password is

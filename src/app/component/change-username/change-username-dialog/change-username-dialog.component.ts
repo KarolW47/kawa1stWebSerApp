@@ -18,7 +18,7 @@ export class ChangeUsernameDialogComponent implements OnInit {
   }
 
   openChangeUsernameDialog(user: User){
-    let dialogRef = this.dialog.open(ChangeUsernameComponent, {data: user});
+    let dialogRef = this.dialog.open(ChangeUsernameComponent, {data: user, panelClass: 'dialogBox'});
     dialogRef.afterClosed().subscribe();
   }
 

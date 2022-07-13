@@ -1,16 +1,18 @@
 <div class="container">
     <h3>Log in:</h3>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <label for="login">Username or Email address:</label>
-        <input type="text" id="login" name="login" formControlName="login">
-        <span *ngIf="loginForm.controls['login'].hasError('required')">Username is required.</span>
+    <div class="myBox">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <label for="login">Username or Email address:</label>
+            <input type="text" id="login" name="login" formControlName="login">
+            <span *ngIf="loginForm.controls['login'].hasError('required')">Username is required.</span>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" formControlName="password">
-        <span *ngIf="loginForm.controls['password'].hasError('required')">Password is required</span>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" formControlName="password">
+            <span *ngIf="loginForm.controls['password'].hasError('required')">Password is required</span>
 
-        <button [disabled]="loginForm.invalid" type="submit">Log in</button>
+            <button [disabled]="loginForm.invalid" type="submit">Log in</button>
 
-        <a routerLinkActive="active" routerLink="/reset_password">Forgot your password?</a>
-    </form>
+            <a routerLinkActive="active" routerLink="/reset_password">Forgot your password?</a>
+        </form>
+    </div>
 </div>

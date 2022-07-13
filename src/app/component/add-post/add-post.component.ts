@@ -48,9 +48,6 @@ export class AddPostComponent implements OnInit {
         console.log(this.responseCode);
         console.log(this.responseError);
         alert(this.responseError);
-      },
-      complete() {
-        console.log("Subscribe for adding post - done.");
       }
     })
   }
