@@ -14,7 +14,7 @@ import { TokenStorageService } from 'src/app/service/token-storage.service';
 export class PostsComponent implements OnInit {
 
   postsList: Post[] = [];
-  wasClicked: boolean = false;
+  currentUrl!: string;
   currentUserId: number = +this.tokenStorageService.getUserId();
 
   constructor(private postService: PostService, private router: Router, private tokenStorageService: TokenStorageService) { }
@@ -22,7 +22,8 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.postService.getPosts().subscribe(res => {
       this.postsList = res.reverse();
-    })  
+      this.currentUrl = this.router.url;
+    })
   }
 
 }

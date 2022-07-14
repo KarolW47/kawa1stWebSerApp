@@ -1,9 +1,11 @@
 <router-outlet></router-outlet>
 <div class="container">
     <br>
-    <button>
-        <a routerLinkActive="active" routerLink="add_post">Add post</a>
-    </button>
+    <div class="addPostButton">
+        <button *ngIf="!currentUrl.includes('add')" routerLinkActive="active" routerLink="add_post">
+            Add post
+        </button>
+    </div>
     <br>
     <h3>Posts:</h3>
     <div *ngFor="let post of postsList">
