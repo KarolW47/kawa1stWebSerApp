@@ -155,8 +155,7 @@ span {
 
 .container {
     padding: 20px;
-    margin-top: 120px !important;
-    margin: 11px;
+    margin: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -168,6 +167,8 @@ span {
 }
 
 .myBox {
+    display: flex;
+    flex-direction: column;
     border-top: 2px solid rgba(46, 75, 92, 1);
     border-left: 2px solid rgba(46, 75, 92, 1);
     -moz-box-shadow: inset 0 0 10px #000000;
@@ -177,6 +178,8 @@ span {
 }
 
 .dialogBox>mat-dialog-container {
+    display: flex;
+   
     background: linear-gradient(90deg, rgba(46, 75, 92, 1) 0%, rgba(59, 98, 119, 1) 85%, rgba(49, 106, 139, 1) 100%);
     border-radius: 8px;
     border-color: rgb(207, 19, 185);
@@ -189,13 +192,13 @@ span {
 
 .menuContainer {
     height: 100%;
+    width: 15%;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
     overflow-x: hidden;
     transition: 0.5s;
-    width: 15%;
     margin-top: 120px !important;
     margin: 11px;
     display: flex;

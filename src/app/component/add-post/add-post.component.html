@@ -1,8 +1,7 @@
 <div class="container">
     <h3>Type your message:</h3>
-
-    <div class="myBox">
-        <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <div class="myBox">
             <label for="postTextMessage">Text:</label>
             <input type="text" id="postTextMessage" formControlName="postTextMessage">
             <span *ngIf="postForm.controls['postTextMessage'].hasError('required')">Text is required.</span>
@@ -12,6 +11,6 @@
                 characters.</span>
 
             <button [disabled]="postForm.invalid" type="submit">Add post.</button>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
