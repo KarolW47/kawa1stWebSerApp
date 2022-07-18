@@ -50,26 +50,31 @@ import { ChangePasswordViaResetTokenComponent } from './component/change-passwor
     ChangePasswordDialogComponent,
     ChangeUsernameDialogComponent,
     ResetPasswordComponent,
-    ChangePasswordViaResetTokenComponent
+    ChangePasswordViaResetTokenComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: 'register', component: RegisterComponent, },
-      { path: 'login', component: LogInComponent },
-      { path: 'users', component: UsersListComponent },
-      { path: 'user_profile/:user_id', component: UserProfileComponent, },
-      { path: 'profile', component: UserProfileComponent },
-      { path: 'reset_password', component: ResetPasswordComponent },
-      { path: 'change_password/:token', component: ChangePasswordViaResetTokenComponent },
-      {
-        path: 'posts', component: PostsComponent, children: [
-          { path: 'add_post', component: AddPostComponent },]
-      },
-    ],
+    RouterModule.forRoot(
+      [
+        { path: 'register', component: RegisterComponent },
+        { path: 'login', component: LogInComponent },
+        { path: 'users', component: UsersListComponent },
+        { path: 'user_profile/:user_id', component: UserProfileComponent },
+        { path: 'profile', component: UserProfileComponent },
+        { path: 'reset_password', component: ResetPasswordComponent },
+        {
+          path: 'change_password/:token',
+          component: ChangePasswordViaResetTokenComponent,
+        },
+        {
+          path: 'posts',
+          component: PostsComponent,
+          children: [{ path: 'add_post', component: AddPostComponent }],
+        },
+      ],
       { onSameUrlNavigation: 'reload' }
     ),
     NoopAnimationsModule,
@@ -80,9 +85,9 @@ import { ChangePasswordViaResetTokenComponent } from './component/change-passwor
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RefreshTokenInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

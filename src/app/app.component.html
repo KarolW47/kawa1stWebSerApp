@@ -1,7 +1,6 @@
 <div class="menuContainer">
   <div class="myBox">
     <ul class="listForRedirects">
-
       <li>
         <a routerLinkActive="active" routerLink="/">Home</a>
       </li>
@@ -38,10 +37,13 @@
 
       <div *ngIf="isTokenPresent">
         <li>
-          <a routerLinkActive="active" [routerLink]="['/user_profile', currentUserId]">My Profile</a>
+          <a
+            routerLinkActive="active"
+            [routerLink]="['/user_profile', currentUserId]"
+            >My Profile</a
+          >
         </li>
       </div>
-
     </ul>
   </div>
 </div>

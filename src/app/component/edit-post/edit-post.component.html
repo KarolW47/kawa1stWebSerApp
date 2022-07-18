@@ -1,27 +1,40 @@
 <div class="container">
-    <h3 mat-dialog-title class="dialogTitle">Edit post:</h3>
-    <mat-dialog-content>
-        <form [formGroup]="editPostForm">
-            <div class="myBox">
-                <label for="postTextMessage">Text:</label>
-                <input type="text" id="postTextMessage" formControlName="postTextMessage">
-                <span *ngIf="editPostForm.controls['postTextMessage'].hasError('required')">Text is
-                    required.</span>
-                <span *ngIf="editPostForm.controls['postTextMessage'].hasError('minlength')">Message must
-                    contain at
-                    least 2
-                    character.</span>
-                <span *ngIf="editPostForm.controls['postTextMessage'].hasError('maxlength')">Message cannot
-                    exceed
-                    512
-                    characters.</span>
-                <span *ngIf="editPostForm.hasError('sameTextValidation')">
-                    Message must be different.</span>
+  <h3 mat-dialog-title class="dialogTitle">Edit post:</h3>
+  <mat-dialog-content>
+    <form [formGroup]="editPostForm">
+      <div class="myBox">
+        <label for="postTextMessage">Text:</label>
+        <input
+          type="text"
+          id="postTextMessage"
+          formControlName="postTextMessage"
+        />
+        <span
+          *ngIf="editPostForm.controls['postTextMessage'].hasError('required')"
+          >Text is required.</span
+        >
+        <span
+          *ngIf="editPostForm.controls['postTextMessage'].hasError('minlength')"
+          >Message must contain at least 2 character.</span
+        >
+        <span
+          *ngIf="editPostForm.controls['postTextMessage'].hasError('maxlength')"
+          >Message cannot exceed 512 characters.</span
+        >
+        <span *ngIf="editPostForm.hasError('sameTextValidation')">
+          Message must be different.</span
+        >
 
-                <button [mat-dialog-close] [disabled]="editPostForm.invalid" type="button"
-                    (click)="onSubmit()">Save</button>
-                <button [mat-dialog-close] type="button">Cancel</button>
-            </div>
-        </form>
-    </mat-dialog-content>
+        <button
+          [mat-dialog-close]
+          [disabled]="editPostForm.invalid"
+          type="button"
+          (click)="onSubmit()"
+        >
+          Save
+        </button>
+        <button [mat-dialog-close] type="button">Cancel</button>
+      </div>
+    </form>
+  </mat-dialog-content>
 </div>

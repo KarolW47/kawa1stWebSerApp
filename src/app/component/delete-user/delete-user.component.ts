@@ -8,53 +8,60 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-delete-user',
   templateUrl: './delete-user.component.html',
-  styleUrls: ['./delete-user.component.css']
+  styleUrls: ['./delete-user.component.css'],
 })
 export class DeleteUserComponent implements OnInit {
-
   confirmWithPassowrdForm!: FormGroup;
 
   @Input() currentUserToDelete!: User;
 
-  constructor(private userService: UserService,
+  constructor(
+    private userService: UserService,
     private formBuilder: FormBuilder,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) private user: User
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.confirmWithPassowrdForm = this.formBuilder.group({
-      password: [null, [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(35)
-      ]]
-    })
+      password: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(35),
+        ],
+      ],
+    });
   }
 
   onSubmit() {
     if (this.confirmWithPassowrdForm.invalid) {
-      alert("Something went wrong.");
+      alert('Something went wrong.');
       return;
     }
 
-    this.userService.deleteUser(this.confirmWithPassowrdForm.get('password')?.value).subscribe({
-      next: () => {
-        alert("User deleted.");
-        this.userService.logUserOut();
-        this.router.navigate(['/login']).then(
-          () => window.location.reload()
-        );
-      },
-      error: (error) => {
-        if (error.status === 401) {
-          alert(error.error);
-        } else {
-          console.error('Something went wrong, status code:' + error.status + ', error message:' + error.error);
-          alert('Something bad happened, try again later.');
-        }
-      }
-    });
+    this.userService
+      .deleteUser(this.confirmWithPassowrdForm.get('password')?.value)
+      .subscribe({
+        next: () => {
+          alert('User deleted.');
+          this.userService.logUserOut();
+          this.router.navigate(['/login']).then(() => window.location.reload());
+        },
+        error: (error) => {
+          if (error.status === 401) {
+            alert(error.error);
+          } else {
+            console.error(
+              'Something went wrong, status code:' +
+                error.status +
+                ', error message:' +
+                error.error
+            );
+            alert('Something bad happened, try again later.');
+          }
+        },
+      });
   }
-
 }

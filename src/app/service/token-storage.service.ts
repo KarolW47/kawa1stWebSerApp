@@ -1,17 +1,15 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-
 const ACCESS_TOKEN_KEY = 'access_token';
 const REFRESH_TOKEN_KEY = 'refresh_token';
-const USER_ID = 'user_id'
+const USER_ID = 'user_id';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TokenStorageService {
-
-  constructor() { }
+  constructor() {}
 
   public saveUserId(userId: string): void {
     this.deleteUserId();
@@ -21,7 +19,7 @@ export class TokenStorageService {
   public deleteUserId(): void {
     window.sessionStorage.removeItem(USER_ID);
   }
-  
+
   public getUserId(): any {
     return window.sessionStorage.getItem(USER_ID);
   }
@@ -29,7 +27,6 @@ export class TokenStorageService {
   public deleteTokens(): void {
     window.sessionStorage.removeItem(ACCESS_TOKEN_KEY);
     window.sessionStorage.removeItem(REFRESH_TOKEN_KEY);
-
   }
 
   public saveTokens(accessToken: string, refreshToken: string): void {
@@ -58,9 +55,11 @@ export class TokenStorageService {
     if (accessToken === null || refreshToken === null) {
       return;
     } else {
-      let headers = new HttpHeaders({ 'access_token': accessToken, 'refresh_token': refreshToken });
+      let headers = new HttpHeaders({
+        access_token: accessToken,
+        refresh_token: refreshToken,
+      });
       return headers;
     }
   }
-
 }

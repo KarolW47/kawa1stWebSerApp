@@ -1,13 +1,37 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 html body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    background: linear-gradient(90deg, rgba(46, 75, 92, 1) 0%, rgba(59, 98, 119, 1) 85%, rgba(49, 106, 139, 1) 100%);
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: linear-gradient(
+    90deg,
+    rgba(46, 75, 92, 1) 0%,
+    rgba(59, 98, 119, 1) 85%,
+    rgba(49, 106, 139, 1) 100%
+  );
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  align-self: center;
+  width: 95% !important;
+  margin: 15px !important;
+  padding: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(46, 75, 92, 1) 0%,
+    rgba(59, 98, 119, 1) 85%,
+    rgba(49, 106, 139, 1) 100%
+  );
+  border-radius: 8px;
+  border-color: rgb(207, 19, 185);
+  box-shadow: 0 0 0 rgb(207, 19, 185), 0 0 7px #0fa, 0 0 10px rgb(207, 19, 185),
+    0 0 21px #0fa;
 }
 
 h1,
@@ -15,218 +39,197 @@ h2,
 h3,
 h4,
 label {
-    margin: 11px;
-    color: white;
-    text-shadow:
-        0 0 0 rgb(64, 169, 234),
-        0 0 7px rgb(64, 169, 234),
-        0 0 10px rgb(64, 169, 234),
-        0 0 21px rgb(64, 169, 234);
+  margin: 11px;
+  color: white;
+  text-shadow: 0 0 0 rgb(64, 169, 234), 0 0 7px rgb(64, 169, 234),
+    0 0 10px rgb(64, 169, 234), 0 0 21px rgb(64, 169, 234);
 }
 
 h1,
 h2,
 h3,
 h4 {
-    margin-left: 35px;
+  margin-left: 35px;
 }
 
 h1 {
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-    transition: 0.5s;
-    width: 95% !important;
-    margin: 15px !important;
-    padding: 20px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  width: 95% !important;
+  margin: 15px !important;
+  padding: 15px;
 
-    background: linear-gradient(90deg, rgba(46, 75, 92, 1) 0%, rgba(59, 98, 119, 1) 85%, rgba(49, 106, 139, 1) 100%);
-    border-radius: 8px;
-    border-color: rgb(207, 19, 185);
-    box-shadow:
-        0 0 0 rgb(207, 19, 185),
-        0 0 7px #0fa,
-        0 0 10px rgb(207, 19, 185),
-        0 0 21px #0fa;
+  background: linear-gradient(
+    90deg,
+    rgba(46, 75, 92, 1) 0%,
+    rgba(59, 98, 119, 1) 85%,
+    rgba(49, 106, 139, 1) 100%
+  );
+  border-radius: 8px;
+  border-color: rgb(207, 19, 185);
+  box-shadow: 0 0 0 rgb(207, 19, 185), 0 0 7px #0fa, 0 0 10px rgb(207, 19, 185),
+    0 0 21px #0fa;
 }
 
 label {
-    border-top: 2px solid rgba(46, 75, 92, 1);
-    border-left: 2px solid rgba(46, 75, 92, 1);
-    -moz-box-shadow: inset 0 0 10px #000000;
-    -webkit-box-shadow: inset 0 0 10px #000000;
-    box-shadow: inset -6px -3px 10px #000000;
-    padding: 5px 20px 7px 10px;
+  border-top: 2px solid rgba(46, 75, 92, 1);
+  border-left: 2px solid rgba(46, 75, 92, 1);
+  -moz-box-shadow: inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow: inset -6px -3px 10px #000000;
+  padding: 5px 20px 7px 10px;
 }
 
 p,
 li {
-    margin: 10px;
-    color: white;
-    text-shadow:
-        0 0 0 rgb(255, 200, 0),
-        0 0 7px rgb(255, 200, 0),
-        0 0 10px rgb(255, 200, 0),
-        0 0 21px rgb(255, 200, 0);
+  margin: 10px;
+  color: white;
+  text-shadow: 0 0 0 rgb(255, 200, 0), 0 0 7px rgb(255, 200, 0),
+    0 0 10px rgb(255, 200, 0), 0 0 21px rgb(255, 200, 0);
 }
 
 li {
-    list-style-position: inside;
+  list-style-position: inside;
 }
 
 li {
-    position: relative;
+  position: relative;
 }
 
 li::marker {
-    color: transparent;
+  color: transparent;
 }
 
 li:before {
-    position: absolute;
-    content: "";
-    display: block;
-    width: 5px;
-    height: 5px;
-    top: 4px;
-    left: 2px;
-    border-top: 2px solid rgba(46, 75, 92, 1);
-    border-left: 2px solid rgba(46, 75, 92, 1);
-    -moz-box-shadow: inset 0 0 5px #000000;
-    -webkit-box-shadow: inset 0 0 5px #000000;
-    box-shadow: inset -6px -3px 5px #000000;
-    padding: 7px;
+  position: absolute;
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  top: 4px;
+  left: 2px;
+  border-top: 2px solid rgba(46, 75, 92, 1);
+  border-left: 2px solid rgba(46, 75, 92, 1);
+  -moz-box-shadow: inset 0 0 5px #000000;
+  -webkit-box-shadow: inset 0 0 5px #000000;
+  box-shadow: inset -6px -3px 5px #000000;
+  padding: 7px;
 }
 
 a {
-    margin: 4px;
-    color: white !important;
-    text-shadow:
-        0 0 0 rgb(207, 19, 185),
-        0 0 7px rgb(207, 19, 185),
-        0 0 10px rgb(207, 19, 185),
-        0 0 21px rgb(207, 19, 185);
+  margin: 4px;
+  color: white !important;
+  text-shadow: 0 0 0 rgb(207, 19, 185), 0 0 7px rgb(207, 19, 185),
+    0 0 10px rgb(207, 19, 185), 0 0 21px rgb(207, 19, 185);
 }
 
 button {
-    margin: 15px !important;
-    color: white;
-    text-shadow:
-        0 0 0 rgb(207, 19, 185),
-        0 0 7px rgb(207, 19, 185),
-        0 0 10px rgb(207, 19, 185),
-        0 0 21px rgb(207, 19, 185);
-    border-radius: 8px !important;
-    background: inherit;
-    box-shadow:
-        -8px -3px 7px black,
-        -8px -3px 10px black,
-        -8px -3px 18px black;
+  margin: 15px !important;
+  color: white;
+  text-shadow: 0 0 0 rgb(207, 19, 185), 0 0 7px rgb(207, 19, 185),
+    0 0 10px rgb(207, 19, 185), 0 0 21px rgb(207, 19, 185);
+  border-radius: 8px !important;
+  background: inherit;
+  box-shadow: -8px -3px 7px black, -8px -3px 10px black, -8px -3px 18px black;
 }
 
 input {
-    width: 95%;
-    align-self: center;
-    margin: 11px;
-    padding: 5px;
-    color: white;
-    text-shadow:
-        0 0 0 rgb(0, 0, 0),
-        0 0 7px rgb(0, 0, 0),
-        0 0 10px rgb(0, 0, 0),
-        0 0 21px rgb(0, 0, 0);
-    background-color: inherit;
-    border-radius: 8px;
-    border-color: #0fa;
-    box-shadow:
-        0 0 7px #0fa,
-        0 0 10px #0fa,
-        0 0 21px #0fa;
+  width: 95%;
+  align-self: center;
+  margin: 11px;
+  padding: 5px;
+  color: white;
+  text-shadow: 0 0 0 rgb(0, 0, 0), 0 0 7px rgb(0, 0, 0), 0 0 10px rgb(0, 0, 0),
+    0 0 21px rgb(0, 0, 0);
+  background-color: inherit;
+  border-radius: 8px;
+  border-color: #0fa;
+  box-shadow: 0 0 7px #0fa, 0 0 10px #0fa, 0 0 21px #0fa;
 }
 
 span {
-    margin: 11px;
-    color: rgb(229, 129, 129);
-    text-shadow:
-        0 0 0 rgb(231, 35, 71),
-        0 0 7px rgb(231, 35, 71),
-        0 0 10px rgb(231, 35, 71),
-        0 0 21px rgb(231, 35, 71);
+  margin: 11px;
+  color: rgb(229, 129, 129);
+  text-shadow: 0 0 0 rgb(231, 35, 71), 0 0 7px rgb(231, 35, 71),
+    0 0 10px rgb(231, 35, 71), 0 0 21px rgb(231, 35, 71);
 }
 
 .container {
-    padding: 25px;
-    margin: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: baseline;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
 }
 
-.container>* {
-    width: 60%;
+.container > * {
+  width: 60%;
 }
 
 .myBox {
-    display: flex;
-    flex-direction: column;
-    border-top: 2px solid rgba(46, 75, 92, 1);
-    border-left: 2px solid rgba(46, 75, 92, 1);
-    -moz-box-shadow: inset 0 0 10px #000000;
-    -webkit-box-shadow: inset 0 0 10px #000000;
-    box-shadow: inset -6px -3px 10px #000000;
-    padding: 5px 20px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid rgba(46, 75, 92, 1);
+  border-left: 2px solid rgba(46, 75, 92, 1);
+  -moz-box-shadow: inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow: inset -6px -3px 10px #000000;
+  padding: 5px 20px 10px 10px;
 }
 
-.dialogBox>mat-dialog-container {
-    padding: 0;
-    width: 800px;
-    background: linear-gradient(90deg, rgba(46, 75, 92, 1) 0%, rgba(59, 98, 119, 1) 85%, rgba(49, 106, 139, 1) 100%);
-    border-radius: 8px;
-    border-color: rgb(207, 19, 185);
-    box-shadow:
-        0 0 0 rgb(207, 19, 185),
-        0 0 7px #0fa,
-        0 0 10px rgb(207, 19, 185),
-        0 0 21px #0fa;
+.dialogBox > mat-dialog-container {
+  padding: 0;
+  width: 800px;
+  background: linear-gradient(
+    90deg,
+    rgba(46, 75, 92, 1) 0%,
+    rgba(59, 98, 119, 1) 85%,
+    rgba(49, 106, 139, 1) 100%
+  );
+  border-radius: 8px;
+  border-color: rgb(207, 19, 185);
+  box-shadow: 0 0 0 rgb(207, 19, 185), 0 0 7px #0fa, 0 0 10px rgb(207, 19, 185),
+    0 0 21px #0fa;
 }
 
 .menuContainer {
-    height: 100%;
-    width: 15%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-    transition: 0.5s;
-    margin-top: 125px !important;
-    margin: 11px;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: baseline;
-    padding: 10px;
+  height: 100%;
+  width: 15%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  margin-top: 125px !important;
+  margin: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: baseline;
+  padding: 10px;
 }
 
 .addPostButton {
-    padding: 10px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: center;
-    overflow-x: hidden;
-    transition: 0.5s;
-    width: 20%;
-    margin-top: 125px !important;
-    margin: 11px;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: baseline;
+  top: 0;
+  left: center;
+  overflow-x: hidden;
+  transition: 0.5s;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: baseline;
 }
 
 .dialogTitle {
-    margin-left: 55px !important;
+  margin-left: 55px !important;
+}
+
+.appRoot {
+  padding-top: 70px;
+  padding-bottom: 10px;
 }

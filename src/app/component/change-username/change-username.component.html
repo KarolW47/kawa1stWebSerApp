@@ -1,37 +1,46 @@
 <div class="container">
-    <h3 mat-dialog-title class="dialogTitle">Change username.</h3>
-    <mat-dialog-content>
-        <form [formGroup]="changeUsernameForm">
-            <div class="myBox">
-                <label for="username">
-                    Username:
-                </label>
+  <h3 mat-dialog-title class="dialogTitle">Change username.</h3>
+  <mat-dialog-content>
+    <form [formGroup]="changeUsernameForm">
+      <div class="myBox">
+        <label for="username"> Username: </label>
 
-                <input type="text" id="username" formControlName="username">
+        <input type="text" id="username" formControlName="username" />
 
-                <span *ngIf="changeUsernameForm.controls['username'].hasError('required')">
-                    Username is required.
-                </span>
-                <span *ngIf="changeUsernameForm.controls['username'].hasError('minlength')">
-                    Username cannot be shorter than 6 characters.
-                </span>
-                <span *ngIf="changeUsernameForm.controls['username'].hasError('maxlength')">
-                    Username cannot be longer than 24 characters.
-                </span>
-                <span *ngIf="changeUsernameForm.controls['username'].hasError('pattern')">
-                    Username cannot contain special characters.
-                </span>
-                <span *ngIf="changeUsernameForm.hasError('sameUsernameValidation')">
-                    That's your current username.
-                </span>
+        <span
+          *ngIf="changeUsernameForm.controls['username'].hasError('required')"
+        >
+          Username is required.
+        </span>
+        <span
+          *ngIf="changeUsernameForm.controls['username'].hasError('minlength')"
+        >
+          Username cannot be shorter than 6 characters.
+        </span>
+        <span
+          *ngIf="changeUsernameForm.controls['username'].hasError('maxlength')"
+        >
+          Username cannot be longer than 24 characters.
+        </span>
+        <span
+          *ngIf="changeUsernameForm.controls['username'].hasError('pattern')"
+        >
+          Username cannot contain special characters.
+        </span>
+        <span *ngIf="changeUsernameForm.hasError('sameUsernameValidation')">
+          That's your current username.
+        </span>
 
-                <button [mat-dialog-close] [disabled]="changeUsernameForm.invalid" type="button" (click)="onSubmit()">
-                    Change
-                </button>
-                <button [mat-dialog-close] type="button">
-                    Cancel
-                </button>
-            </div>
-        </form>
-    </mat-dialog-content>
+        <button
+          [mat-dialog-close]
+          [disabled]="changeUsernameForm.invalid"
+          type="button"
+          (click)="onSubmit()"
+        >
+          Change
+        </button>
+        <button [mat-dialog-close] type="button">Cancel</button>
+      </div>
+    </form>
+  </mat-dialog-content>
 </div>

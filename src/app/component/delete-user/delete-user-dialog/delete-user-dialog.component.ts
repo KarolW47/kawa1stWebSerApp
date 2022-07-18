@@ -6,22 +6,22 @@ import { DeleteUserComponent } from '../delete-user.component';
 @Component({
   selector: 'app-delete-user-dialog',
   templateUrl: './delete-user-dialog.component.html',
-  styleUrls: ['./delete-user-dialog.component.css']
+  styleUrls: ['./delete-user-dialog.component.css'],
 })
 export class DeleteUserDialogComponent implements OnInit {
-
   @Input() currentUserToDeleteProfile!: User;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   openDeleteUserDialog(user: User) {
     if (confirm('Are You sure, You want to delete this profile?')) {
-      let dialogRef = this.dialog.open(DeleteUserComponent, { data: user, panelClass: 'dialogBox' });
+      let dialogRef = this.dialog.open(DeleteUserComponent, {
+        data: user,
+        panelClass: 'dialogBox',
+      });
       dialogRef.afterClosed().subscribe();
     } else return;
   }
-
 }

@@ -6,20 +6,20 @@ import { ChangeUsernameComponent } from '../change-username.component';
 @Component({
   selector: 'app-change-username-dialog',
   templateUrl: './change-username-dialog.component.html',
-  styleUrls: ['./change-username-dialog.component.css']
+  styleUrls: ['./change-username-dialog.component.css'],
 })
 export class ChangeUsernameDialogComponent implements OnInit {
-
   @Input() currentUserToEditUsername!: User;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  openChangeUsernameDialog(user: User){
-    let dialogRef = this.dialog.open(ChangeUsernameComponent, {data: user, panelClass: 'dialogBox'});
+  openChangeUsernameDialog(user: User) {
+    let dialogRef = this.dialog.open(ChangeUsernameComponent, {
+      data: user,
+      panelClass: 'dialogBox',
+    });
     dialogRef.afterClosed().subscribe();
   }
-
 }

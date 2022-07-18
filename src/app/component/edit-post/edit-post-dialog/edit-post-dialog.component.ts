@@ -6,21 +6,20 @@ import { EditPostComponent } from '../edit-post.component';
 @Component({
   selector: 'app-edit-post-dialog',
   templateUrl: './edit-post-dialog.component.html',
-  styleUrls: ['./edit-post-dialog.component.css']
+  styleUrls: ['./edit-post-dialog.component.css'],
 })
 export class EditPostDialogComponent implements OnInit {
-
   @Input() currentPostToEdit!: Post;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   openEditDialog(post: Post) {
-    let dialogRef = this.dialog.open(EditPostComponent, { data: post,  panelClass: 'dialogBox'});
+    let dialogRef = this.dialog.open(EditPostComponent, {
+      data: post,
+      panelClass: 'dialogBox',
+    });
     dialogRef.afterClosed().subscribe();
   }
-
 }
