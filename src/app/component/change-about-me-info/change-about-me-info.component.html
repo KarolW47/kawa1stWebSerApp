@@ -4,7 +4,7 @@
     <form [formGroup]="changeAboutMeInfoForm">
       <div class="myBox">
         <label for="aboutMeInfo"> About me info: </label>
-        <input type="text" id="aboutMeInfo" formControlName="aboutMeInfo" />
+        <textarea id="aboutMeInfo" cols="30" rows="10" formControlName="aboutMeInfo"></textarea>
         <span
           *ngIf="
             changeAboutMeInfoForm.controls['aboutMeInfo'].hasError('maxlength')

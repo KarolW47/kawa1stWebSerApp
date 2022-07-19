@@ -1,5 +1,5 @@
 <router-outlet></router-outlet>
-<div class="container" *ngIf="!currentUrl.includes('add')">
+<div class="container" *ngIf="!isCurrentUrlContainsAddPost()">
   <br />
   <div class="addPostButton">
     <button routerLinkActive="active" routerLink="add_post">Add post</button>

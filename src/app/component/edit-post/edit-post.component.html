@@ -4,11 +4,12 @@
     <form [formGroup]="editPostForm">
       <div class="myBox">
         <label for="postTextMessage">Text:</label>
-        <input
-          type="text"
+        <textarea
           id="postTextMessage"
+          cols="30"
+          rows="10"
           formControlName="postTextMessage"
-        />
+        ></textarea>
         <span
           *ngIf="editPostForm.controls['postTextMessage'].hasError('required')"
           >Text is required.</span

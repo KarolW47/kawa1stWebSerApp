@@ -11,7 +11,7 @@ import { TokenStorageService } from 'src/app/service/token-storage.service';
 })
 export class PostsComponent implements OnInit {
   postsList: Post[] = [];
-  currentUrl!: string;
+  currentUrl: string = '';
   currentUserId: number = +this.tokenStorageService.getUserId();
 
   constructor(
@@ -25,5 +25,9 @@ export class PostsComponent implements OnInit {
       this.postsList = res.reverse();
       this.currentUrl = this.router.url;
     });
+  }
+
+  isCurrentUrlContainsAddPost() {
+    return this.currentUrl.includes('add');
   }
 }

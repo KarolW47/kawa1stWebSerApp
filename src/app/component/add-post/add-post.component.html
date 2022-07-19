@@ -3,11 +3,12 @@
   <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
     <div class="myBox">
       <label for="postTextMessage">Text:</label>
-      <input
-        type="text"
+      <textarea
         id="postTextMessage"
+        cols="30"
+        rows="10"
         formControlName="postTextMessage"
-      />
+      ></textarea>
       <span *ngIf="postForm.controls['postTextMessage'].hasError('required')"
         >Text is required.</span
       >
@@ -18,7 +19,7 @@
         >Message cannot exceed 512 characters.</span
       >
 
-      <button [disabled]="postForm.invalid" type="submit">Add post.</button>
+      <button [disabled]="postForm.invalid" type="submit">Add post</button>
     </div>
   </form>
 </div>

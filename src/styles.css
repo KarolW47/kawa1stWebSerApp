@@ -136,11 +136,11 @@ button {
   box-shadow: -8px -3px 7px black, -8px -3px 10px black, -8px -3px 18px black;
 }
 
-input {
+input, textarea {
   width: 95%;
   align-self: center;
-  margin: 11px;
   padding: 5px;
+  margin: 5px !important;
   color: white;
   text-shadow: 0 0 0 rgb(0, 0, 0), 0 0 7px rgb(0, 0, 0), 0 0 10px rgb(0, 0, 0),
     0 0 21px rgb(0, 0, 0);
@@ -151,7 +151,7 @@ input {
 }
 
 span {
-  margin: 11px;
+  margin: 5px 20px;
   color: rgb(229, 129, 129);
   text-shadow: 0 0 0 rgb(231, 35, 71), 0 0 7px rgb(231, 35, 71),
     0 0 10px rgb(231, 35, 71), 0 0 21px rgb(231, 35, 71);
@@ -233,3 +233,5 @@ span {
   padding-top: 70px;
   padding-bottom: 10px;
 }
+
+
