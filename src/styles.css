@@ -16,12 +16,12 @@ body {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  align-self: center;
-  width: 95% !important;
-  margin: 15px !important;
-  padding: 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  margin-bottom: 15px;
+  margin-top: 15px;
   background: linear-gradient(
     90deg,
     rgba(46, 75, 92, 1) 0%,
@@ -32,6 +32,10 @@ footer {
   border-color: rgb(207, 19, 185);
   box-shadow: 0 0 0 rgb(207, 19, 185), 0 0 7px #0fa, 0 0 10px rgb(207, 19, 185),
     0 0 21px #0fa;
+}
+
+footer li {
+  left: -20px;
 }
 
 h1,
@@ -85,6 +89,7 @@ label {
 
 p,
 li {
+  padding: 5px;
   margin: 10px;
   color: white;
   text-shadow: 0 0 0 rgb(255, 200, 0), 0 0 7px rgb(255, 200, 0),
@@ -93,10 +98,9 @@ li {
 
 li {
   list-style-position: inside;
-}
-
-li {
   position: relative;
+  display: inline;
+  left: 20px;
 }
 
 li::marker {
@@ -106,11 +110,8 @@ li::marker {
 li:before {
   position: absolute;
   content: "";
-  display: block;
-  width: 5px;
-  height: 5px;
-  top: 4px;
-  left: 2px;
+  left: -16px;
+  top: 8px;
   border-top: 2px solid rgba(46, 75, 92, 1);
   border-left: 2px solid rgba(46, 75, 92, 1);
   -moz-box-shadow: inset 0 0 5px #000000;
@@ -136,7 +137,8 @@ button {
   box-shadow: -8px -3px 7px black, -8px -3px 10px black, -8px -3px 18px black;
 }
 
-input, textarea {
+input,
+textarea {
   width: 95%;
   align-self: center;
   padding: 5px;
@@ -158,6 +160,7 @@ span {
 }
 
 .container {
+  position: relative;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -200,17 +203,19 @@ span {
   width: 15%;
   position: fixed;
   z-index: 1;
-  top: 0;
   left: 0;
   overflow-x: hidden;
   transition: 0.5s;
-  margin-top: 125px !important;
   margin: 11px;
   display: flex;
   flex-direction: column;
   align-items: left;
   justify-content: baseline;
   padding: 10px;
+}
+
+.menuContainer li {
+  left: -8px;
 }
 
 .addPostButton {
@@ -230,8 +235,15 @@ span {
 }
 
 .appRoot {
-  padding-top: 70px;
+  padding-top: 60px;
   padding-bottom: 10px;
 }
 
-
+.footerToBody {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+}
