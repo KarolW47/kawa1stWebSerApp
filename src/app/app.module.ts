@@ -28,6 +28,8 @@ import { ChangePasswordDialogComponent } from './component/change-password/chang
 import { ChangeUsernameDialogComponent } from './component/change-username/change-username-dialog/change-username-dialog.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { ChangePasswordViaResetTokenComponent } from './component/change-password-via-reset-token/change-password-via-reset-token.component';
+import { ChatComponent } from './component/chat/chat.component';
+import { UsersToChatListComponent } from './component/users-to-chat-list/users-to-chat-list.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { ChangePasswordViaResetTokenComponent } from './component/change-passwor
     ChangeUsernameDialogComponent,
     ResetPasswordComponent,
     ChangePasswordViaResetTokenComponent,
+    ChatComponent,
+    UsersToChatListComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +73,7 @@ import { ChangePasswordViaResetTokenComponent } from './component/change-passwor
           path: 'change_password/:token',
           component: ChangePasswordViaResetTokenComponent,
         },
+        { path: 'chat/:username', component: ChatComponent },
         {
           path: 'posts',
           component: PostsComponent,
