@@ -19,9 +19,9 @@ footer {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  width: 50%;
   margin-bottom: 15px;
-  margin-top: 15px;
+  margin-top: 150px;
   background: linear-gradient(
     90deg,
     rgba(46, 75, 92, 1) 0%,
@@ -36,12 +36,14 @@ footer {
 
 footer li {
   left: -20px;
+  top: 7px;
 }
 
 h1,
 h2,
 h3,
 h4,
+h5,
 label {
   margin: 11px;
   color: white;
@@ -161,7 +163,8 @@ span {
 
 .container {
   position: relative;
-  padding: 20px;
+  padding: 10px;
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -203,23 +206,7 @@ span {
   width: 15%;
   position: fixed;
   z-index: 1;
-  left: 0;
-  overflow-x: hidden;
-  transition: 0.5s;
-  margin: 11px;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: baseline;
-  padding: 10px;
-}
-
-.usersToChatContainer {
-  height: 100%;
-  width: 15%;
-  position: fixed;
-  z-index: 1;
-  right: 0;
+  left: 1.5%;
   overflow-x: hidden;
   transition: 0.5s;
   margin: 11px;
@@ -232,6 +219,22 @@ span {
 
 .menuContainer li {
   left: -8px;
+}
+
+.usersToChatContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 30%;
+  position: fixed;
+  z-index: 1;
+  right: -4%;
+  overflow-x: hidden;
+  transition: 0.5s;
+  margin: 11px;
+  display: flex;
+  align-items: left;
+  justify-content: baseline;
 }
 
 .addPostButton {

@@ -10,7 +10,7 @@ import { ChatService } from 'src/app/service/chat.service';
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  usernameOfChosenUser!: string;
+  @Input('chosenUsername') usernameOfChosenUser: string = "";
 
   constructor(public chatService: ChatService, private activatedRoute: ActivatedRoute) {}
 
@@ -19,10 +19,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      this.usernameOfChosenUser = params['user_username'];
-    });
-
     this.chatService.closeWebSocket();
   }
 

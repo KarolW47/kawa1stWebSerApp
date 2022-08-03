@@ -11,6 +11,8 @@ import { UserService } from 'src/app/service/user.service';
 export class UsersToChatListComponent implements OnInit {
   currentUserId! : number;
   userlist: User[] = [];
+  isDisplayingChat: boolean = false;
+  chosenUsername: string = "";
 
   constructor(private userService: UserService, public tokenStorageService: TokenStorageService) {}
 
@@ -31,5 +33,10 @@ export class UsersToChatListComponent implements OnInit {
         alert('Something bad happened, try again later.');
       },
     });
+  }
+  
+  onClickToChat(username: string){
+    this.chosenUsername = username;
+    this.isDisplayingChat = true;
   }
 }

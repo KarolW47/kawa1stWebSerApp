@@ -73,7 +73,6 @@ import { UsersToChatListComponent } from './component/users-to-chat-list/users-t
           path: 'change_password/:token',
           component: ChangePasswordViaResetTokenComponent,
         },
-        { path: 'chat/:username', component: ChatComponent },
         {
           path: 'posts',
           component: PostsComponent,

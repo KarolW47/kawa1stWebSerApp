@@ -48,10 +48,8 @@
   </div>
 </div>
 
-<div class="usersToChatContainer">
-  <div class="myBox">
+<div class="usersToChatContainer" *ngIf="isTokenPresent">
     <app-users-to-chat-list></app-users-to-chat-list>
-  </div>
 </div>
 
 <router-outlet></router-outlet>
