@@ -15,18 +15,18 @@ export class ChatComponent implements OnInit, OnDestroy {
   constructor(public chatService: ChatService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.chatService.openWebSocket();
+    this.chatService.connect();
   }
 
   ngOnDestroy(): void {
-    this.chatService.closeWebSocket();
+    this.chatService.disconnect();
   }
 
   sendMessage(sendMessageForm: NgForm) {
     let chatMessage!: ChatMessage;
     chatMessage.message = sendMessageForm.value.message;
     chatMessage.to = this.usernameOfChosenUser;
-    this.chatService.sendMessage(chatMessage);
+    this.chatService.send(chatMessage);
     sendMessageForm.controls['message'].reset();
   }
 }

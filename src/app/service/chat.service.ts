@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as SockJS from 'sockjs-client';
 import { environment } from 'src/environments/environment';
 import { ChatMessage } from '../interface/chat-message';
 import { TokenStorageService } from './token-storage.service';
@@ -8,7 +9,9 @@ import { TokenStorageService } from './token-storage.service';
   providedIn: 'root',
 })
 export class ChatService {
-  webSocket!: WebSocket;
+  webSocketEndpoint: string = 'http://localhost:8080/chat';
+  topic: string = 'user';
+  stompClient: any;
   chatMessages: ChatMessage[] = [];
 
   constructor(
@@ -38,28 +41,45 @@ export class ChatService {
       });
   }
 
-  openWebSocket() {
-    this.webSocket = new WebSocket('ws://localhost:8080/chat');
-
-    this.webSocket.onopen = (event) => {
-      console.log('Open: ', event);
-    };
-
-    this.webSocket.onmessage = (event) => {
-      let chatMessage = JSON.parse(event.data);
-      this.chatMessages.push(chatMessage);
-    };
-
-    this.webSocket.onclose = (event) => {
-      console.log('Close: ', event);
-    };
+  connect() {
+    console.log('Initialize chat connection');
+    let ws = new SockJS(this.webSocketEndpoint);
+    
+    const _this = this;
+    this.stompClient.connect(
+      {},
+       () => {
+        this.stompClient.subscribe(this.topic,  (event: any) => {
+          this.onMessageReceived(event);
+        });
+      },
+      this.errorCallBack
+    );
   }
 
-  public sendMessage(chatMessage: ChatMessage) {
-    this.webSocket.send(JSON.stringify(chatMessage));
+  disconnect() {
+    if (this.stompClient !== null) {
+      this.stompClient.disconnect();
+    }
+    console.log('Chat disconnected');
   }
 
-  public closeWebSocket() {
-    this.webSocket.close();
+  errorCallBack(error: string) {
+    console.log('ErrorCallBack -> ' + error);
+    console.log('Reconnecting...');
+    setTimeout(() => {
+      this.connect();
+    }, 5000);
+  }
+
+  send(chatMessage: ChatMessage) {
+    console.log('Sending message via WebSocket.');
+    this.stompClient.send('/app', {}, JSON.stringify(chatMessage));
+    this.chatMessages.push(chatMessage);
+  }
+
+  onMessageReceived(chatMessage: ChatMessage) {
+    console.log('Message Recieved from Server: ' + chatMessage);
+    this.chatMessages.push(chatMessage);
   }
 }
