@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { ChatMessage } from 'src/app/interface/chat-message';
 import { ChatService } from 'src/app/service/chat.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
   selector: 'app-chat',
@@ -12,7 +12,7 @@ import { ChatService } from 'src/app/service/chat.service';
 export class ChatComponent implements OnInit, OnDestroy {
   @Input('chosenUsername') usernameOfChosenUser: string = "";
 
-  constructor(public chatService: ChatService, private activatedRoute: ActivatedRoute) {}
+  constructor(public chatService: ChatService, private tokenStorageService: TokenStorageService) {}
 
   ngOnInit(): void {
     this.chatService.connect();
@@ -25,7 +25,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   sendMessage(sendMessageForm: NgForm) {
     let chatMessage!: ChatMessage;
     chatMessage.message = sendMessageForm.value.message;
-    chatMessage.to = this.usernameOfChosenUser;
+    chatMessage.usernameOfReceiver = this.usernameOfChosenUser;
+    chatMessage.idOfSender = this.tokenStorageService.getUserId();
     this.chatService.send(chatMessage);
     sendMessageForm.controls['message'].reset();
   }

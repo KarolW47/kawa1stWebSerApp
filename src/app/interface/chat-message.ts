@@ -1,7 +1,8 @@
 export interface ChatMessage {
   id: number;
   message: string;
-  from: string;
-  to: string;
-  sendDate: Date;
+  usernameOfSender: string;
+  usernameOfReceiver: string;
+  sentDate: Date;
+  idOfSender: number;
 }
