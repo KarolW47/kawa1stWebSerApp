@@ -1,20 +1,26 @@
 <div class="container">
-  <h5>{{usernameOfChosenUser}}</h5>
+  <h5>{{ usernameOfChosenUser }}</h5>
   <ul>
     <li *ngFor="let chatMessage of chatService.chatMessages">
-      <div *ngIf="chatMessage.usernameOfSender === usernameOfChosenUser" style="left: 0">
+      <div
+        *ngIf="chatMessage.usernameOfSender === usernameOfChosenUser"
+        style="left: 0"
+      >
         <strong>{{ chatMessage.usernameOfSender }}: </strong>
         <span>{{ chatMessage.message }}</span>
       </div>
-      <div *ngIf="chatMessage.usernameOfSender !== usernameOfChosenUser" style="right: 0">
+      <div
+        *ngIf="chatMessage.usernameOfSender !== usernameOfChosenUser"
+        style="right: 0"
+      >
         <strong>{{ chatMessage.usernameOfSender }}: </strong>
         <span>{{ chatMessage.message }}</span>
       </div>
     </li>
   </ul>
 
-  <form (ngSubmit)="sendMessage(sendMessageForm)" #sendMessageForm="ngForm">
-    <input type="text" name="message" id="message" ngModel />
-    <button type="submit">Send</button>
+  <form [formGroup]="sendMessageForm">
+    <input type="text" id="message" formControlName="message" />
+    <button type="button" (click)="sendMessage()">Send</button>
   </form>
 </div>
