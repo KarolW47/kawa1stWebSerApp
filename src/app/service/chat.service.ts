@@ -73,10 +73,8 @@ export class ChatService {
   }
 
   send(chatMessage: ChatMessage) {
-    console.log('Sending message via WebSocket.');
-    let param = chatMessage.usernameOfReceiver;
     this.stompClient.send(
-      '/app/chat/' + param,
+      '/app/chat/',
       {},
       JSON.stringify(chatMessage)
     );

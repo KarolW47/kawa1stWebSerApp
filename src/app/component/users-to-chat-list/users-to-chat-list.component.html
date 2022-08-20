@@ -5,7 +5,7 @@
     <div class="listOfUsers" *ngFor="let user of userlist">
       <div *ngIf="user.id !== currentUserId">
         <li>
-          <a routerLink="active" (click)="onClickToChat(user.username)">
+          <a routerLink="active" (click)="onClickToChat(user)">
             {{ user.username | titlecase }}
           </a>
         </li>
@@ -15,5 +15,5 @@
 </div>
 
 <div *ngIf="isDisplayingChat">
-  <app-chat [chosenUsername] = "chosenUsername"></app-chat>
+  <app-chat [chosenUser] = "chosenUser"></app-chat>
 </div>

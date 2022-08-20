@@ -19,7 +19,7 @@ export class PostService {
     });
   }
 
-  getUserPosts(userId: string) {
+  getUserPosts(userId: number) {
     return this.http.get<Post[]>(`${environment.apiUrl}/post/ofUser`, {
       params: new HttpParams().set('user_id', userId),
       headers: this.tokenStorageService.getTokensAsHeaders(),

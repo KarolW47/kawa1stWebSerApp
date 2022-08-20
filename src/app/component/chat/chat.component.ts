@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { ChatMessage } from 'src/app/interface/chat-message';
+import { User } from 'src/app/interface/user';
 import { ChatService } from 'src/app/service/chat.service';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
 
@@ -10,7 +11,7 @@ import { TokenStorageService } from 'src/app/service/token-storage.service';
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  @Input('chosenUsername') usernameOfChosenUser: string = '';
+  @Input('chosenUser') chosenUser!: User;
   sendMessageForm!: FormGroup;
 
   constructor(
@@ -22,7 +23,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.chatService.connect();
     this.sendMessageForm = this.formBuilder.group({
-      message: [null],
+      message: [''],
     });
   }
 
@@ -31,11 +32,13 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   sendMessage() {
-    let chatMessage!: ChatMessage;
-    chatMessage.message = this.sendMessageForm.value;
-    chatMessage.usernameOfReceiver = this.usernameOfChosenUser;
-    chatMessage.idOfSender = this.tokenStorageService.getUserId();
+    let chatMessage: ChatMessage = {
+      id: undefined,
+      message: this.sendMessageForm.get('message')?.value,
+      idOfReceiver: this.chosenUser.id,
+      idOfSender: this.tokenStorageService.getUserId(),
+    };
     this.chatService.send(chatMessage);
-    // this.sendMessageForm.controls['message'].reset();
+    this.sendMessageForm.controls['message'].reset();
   }
 }

@@ -1,7 +1,7 @@
 import { User } from './user';
 
 export interface Post {
-  id: number;
+  id: string;
   user: User;
   createDate: Date;
   postTextMessage: string;

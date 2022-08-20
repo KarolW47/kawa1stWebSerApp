@@ -1,16 +1,16 @@
 <div class="container">
-  <h5>{{ usernameOfChosenUser }}</h5>
+  <h5>{{ chosenUser.username }}</h5>
   <ul>
     <li *ngFor="let chatMessage of chatService.chatMessages">
       <div
-        *ngIf="chatMessage.usernameOfSender === usernameOfChosenUser"
+        *ngIf="chatMessage.idOfSender === chosenUser.id"
         style="left: 0"
       >
         <strong>{{ chatMessage.usernameOfSender }}: </strong>
         <span>{{ chatMessage.message }}</span>
       </div>
       <div
-        *ngIf="chatMessage.usernameOfSender !== usernameOfChosenUser"
+        *ngIf="chatMessage.idOfSender !== chosenUser.id"
         style="right: 0"
       >
         <strong>{{ chatMessage.usernameOfSender }}: </strong>
@@ -20,7 +20,7 @@
   </ul>
 
   <form [formGroup]="sendMessageForm">
-    <input type="text" id="message" formControlName="message" />
+    <textarea id="message" formControlName="message"> </textarea>
     <button type="button" (click)="sendMessage()">Send</button>
   </form>
 </div>

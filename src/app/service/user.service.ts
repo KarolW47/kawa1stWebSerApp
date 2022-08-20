@@ -11,7 +11,7 @@ export class UserService {
     private tokenStorageService: TokenStorageService
   ) {}
 
-  getUser(userId: string) {
+  getUser(userId: number) {
     return this.http.get<User>(`${environment.apiUrl}/user/profile`, {
       params: new HttpParams().set('user_id', userId),
       headers: this.tokenStorageService.getTokensAsHeaders(),

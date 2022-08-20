@@ -13,7 +13,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserProfileComponent implements OnInit {
   user!: User;
-  userId!: string;
+  userId!: number;
   postsOfUser!: Post[];
   currentUserId: number = +this.tokenStorageService.getUserId();
 
