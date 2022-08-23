@@ -11,8 +11,8 @@ import { TokenStorageService } from './token-storage.service';
 })
 export class ChatService {
   webSocketEndpoint: string = 'http://localhost:8080/chat';
-  topic: string = '/user';
   stompClient: any;
+  usernameForReconnectAfterError!: string;
   chatMessages: ChatMessage[] = [];
 
   constructor(
@@ -42,15 +42,16 @@ export class ChatService {
       });
   }
 
-  connect() {
+  connect(chosenUserUsername: string) {
     console.log('Initialize chat connection');
+    this.usernameForReconnectAfterError = chosenUserUsername;
     let ws = new SockJS(this.webSocketEndpoint);
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect(
       {},
       () => {
-        this.stompClient.subscribe(this.topic, (event: any) => {
-          this.onMessageReceived(event);
+        this.stompClient.subscribe('/user/' + chosenUserUsername, (resp: any) => {
+          this.onMessageReceived(resp);
         });
       },
       this.errorCallBack
@@ -68,7 +69,7 @@ export class ChatService {
     console.log('ErrorCallBack -> ' + error);
     console.log('Reconnecting...');
     setTimeout(() => {
-      this.connect();
+      this.connect(this.usernameForReconnectAfterError);
     }, 5000);
   }
 

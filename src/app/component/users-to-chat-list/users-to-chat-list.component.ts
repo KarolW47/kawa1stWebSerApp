@@ -9,12 +9,16 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./users-to-chat-list.component.css'],
 })
 export class UsersToChatListComponent implements OnInit {
-  currentUserId! : number;
+  currentUserId!: number;
+  currentUserUsername!: any;
   userlist: User[] = [];
   isDisplayingChat: boolean = false;
   chosenUser!: User;
 
-  constructor(private userService: UserService, public tokenStorageService: TokenStorageService) {}
+  constructor(
+    private userService: UserService,
+    public tokenStorageService: TokenStorageService
+  ) {}
 
   ngOnInit(): void {
     this.currentUserId = this.tokenStorageService.getUserId();
@@ -34,9 +38,12 @@ export class UsersToChatListComponent implements OnInit {
       },
     });
   }
-  
-  onClickToChat(user: User){
+
+  onClickToChat(user: User) {
     this.chosenUser = user;
+    this.currentUserUsername = this.userlist.find(
+      (user) => user.id === this.currentUserId
+    )?.username;
     this.isDisplayingChat = true;
   }
 }

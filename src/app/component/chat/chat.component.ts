@@ -12,6 +12,7 @@ import { TokenStorageService } from 'src/app/service/token-storage.service';
 })
 export class ChatComponent implements OnInit, OnDestroy {
   @Input('chosenUser') chosenUser!: User;
+  @Input('currentUserUsername') currentUserUsername!: string;
   sendMessageForm!: FormGroup;
 
   constructor(
@@ -21,7 +22,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.chatService.connect();
+    this.chatService.connect(this.chosenUser.username);
     this.sendMessageForm = this.formBuilder.group({
       message: [''],
     });
@@ -36,7 +37,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       id: undefined,
       message: this.sendMessageForm.get('message')?.value,
       idOfReceiver: this.chosenUser.id,
+      usernameOfReceiver: this.chosenUser.username,
       idOfSender: this.tokenStorageService.getUserId(),
+      usernameOfSender: this.currentUserUsername,
     };
     this.chatService.send(chatMessage);
     this.sendMessageForm.controls['message'].reset();
