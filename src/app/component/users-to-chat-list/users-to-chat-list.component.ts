@@ -40,10 +40,11 @@ export class UsersToChatListComponent implements OnInit {
   }
 
   onClickToChat(user: User) {
-    this.chosenUser = user;
     this.currentUserUsername = this.userlist.find(
-      (user) => user.id === this.currentUserId
+      (user) => user.id == this.currentUserId
     )?.username;
+
+    this.chosenUser = user;
     this.isDisplayingChat = true;
   }
 }

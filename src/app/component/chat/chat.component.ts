@@ -22,7 +22,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.chatService.connect(this.chosenUser.username);
+    console.error(this.currentUserUsername);
+    
+    this.chatService.connect(this.chosenUser.username, this.currentUserUsername);
     this.sendMessageForm = this.formBuilder.group({
       message: [''],
     });
@@ -41,7 +43,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       idOfSender: this.tokenStorageService.getUserId(),
       usernameOfSender: this.currentUserUsername,
     };
-    this.chatService.send(chatMessage);
+    this.chatService.send(chatMessage, this.chosenUser.username);
     this.sendMessageForm.controls['message'].reset();
   }
 }

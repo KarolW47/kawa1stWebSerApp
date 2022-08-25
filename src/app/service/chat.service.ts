@@ -12,7 +12,8 @@ import { TokenStorageService } from './token-storage.service';
 export class ChatService {
   webSocketEndpoint: string = 'http://localhost:8080/chat';
   stompClient: any;
-  usernameForReconnectAfterError!: string;
+  usernameOfChosenUser!: string;
+  usernameOfCurrentUser!: string;
   chatMessages: ChatMessage[] = [];
 
   constructor(
@@ -42,15 +43,16 @@ export class ChatService {
       });
   }
 
-  connect(chosenUserUsername: string) {
+  connect(chosenUserUsername: string, currentUserUsername: string) {
     console.log('Initialize chat connection');
-    this.usernameForReconnectAfterError = chosenUserUsername;
+    this.usernameOfChosenUser = chosenUserUsername;
+    this.usernameOfCurrentUser = currentUserUsername;
     let ws = new SockJS(this.webSocketEndpoint);
     this.stompClient = Stomp.over(ws);
     this.stompClient.connect(
       {},
       () => {
-        this.stompClient.subscribe('/user/' + chosenUserUsername, (resp: any) => {
+        this.stompClient.subscribe('/user/' + this.usernameOfCurrentUser, (resp: any) => {
           this.onMessageReceived(resp);
         });
       },
@@ -69,13 +71,13 @@ export class ChatService {
     console.log('ErrorCallBack -> ' + error);
     console.log('Reconnecting...');
     setTimeout(() => {
-      this.connect(this.usernameForReconnectAfterError);
+      this.connect(this.usernameOfChosenUser, this.usernameOfCurrentUser);
     }, 5000);
   }
 
-  send(chatMessage: ChatMessage) {
+  send(chatMessage: ChatMessage, chosenUserUsername: string) {
     this.stompClient.send(
-      '/app/chat/',
+      '/app/chat/' + chosenUserUsername,
       {},
       JSON.stringify(chatMessage)
     );
