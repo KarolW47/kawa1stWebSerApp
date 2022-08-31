@@ -5,6 +5,8 @@ import * as SockJS from 'sockjs-client';
 import { environment } from 'src/environments/environment';
 import { ChatMessage } from '../interface/chat-message';
 import { TokenStorageService } from './token-storage.service';
+import { ChatComponent } from '../component/chat/chat.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +16,7 @@ export class ChatService {
   stompClient: any;
   usernameOfChosenUser!: string;
   usernameOfCurrentUser!: string;
-  chatMessages: ChatMessage[] = [];
+  messageReceived = new BehaviorSubject({});
 
   constructor(
     private http: HttpClient,
@@ -22,25 +24,13 @@ export class ChatService {
   ) {}
 
   getConversationHistory(username: string) {
-    return this.http
-      .get<any>(`${environment.apiUrl}/chat_message/user`, {
+    return this.http.get<ChatMessage[]>(
+      `${environment.apiUrl}/chat_messages/user`,
+      {
         params: new HttpParams().set('username', username),
-        headers: this.tokenStorageService.getAccessToken(),
-      })
-      .subscribe({
-        next: (resp) => {
-          this.chatMessages = resp;
-        },
-        error: (error) => {
-          console.error(
-            'Something went wrong, status code:' +
-              error.status +
-              ', error message:' +
-              error.error
-          );
-          alert('Something bad happened, try again later.');
-        },
-      });
+        headers: this.tokenStorageService.getTokensAsHeaders(),
+      }
+    );
   }
 
   connect(chosenUserUsername: string, currentUserUsername: string) {
@@ -52,9 +42,15 @@ export class ChatService {
     this.stompClient.connect(
       {},
       () => {
-        this.stompClient.subscribe('/user/' + this.usernameOfCurrentUser, (resp: any) => {
-          this.onMessageReceived(resp);
-        });
+        this.stompClient.subscribe(
+          '/user/' +
+            this.tokenStorageService.getUserId() +
+            '/' +
+            this.usernameOfCurrentUser,
+          (resp: any) => {
+            this.messageReceived.next(resp);
+          }
+        );
       },
       this.errorCallBack
     );
@@ -81,11 +77,6 @@ export class ChatService {
       {},
       JSON.stringify(chatMessage)
     );
-    this.chatMessages.push(chatMessage);
-  }
-
-  onMessageReceived(chatMessage: ChatMessage) {
-    console.log('Message Recieved from Server: ' + chatMessage);
-    this.chatMessages.push(chatMessage);
+    return chatMessage;
   }
 }

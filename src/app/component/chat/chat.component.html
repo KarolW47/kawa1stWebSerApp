@@ -1,7 +1,7 @@
 <div class="container">
   <h5>{{ chosenUser.username }}</h5>
   <ul>
-    <li *ngFor="let chatMessage of chatService.chatMessages">
+    <li *ngFor="let chatMessage of chatMessages">
       <div
         *ngIf="chatMessage.idOfSender === chosenUser.id"
         style="left: 0"

@@ -14,6 +14,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   @Input('chosenUser') chosenUser!: User;
   @Input('currentUserUsername') currentUserUsername!: string;
   sendMessageForm!: FormGroup;
+  chatMessages: ChatMessage[] = [];
 
   constructor(
     public chatService: ChatService,
@@ -22,9 +23,27 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.error(this.currentUserUsername);
-    
-    this.chatService.connect(this.chosenUser.username, this.currentUserUsername);
+    this.chatService
+      .getConversationHistory(this.chosenUser.username)
+      .subscribe({
+        next: (resp) => {
+          this.chatMessages = resp;
+        },
+        error: (error) => {
+          console.error(
+            'Something went wrong, status code:' +
+              error.status +
+              ', error message:' +
+              error.error
+          );
+          alert('Something bad happened, try again later.');
+        },
+      });
+
+    this.chatService.connect(
+      this.chosenUser.username,
+      this.currentUserUsername
+    );
     this.sendMessageForm = this.formBuilder.group({
       message: [''],
     });
@@ -40,10 +59,22 @@ export class ChatComponent implements OnInit, OnDestroy {
       message: this.sendMessageForm.get('message')?.value,
       idOfReceiver: this.chosenUser.id,
       usernameOfReceiver: this.chosenUser.username,
+      sentDate: new Date(),
       idOfSender: this.tokenStorageService.getUserId(),
       usernameOfSender: this.currentUserUsername,
     };
     this.chatService.send(chatMessage, this.chosenUser.username);
+    this.chatMessages.push(chatMessage);
     this.sendMessageForm.controls['message'].reset();
+  }
+
+  onMessageReceived() {
+    let chatMessage: ChatMessage = {};
+    this.chatService.messageReceived.subscribe({
+      next: message => chatMessage = message,
+      error: err => console.log(err),
+    });
+    console.log('Message Recieved from Server: ' + chatMessage);
+    this.chatMessages.push(chatMessage);
   }
 }
