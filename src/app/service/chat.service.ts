@@ -5,7 +5,6 @@ import * as SockJS from 'sockjs-client';
 import { environment } from 'src/environments/environment';
 import { ChatMessage } from '../interface/chat-message';
 import { TokenStorageService } from './token-storage.service';
-import { ChatComponent } from '../component/chat/chat.component';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -73,7 +72,7 @@ export class ChatService {
 
   send(chatMessage: ChatMessage, chosenUserUsername: string) {
     this.stompClient.send(
-      '/app/chat/' + chosenUserUsername,
+      '/app/chat/' + chatMessage.idOfReceiver + '/' + chosenUserUsername,
       {},
       JSON.stringify(chatMessage)
     );

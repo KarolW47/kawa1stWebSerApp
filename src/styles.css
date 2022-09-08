@@ -257,3 +257,15 @@ span {
   padding-top: 60px;
   padding-bottom: 10px;
 }
+
+.chatText {
+  color: rgb(152, 248, 149);
+  text-shadow: 0 0 0 rgb(11, 219, 4), 0 0 7px rgb(11, 219, 4),
+    0 0 10px rgb(11, 219, 4), 0 0 21px rgb(11, 219, 4);
+}
+
+.chatDate {
+  color: rgb(245, 106, 255);
+  text-shadow: 0 0 0 rgb(72, 0, 77), 0 0 7px rgb(72, 0, 77),
+    0 0 10px rgb(72, 0, 77), 0 0 21px rgb(72, 0, 77);
+}

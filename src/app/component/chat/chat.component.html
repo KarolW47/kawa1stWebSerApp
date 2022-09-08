@@ -2,19 +2,15 @@
   <h5>{{ chosenUser.username }}</h5>
   <ul>
     <li *ngFor="let chatMessage of chatMessages">
-      <div
-        *ngIf="chatMessage.idOfSender === chosenUser.id"
-        style="left: 0"
-      >
+      <div *ngIf="chatMessage.idOfSender === chosenUser.id">
         <strong>{{ chatMessage.usernameOfSender }}: </strong>
-        <span>{{ chatMessage.message }}</span>
+        <div class="chatText">{{ chatMessage.message }}</div>
+        <div class="chatDate">{{ chatMessage.sentDate | date: "medium" }}</div>
       </div>
-      <div
-        *ngIf="chatMessage.idOfSender !== chosenUser.id"
-        style="right: 0"
-      >
+      <div *ngIf="chatMessage.idOfSender !== chosenUser.id">
         <strong>{{ chatMessage.usernameOfSender }}: </strong>
-        <span>{{ chatMessage.message }}</span>
+        <div class="chatText">{{ chatMessage.message }}</div>
+        <div class="chatDate">{{ chatMessage.sentDate | date: "medium" }}</div>
       </div>
     </li>
   </ul>

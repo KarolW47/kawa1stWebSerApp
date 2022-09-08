@@ -44,6 +44,15 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.chosenUser.username,
       this.currentUserUsername
     );
+
+    this.chatService.messageReceived.subscribe({
+      next: (message) => {
+        this.chatMessages.push(message);
+        console.log('Message Recieved from Server: ' + message);
+      },
+      error: (err) => console.log(err),
+    });
+
     this.sendMessageForm = this.formBuilder.group({
       message: [''],
     });
@@ -67,14 +76,5 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.chatMessages.push(chatMessage);
     this.sendMessageForm.controls['message'].reset();
   }
-
-  onMessageReceived() {
-    let chatMessage: ChatMessage = {};
-    this.chatService.messageReceived.subscribe({
-      next: message => chatMessage = message,
-      error: err => console.log(err),
-    });
-    console.log('Message Recieved from Server: ' + chatMessage);
-    this.chatMessages.push(chatMessage);
-  }
+  
 }
