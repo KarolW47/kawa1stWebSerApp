@@ -47,8 +47,11 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.chatService.messageReceived.subscribe({
       next: (message) => {
-        this.chatMessages.push(message);
-        console.log('Message Recieved from Server: ' + message);
+        let jsnObj = JSON.parse(message);
+        let recMess: ChatMessage = jsnObj as ChatMessage;
+        console.error(recMess);
+        this.chatMessages.push(recMess);
+        console.log('Message Recieved from Server: ' + recMess);
       },
       error: (err) => console.log(err),
     });
@@ -76,5 +79,4 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.chatMessages.push(chatMessage);
     this.sendMessageForm.controls['message'].reset();
   }
-  
 }

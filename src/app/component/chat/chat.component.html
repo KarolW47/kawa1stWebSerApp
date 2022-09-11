@@ -1,22 +1,30 @@
 <div class="container">
   <h5>{{ chosenUser.username }}</h5>
-  <ul>
-    <li *ngFor="let chatMessage of chatMessages">
-      <div *ngIf="chatMessage.idOfSender === chosenUser.id">
-        <strong>{{ chatMessage.usernameOfSender }}: </strong>
-        <div class="chatText">{{ chatMessage.message }}</div>
-        <div class="chatDate">{{ chatMessage.sentDate | date: "medium" }}</div>
-      </div>
-      <div *ngIf="chatMessage.idOfSender !== chosenUser.id">
-        <strong>{{ chatMessage.usernameOfSender }}: </strong>
-        <div class="chatText">{{ chatMessage.message }}</div>
-        <div class="chatDate">{{ chatMessage.sentDate | date: "medium" }}</div>
-      </div>
-    </li>
-  </ul>
+  <div class="chatMessagesBox">
+    <ul>
+      <li *ngFor="let chatMessage of chatMessages">
+        <div *ngIf="chatMessage.idOfSender === chosenUser.id">
+          <strong>{{ chatMessage.usernameOfSender }}: </strong>
+          <div class="chatText">{{ chatMessage.message }}</div>
+          <div class="chatDate">
+            {{ chatMessage.sentDate | date: "medium" }}
+          </div>
+        </div>
+        <div *ngIf="chatMessage.idOfSender !== chosenUser.id">
+          <strong>{{ chatMessage.usernameOfSender }}: </strong>
+          <div class="chatText">{{ chatMessage.message }}</div>
+          <div class="chatDate">
+            {{ chatMessage.sentDate | date: "medium" }}
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-  <form [formGroup]="sendMessageForm">
-    <textarea id="message" formControlName="message"> </textarea>
-    <button type="button" (click)="sendMessage()">Send</button>
-  </form>
+  <div class="chatMessageInput">
+    <form [formGroup]="sendMessageForm">
+      <textarea id="message" formControlName="message"> </textarea>
+      <button type="button" (click)="sendMessage()">Send</button>
+    </form>
+  </div>
 </div>

@@ -1,9 +1,9 @@
 export interface ChatMessage {
   id?: number;
   message?: string;
+  sentDate?: Date;
   usernameOfSender?: string;
   usernameOfReceiver?: string;
-  sentDate?: Date;
   idOfReceiver?: number;
   idOfSender?: number;
 }

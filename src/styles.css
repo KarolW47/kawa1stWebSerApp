@@ -269,3 +269,15 @@ span {
   text-shadow: 0 0 0 rgb(72, 0, 77), 0 0 7px rgb(72, 0, 77),
     0 0 10px rgb(72, 0, 77), 0 0 21px rgb(72, 0, 77);
 }
+
+.chatMessagesBox {
+  height: 300px; 
+  overflow: auto;
+}
+
+.chatMessageInput {
+  position:relative;
+  left: 0%;
+  margin-top: 15px;
+  margin-bottom: 100px;
+}

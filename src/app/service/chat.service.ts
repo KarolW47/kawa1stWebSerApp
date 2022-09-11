@@ -15,7 +15,7 @@ export class ChatService {
   stompClient: any;
   usernameOfChosenUser!: string;
   usernameOfCurrentUser!: string;
-  messageReceived = new BehaviorSubject({});
+  messageReceived = new BehaviorSubject<string>("");
 
   constructor(
     private http: HttpClient,
@@ -45,9 +45,9 @@ export class ChatService {
           '/user/' +
             this.tokenStorageService.getUserId() +
             '/' +
-            this.usernameOfCurrentUser,
+            this.usernameOfCurrentUser, 
           (resp: any) => {
-            this.messageReceived.next(resp);
+            this.messageReceived.next(resp.body);
           }
         );
       },
