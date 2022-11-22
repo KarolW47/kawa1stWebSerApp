@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ChatService {
-  webSocketEndpoint: string = 'http://localhost:8080/chat';
+  webSocketEndpoint: string = `${environment.apiUrl}/chat`;
   stompClient: any;
   usernameOfChosenUser!: string;
   usernameOfCurrentUser!: string;
