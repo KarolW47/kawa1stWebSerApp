@@ -281,3 +281,11 @@ span {
   margin-top: 15px;
   margin-bottom: 100px;
 }
+
+.homePageText {
+  font-size: 24px;
+  text-align: center;
+  color: rgb(124, 255, 119);
+  text-shadow: 0 0 0 rgb(11, 219, 4), 0 0 7px rgb(11, 219, 4),
+    0 0 10px rgb(11, 219, 4), 0 0 21px rgb(11, 219, 4);
+}

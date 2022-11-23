@@ -30,6 +30,7 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
 import { ChangePasswordViaResetTokenComponent } from './component/change-password-via-reset-token/change-password-via-reset-token.component';
 import { ChatComponent } from './component/chat/chat.component';
 import { UsersToChatListComponent } from './component/users-to-chat-list/users-to-chat-list.component';
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { UsersToChatListComponent } from './component/users-to-chat-list/users-t
     ChangePasswordViaResetTokenComponent,
     ChatComponent,
     UsersToChatListComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +80,7 @@ import { UsersToChatListComponent } from './component/users-to-chat-list/users-t
           component: PostsComponent,
           children: [{ path: 'add_post', component: AddPostComponent }],
         },
+        { path: '', component: HomeComponent },
       ],
       { onSameUrlNavigation: 'reload' }
     ),
