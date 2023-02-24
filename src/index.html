@@ -6,33 +6,43 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
   </head>
 
-  <body>
-    <div class="container">
-      <h1>Just an social networking app :) </h1>
-    </div>
-    <div class="appRoot">
-      <app-root></app-root>
-    </div>
-  </body>
+  <div class="container-fluid">
+    <div class="d-flex flex-column min-vh-100">
+      <header class="sticky-top p-2">
+        <h1>Social networking app</h1>
+      </header>
 
-  <footer>
-    <div class="container">
-      <ul>
-        <a href="javascript:void(0)" onclick="window.scrollTo(0,0)" style="text-decoration: none;"><li>Back To Top</li></a>
-        <a href="http://kawatojava.pl" style="text-decoration: none;"><li>About Us</li></a>
-        <a href="mailto:karollo47@gmail.com" style="text-decoration: none;"><li>Contact</li></a>
-      </ul>
+      <body>
+        <app-root></app-root>
+      </body>
+
+      <footer class="mt-auto p-2">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container">
+            <a
+              class="navbar-item"
+              href="javascript:void(0)"
+              onclick="window.scrollTo(0,0)"
+              style="text-decoration: none"
+              >Back To Top</a
+            >
+            <a
+              class="navbar-item"
+              href="http://kawatojava.pl"
+              style="text-decoration: none"
+              >About Us</a
+            >
+            <a
+              class="navbar-item"
+              href="mailto:karollo47@gmail.com"
+              style="text-decoration: none"
+              >Contact</a
+            >
+          </div>
+        </nav>
+      </footer>
     </div>
-  </footer>
+  </div>
 </html>
