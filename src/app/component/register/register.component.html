@@ -1,53 +1,132 @@
-<div class="container">
-  <h3>Registration:</h3>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="myBox">
-      <label for="username"> Username: </label>
-      <input type="text" id="username" formControlName="username" />
-      <span *ngIf="registerForm.controls['username'].hasError('required')">
-        Username is required.
-      </span>
-      <span *ngIf="registerForm.controls['username'].hasError('maxlength')">
-        Username cannot be longer than 24 characters.
-      </span>
-      <span *ngIf="registerForm.controls['username'].hasError('minlength')">
-        Username cannot be shorter than 6 characters.
-      </span>
-      <span *ngIf="registerForm.controls['username'].hasError('pattern')">
-        Username cannot contain special characters.
-      </span>
+<h3 class="d-flex justify-content-center pt-4 pb-2">REGISTRATION</h3>
 
-      <label for="emailAddress"> Email address: </label>
-      <input type="text" id="emailAddress" formControlName="emailAddress" />
-      <span *ngIf="registerForm.controls['emailAddress'].hasError('required')">
-        Email address is required.
-      </span>
-      <span *ngIf="registerForm.controls['emailAddress'].hasError('pattern')">
-        Incorrect email format.
-      </span>
+<div class="d-flex justify-content-center">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="width: 33%">
+    <div class="was-validated">
+      <!-- Username field -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="username"> Username: </label>
+        <input
+          class="form-control is-invalid"
+          type="text"
+          id="username"
+          formControlName="username"
+          required
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="registerForm.controls['username'].hasError('required')"
+        >
+          Username is required.
+        </div>
+        <div
+          class="invalid-feedback"
+          *ngIf="registerForm.controls['username'].hasError('maxlength')"
+        >
+          Username cannot be longer than 24 characters.
+        </div>
+        <div
+          class="invalid-feedback"
+          *ngIf="registerForm.controls['username'].hasError('minlength')"
+        >
+          Username cannot be shorter than 6 characters.
+        </div>
+        <div
+          class="invalid-feedback"
+          *ngIf="registerForm.controls['username'].hasError('pattern')"
+        >
+          Username cannot contain special characters.
+        </div>
+      </div>
 
-      <label for="password"> Password: </label>
-      <input type="password" id="password" formControlName="password" />
-      <span *ngIf="registerForm.controls['password'].hasError('required')">
-        Password is required
-      </span>
-      <span *ngIf="registerForm.controls['password'].hasError('minlength')">
-        Password cannot be shorter than 6 characters.
-      </span>
-      <span *ngIf="registerForm.controls['password'].hasError('maxlength')">
-        Password cannot be longer than 35 characters.
-      </span>
+      <!-- Email field -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="emailAddress"> Email address: </label>
+        <input
+          class="form-control is-invalid"
+          type="text"
+          id="emailAddress"
+          formControlName="emailAddress"
+          required
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="registerForm.controls['emailAddress'].hasError('required')"
+        >
+          Email address is required.
+        </div>
+        <div
+          class="invalid-feedback"
+          *ngIf="registerForm.controls['emailAddress'].hasError('pattern')"
+        >
+          Incorrect email format.
+        </div>
+      </div>
 
-      <label for="repPassword"> Repeat password: </label>
-      <input type="password" id="repPassword" formControlName="repPassword" />
-      <span *ngIf="registerForm.controls['repPassword'].hasError('required')">
-        Repeated password is required.
-      </span>
-      <span *ngIf="registerForm.hasError('passwordsNotMatching')">
-        Passwords do not match.
-      </span>
+      <!-- Password field -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="password"> Password: </label>
+        <input
+          class="form-control is-invalid"
+          type="password"
+          id="password"
+          formControlName="password"
+          required
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="registerForm.controls['password'].hasError('required')"
+        >
+          Password is required
+        </div>
+        <div
+          class="invalid-feedback"
+          *ngIf="registerForm.controls['password'].hasError('minlength')"
+        >
+          Password cannot be shorter than 6 characters.
+        </div>
+        <div
+          class="invalid-feedback"
+          *ngIf="registerForm.controls['password'].hasError('maxlength')"
+        >
+          Password cannot be longer than 35 characters.
+        </div>
+      </div>
 
-      <button [disabled]="registerForm.invalid" type="submit">Register</button>
+      <!-- Repeat password field -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="repPassword"> Repeat password: </label>
+        <input
+          class="form-control is-invalid"
+          type="password"
+          id="repPassword"
+          formControlName="repPassword"
+          required
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="registerForm.controls['repPassword'].hasError('required')"
+        >
+          Repeated password is required.
+        </div>
+        <div
+          class="invalid-feedback"
+          *ngIf="registerForm.hasError('passwordsNotMatching')"
+        >
+          Passwords do not match.
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <div class="text-center p-3">
+        <button
+          class="btn btn-primary btn-block mb-4 px-5 py-2"
+          [disabled]="registerForm.invalid"
+          type="submit"
+        >
+          Register
+        </button>
+      </div>
     </div>
   </form>
 </div>

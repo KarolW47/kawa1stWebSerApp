@@ -1,8 +1,9 @@
-<h3 class="d-flex justify-content-center p-4">LOGIN</h3>
+<h3 class="d-flex justify-content-center pt-4 pb-2">LOGIN</h3>
+
 <div class="d-flex justify-content-center">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="width: 33%;">
     <div class="was-validated">
-      <!-- Username/Email -->
+      <!-- Username/Email field -->
       <div class="form-outline mb-4">
         <label class="form-label" for="login">Username or Email address:</label>
         <input
@@ -21,7 +22,7 @@
         </div>
       </div>
 
-      <!-- Password -->
+      <!-- Password field -->
       <div class="form-outline mb-4">
         <label class="form-label" for="password">Password:</label>
         <input
