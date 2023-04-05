@@ -1,17 +1,22 @@
 <h3 class="d-flex justify-content-center pt-4 pb-2">REGISTRATION</h3>
 
 <div class="d-flex justify-content-center">
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="width: 33%">
-    <div class="was-validated">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="needs-validation">
       <!-- Username field -->
       <div class="form-outline mb-4">
         <label class="form-label" for="username"> Username: </label>
         <input
-          class="form-control is-invalid"
+          [ngClass]="{
+            'is-invalid':
+              registerForm.controls['username'].hasError('minlength') ||
+              registerForm.controls['username'].hasError('maxlength') ||
+              registerForm.controls['username'].hasError('required')
+          }"
+          class="form-control is-valid"
           type="text"
           id="username"
           formControlName="username"
-          required
         />
         <div
           class="invalid-feedback"
@@ -43,11 +48,15 @@
       <div class="form-outline mb-4">
         <label class="form-label" for="emailAddress"> Email address: </label>
         <input
-          class="form-control is-invalid"
+          [ngClass]="{
+            'is-invalid':
+              registerForm.controls['emailAddress'].hasError('pattern') ||
+              registerForm.controls['emailAddress'].hasError('required')
+          }"
+          class="form-control is-valid"
           type="text"
           id="emailAddress"
           formControlName="emailAddress"
-          required
         />
         <div
           class="invalid-feedback"
@@ -67,11 +76,16 @@
       <div class="form-outline mb-4">
         <label class="form-label" for="password"> Password: </label>
         <input
-          class="form-control is-invalid"
+          [ngClass]="{
+            'is-invalid':
+              registerForm.controls['password'].hasError('minlength') ||
+              registerForm.controls['password'].hasError('maxlength') ||
+              registerForm.controls['password'].hasError('required')
+          }"
+          class="form-control is-valid"
           type="password"
           id="password"
           formControlName="password"
-          required
         />
         <div
           class="invalid-feedback"
@@ -97,11 +111,15 @@
       <div class="form-outline mb-4">
         <label class="form-label" for="repPassword"> Repeat password: </label>
         <input
-          class="form-control is-invalid"
+          [ngClass]="{
+            'is-invalid':
+              registerForm.controls['repPassword'].hasError('required') ||
+              registerForm.hasError('passwordsNotMatching')
+          }"
+          class="form-control is-valid"
           type="password"
           id="repPassword"
           formControlName="repPassword"
-          required
         />
         <div
           class="invalid-feedback"

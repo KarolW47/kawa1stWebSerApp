@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 
@@ -8,14 +9,33 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./reset-password.component.css'],
 })
 export class ResetPasswordComponent implements OnInit {
-  emailAddress!: string;
+  resetForm!: FormGroup;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.resetForm = this.formBuilder.group({
+      emailAddress: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$'),
+        ],
+      ],
+    });
+  }
 
-  onSend(emailAddress: string) {
-    this.userService.resetPassword(emailAddress).subscribe({
+  onSubmit() {
+    if (this.resetForm.invalid) {
+      alert('Registration went wrong.');
+      return;
+    }
+
+    this.userService.resetPassword(this.resetForm.value).subscribe({
       next: () => {
         alert(
           'Instructions with password reset has been sent on provided email address.'
