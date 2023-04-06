@@ -1,15 +1,22 @@
-footer, header{
-    background: #101e41;
-    border-radius: 5px;
-    box-shadow: 5px 6px 6px 2px #101e41;
+footer,
+header {
+  background: #101e41;
+  border-radius: 5px;
+  box-shadow: 5px 6px 6px 2px #101e41;
+  
 }
 
 .all-parts-page {
-    background-color: #15294c;
-    color: #fff;
+  background-color: #15294c;
+  color: #fff;
 }
 
-.all-parts-page a{
-    text-decoration: none;
-    color: #f7b633;
+.all-parts-page a {
+  text-decoration: none;
+  color: #f7b633;
 }
+
+.header-as-home-link {
+    color: white !important;
+}
+
