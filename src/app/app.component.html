@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row m-1">
 
-    <div class="col-2 p-3">
+    <div class="col pt-3">
       <!-- Left side - navigation menu -->
       <ul class="nav flex-column position-fixed">
         <li class="nav-item">
@@ -64,12 +64,12 @@
     </div>
 
     <!-- Center - content -->
-    <div class="col-8">
+    <div class="col-8 mx-1">
       <router-outlet></router-outlet>
     </div>
 
     <!-- Right side - chat list -->
-    <div class="col" *ngIf="isTokenPresent">
+    <div class="col pt-4 " *ngIf="isTokenPresent">
       <div class="position-fixed">
         <app-users-to-chat-list></app-users-to-chat-list>
       </div>

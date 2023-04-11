@@ -1,25 +1,71 @@
-<div class="container">
-  <h3>Type your message:</h3>
-  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
-    <div class="myBox">
-      <label for="postTextMessage">Text:</label>
-      <textarea
-        id="postTextMessage"
-        cols="30"
-        rows="10"
-        formControlName="postTextMessage"
-      ></textarea>
-      <span *ngIf="postForm.controls['postTextMessage'].hasError('required')"
-        >Text is required.</span
-      >
-      <span *ngIf="postForm.controls['postTextMessage'].hasError('minlength')"
-        >Message must contain at least 2 character.</span
-      >
-      <span *ngIf="postForm.controls['postTextMessage'].hasError('maxlength')"
-        >Message cannot exceed 512 characters.</span
-      >
+<h3 class="d-flex justify-content-center pt-4 pb-1">New post:</h3>
 
-      <button [disabled]="postForm.invalid" type="submit">Add post</button>
+<div>
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="needs-validation">
+      <!-- Post textarea -->
+      <div class="form-outline row">
+        <label class="form-label" for="postTextMessage">Text:</label>
+        <textarea
+          [ngClass]="{
+            'is-invalid':
+              postForm.controls['postTextMessage'].hasError('required') ||
+              postForm.controls['postTextMessage'].hasError('minlength') ||
+              postForm.controls['postTextMessage'].hasError('maxlength')
+          }"
+          class="form-control is-valid"
+          #myImput
+          id="postTextMessage"
+          rows="5"
+          formControlName="postTextMessage"
+          placeholder="Type in your message"
+        ></textarea>
+
+        <div
+          class="invalid-feedback col"
+          *ngIf="postForm.controls['postTextMessage'].hasError('required')"
+        >
+          Text is required.
+        </div>
+        <div
+          class="invalid-feedback col"
+          *ngIf="postForm.controls['postTextMessage'].hasError('minlength')"
+        >
+          Message must contain at least 2 character.
+        </div>
+        <div
+          class="invalid-feedback col"
+          *ngIf="postForm.controls['postTextMessage'].hasError('maxlength')"
+        >
+          Message cannot exceed 512 characters.
+        </div>
+
+        <span class="d-flex justify-content-end h6 text-secondary p-1 col">
+          {{ myImput.value.length }}/512
+        </span>
+      </div>
+
+      <!-- Submit button -->
+      <div class="text-center pb-3">
+        <button
+          class="btn btn-primary btn-block px-5 py-2"
+          [disabled]="postForm.invalid"
+          type="submit"
+        >
+          Add post
+        </button>
+      </div>
+
+      <!-- Cancel button -->
+      <div class="text-center pb-3">
+        <button
+          class="btn btn-primary btn-block mb-4 px-5 py-2"
+          type="button"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+      </div>
     </div>
   </form>
 </div>

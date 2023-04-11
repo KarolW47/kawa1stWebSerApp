@@ -1,10 +1,11 @@
-<div class="container">
-  <h3>Users:</h3>
+<h3 class="d-flex justify-content-center pt-4 pb-2">Users:</h3>
 
-  <div class="myBox">
-    <div class="listOfUsers" *ngFor="let user of userlist">
+<div class="row">
+  <div class="col"></div>
+  <div class="col">
+    <div *ngFor="let user of userlist">
       <li>
-        <a
+        <a class="h6"
           routerLinkActive="active"
           [routerLink]="['/user_profile', user.id]"
           >{{ user.username | titlecase }}</a
@@ -12,4 +13,5 @@
       </li>
     </div>
   </div>
+  <div class="col"></div>
 </div>

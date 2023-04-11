@@ -1,49 +1,87 @@
-<div class="container">
-  <h3 *ngIf="user">{{ user.username | titlecase }} profile.</h3>
+<h3 class="d-flex justify-content-center pt-4 pb-2" *ngIf="user">
+  {{ user.username | titlecase }} profile.
+</h3>
 
-  <div class="myBox">
-    <li *ngIf="user">Email: {{ user.emailAddress }}</li>
-
-    <li *ngIf="user">About: {{ user.aboutMeInfo }}</li>
-    <div *ngIf="user">
-      <div *ngIf="currentUserId === user.id">
-        <app-change-about-me-info-dialog [currentUserToEditAboutMeInfo]="user">
-        </app-change-about-me-info-dialog>
-      </div>
+<!-- Profile info contnet -->
+<div>
+  <!-- Email of user -->
+  <div class="row p-1">
+    <div class="col">
+      <span class="h5" *ngIf="user">Email: </span>
+      <a class="h5" href="mailto:{{ user.emailAddress }}">
+        {{ user.emailAddress | titlecase }}
+      </a>
     </div>
+  </div>
+  <!-- About me info of user -->
+  <div class="row p-1">
+    <div class="col">
+      <span class="h5" *ngIf="user">About me: </span>
+      <span class="h5 fst-italic text-primary">{{ user.aboutMeInfo | titlecase }}</span>
+    </div>
+  </div>
 
-    <div *ngIf="user">
-      <div *ngIf="currentUserId === user.id">
-        <app-change-username-dialog
-          [currentUserToEditUsername]="user"
-        ></app-change-username-dialog>
-        <app-change-password-dialog
-          [currentUserToChangePassword]="user"
-        ></app-change-password-dialog>
-        <app-delete-user-dialog
-          [currentUserToDeleteProfile]="user"
-        ></app-delete-user-dialog>
-      </div>
+  <div class="row pt-2" *ngIf="user">
+    <div *ngIf="currentUserId === user.id">
+      <!--  Reference to 'change about me info' component | contains 'Edit about me info' button -->
+      <app-change-about-me-info-dialog
+        class="col"
+        [currentUserToEditAboutMeInfo]="user"
+      >
+      </app-change-about-me-info-dialog>
+      <!--  Reference to 'change username' component | contains 'change username' button -->
+      <app-change-username-dialog
+        class="col"
+        [currentUserToEditUsername]="user"
+      ></app-change-username-dialog>
+      <!--  Reference to 'change password' component | contains 'change password' button -->
+      <app-change-password-dialog
+        class="col"
+        [currentUserToChangePassword]="user"
+      ></app-change-password-dialog>
+      <!--  Reference to 'delete user' component | contains 'delete user' button -->
+      <app-delete-user-dialog
+        class="col"
+        [currentUserToDeleteProfile]="user"
+      ></app-delete-user-dialog>
     </div>
   </div>
 </div>
-<div class="container">
-  <h4>Posts:</h4>
 
-  <div *ngFor="let post of postsOfUser">
-    <div class="myBox">
-      <li>User: {{ post.user.username | titlecase }}</li>
-      <li>Created: {{ post.createDate | date }}</li>
-      <li>Post: {{ post.postTextMessage }}</li>
-      <li *ngIf="post.updateDate != null">
-        Edited: {{ post.updateDate | date }}
-      </li>
+<!-- Profile's post list -->
+<h4 class="d-flex justify-content-center pt-3 pb-1 mt-5">
+  {{ user.username | titlecase }}'s Posts:
+</h4>
 
-      <div *ngIf="currentUserId === post.user.id">
-        <app-delete-post [currentPostToDelete]="post"></app-delete-post>
-        <app-edit-post-dialog [currentPostToEdit]="post"></app-edit-post-dialog>
-      </div>
+<div *ngFor="let post of postsOfUser">
+  <div class="row border border-info border-2 rounded-4 p-2 m-2">
+    <!-- Post owner -->
+    <div class="col">
+      <span class="h6">From:</span>
+      <a
+        class="h6"
+        routerLinkActive="active"
+        [routerLink]="['/user_profile', post.user.id.toString()]"
+      >
+        {{ post.user.username | titlecase }}</a
+      >
     </div>
-    <br />
+    <!-- Post create date -->
+    <div class="h7 col d-flex justify-content-end">
+      Created: {{ post.createDate | date : "d MMMM  y" }}
+    </div>
+    <!-- Post text -->
+    <div class="h4 p-2 text-break">{{ post.postTextMessage }}</div>
+    <!-- Post update date -->
+    <div class="h7 d-flex justify-content-end" *ngIf="post.updateDate != null">
+      Edited: {{ post.updateDate | date : "d MMMM  y" }}
+    </div>
+
+    <!--  Reference to 'post' edit/delete components | contains edit/delete buttons -->
+    <div *ngIf="currentUserId === post.user.id">
+      <app-delete-post [currentPostToDelete]="post"></app-delete-post>
+      <app-edit-post-dialog [currentPostToEdit]="post"></app-edit-post-dialog>
+    </div>
   </div>
+  <br />
 </div>

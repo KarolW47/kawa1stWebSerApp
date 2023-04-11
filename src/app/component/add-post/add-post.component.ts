@@ -54,4 +54,8 @@ export class AddPostComponent implements OnInit {
       },
     });
   }
+
+  onCancel() {
+    this.router.navigate(['/posts']);
+  }
 }
