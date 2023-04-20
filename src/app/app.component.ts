@@ -25,8 +25,7 @@ export class AppComponent implements OnInit {
 
   onLogoutClick() {
     if (confirm('You sure, you want to log out?')) {
-      this.tokenStorageService.deleteTokens();
-      this.tokenStorageService.deleteUserId();
+      this.tokenStorageService.deleteTokensAndUserId();
       this.router.navigate(['/login']).then(() => window.location.reload());
     } else return;
   }

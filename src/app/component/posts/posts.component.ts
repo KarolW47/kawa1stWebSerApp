@@ -17,7 +17,7 @@ export class PostsComponent implements OnInit {
   constructor(
     private postService: PostService,
     private router: Router,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
   ) {}
 
   ngOnInit(): void {

@@ -52,6 +52,8 @@
             value=""
             id="remember-me"
             checked
+            [ngModel]="isRememberMeChecked"
+            (change)="isRememberMeChecked = !isRememberMeChecked"
           />
           <label class="form-check-label" for="remember-me">
             Remember me

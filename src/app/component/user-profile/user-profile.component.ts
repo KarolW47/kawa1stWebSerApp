@@ -21,7 +21,7 @@ export class UserProfileComponent implements OnInit {
     private userService: UserService,
     private postService: PostService,
     private activatedRoute: ActivatedRoute,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
   ) {}
 
   ngOnInit(): void {

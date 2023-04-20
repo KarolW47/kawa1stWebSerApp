@@ -1,46 +1,69 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-const ACCESS_TOKEN_KEY = 'access_token';
-const REFRESH_TOKEN_KEY = 'refresh_token';
-const USER_ID = 'user_id';
-
 @Injectable({
   providedIn: 'root',
 })
 export class TokenStorageService {
+  static ACCESS_TOKEN_KEY = 'access_token';
+  static REFRESH_TOKEN_KEY = 'refresh_token';
+  static USER_ID = 'user_id';
+
   constructor() {}
 
-  public saveUserId(userId: string): void {
-    this.deleteUserId();
-    window.sessionStorage.setItem(USER_ID, userId);
+  public saveTokensAndUserId(
+    accessToken: string,
+    refreshToken: string,
+    userId: string,
+    windowStorage: Storage,
+  ): void {
+    this.deleteTokensAndUserId();
+    windowStorage.setItem(TokenStorageService.USER_ID, userId);
+    windowStorage.setItem(
+      TokenStorageService.ACCESS_TOKEN_KEY,
+      accessToken
+    );
+    windowStorage.setItem(
+      TokenStorageService.REFRESH_TOKEN_KEY,
+      refreshToken
+    );
   }
 
-  public deleteUserId(): void {
-    window.sessionStorage.removeItem(USER_ID);
+  public defineWindowStorage(): Storage {
+    if (
+      window.sessionStorage.getItem(TokenStorageService.ACCESS_TOKEN_KEY) !=
+      null
+    ) {
+      return window.sessionStorage;
+    } else return window.localStorage;
   }
 
   public getUserId(): any {
-    return window.sessionStorage.getItem(USER_ID);
+    return this.defineWindowStorage().getItem(
+      TokenStorageService.USER_ID
+    );
   }
 
-  public deleteTokens(): void {
-    window.sessionStorage.removeItem(ACCESS_TOKEN_KEY);
-    window.sessionStorage.removeItem(REFRESH_TOKEN_KEY);
-  }
-
-  public saveTokens(accessToken: string, refreshToken: string): void {
-    this.deleteTokens();
-    window.sessionStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-    window.sessionStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+  public deleteTokensAndUserId(): void {
+    this.defineWindowStorage().removeItem(
+      TokenStorageService.ACCESS_TOKEN_KEY
+    );
+    this.defineWindowStorage().removeItem(
+      TokenStorageService.REFRESH_TOKEN_KEY
+    );
+    this.defineWindowStorage().removeItem(TokenStorageService.USER_ID);
   }
 
   public getAccessToken(): any {
-    return window.sessionStorage.getItem(ACCESS_TOKEN_KEY);
+    return this.defineWindowStorage().getItem(
+      TokenStorageService.ACCESS_TOKEN_KEY
+    );
   }
 
   public getRefreshToken(): any {
-    return window.sessionStorage.getItem(REFRESH_TOKEN_KEY);
+    return this.defineWindowStorage().getItem(
+      TokenStorageService.REFRESH_TOKEN_KEY
+    );
   }
 
   public isAccessTokenPresent(): boolean {
@@ -52,7 +75,7 @@ export class TokenStorageService {
   public getTokensAsHeaders(): any {
     let accessToken = this.getAccessToken();
     let refreshToken = this.getRefreshToken();
-    if (accessToken === null || refreshToken === null) {
+    if (accessToken == null || refreshToken == null) {
       return;
     } else {
       let headers = new HttpHeaders({

@@ -15,8 +15,8 @@ import {
   take,
   throwError,
 } from 'rxjs';
-import { TokenStorageService } from '../service/token-storage.service';
 import { RefreshTokenService } from '../service/refresh-token.service';
+import { TokenStorageService } from '../service/token-storage.service';
 
 @Injectable()
 export class RefreshTokenInterceptor implements HttpInterceptor {

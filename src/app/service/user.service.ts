@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../interface/user';
-import { TokenStorageService } from './token-storage.service';
 import { environment } from 'src/environments/environment';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -40,8 +40,7 @@ export class UserService {
   }
 
   logUserOut() {
-    this.tokenStorageService.deleteTokens();
-    this.tokenStorageService.deleteUserId();
+    this.tokenStorageService.deleteTokensAndUserId();
   }
 
   deleteUser(confirmationPassword: string) {

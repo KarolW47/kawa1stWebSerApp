@@ -4,8 +4,8 @@ import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { environment } from 'src/environments/environment';
 import { ChatMessage } from '../interface/chat-message';
-import { TokenStorageService } from './token-storage.service';
 import { BehaviorSubject } from 'rxjs';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class ChatService {
 
   constructor(
     private http: HttpClient,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
   ) {}
 
   getConversationHistory(username: string) {

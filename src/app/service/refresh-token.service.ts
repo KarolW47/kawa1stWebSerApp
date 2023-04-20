@@ -10,7 +10,7 @@ import { TokenStorageService } from './token-storage.service';
 export class RefreshTokenService {
   constructor(
     private http: HttpClient,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
   ) {}
 
   refeshToken() {
@@ -22,9 +22,11 @@ export class RefreshTokenService {
       )
       .pipe(
         tap((resp) => {
-          this.tokenStorageService.saveTokens(
-            resp.headers.get('access_token')!,
-            resp.headers.get('refresh_token')!
+          this.tokenStorageService.saveTokensAndUserId(
+            resp.headers.get(TokenStorageService.ACCESS_TOKEN_KEY)!,
+            resp.headers.get(TokenStorageService.REFRESH_TOKEN_KEY)!,
+            resp.headers.get(TokenStorageService.USER_ID)!,
+            this.tokenStorageService.defineWindowStorage()
           );
         })
       );

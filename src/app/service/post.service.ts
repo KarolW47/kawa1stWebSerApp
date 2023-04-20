@@ -10,7 +10,7 @@ import { TokenStorageService } from './token-storage.service';
 export class PostService {
   constructor(
     private http: HttpClient,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
   ) {}
 
   getPosts() {

@@ -17,7 +17,7 @@ export class UsersToChatListComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    public tokenStorageService: TokenStorageService
+    public tokenStorageService: TokenStorageService,
   ) {}
 
   ngOnInit(): void {

@@ -1,6 +1,5 @@
 <div class="container-fluid">
   <div class="row m-1">
-
     <div class="col pt-3">
       <!-- Left side - navigation menu -->
       <ul class="nav flex-column position-fixed">
@@ -69,8 +68,8 @@
     </div>
 
     <!-- Right side - chat list -->
-    <div class="col pt-4 " *ngIf="isTokenPresent">
-      <div class="position-fixed">
+    <div class="col pt-4">
+      <div class="position-fixed" *ngIf="isTokenPresent">
         <app-users-to-chat-list></app-users-to-chat-list>
       </div>
     </div>

@@ -13,12 +13,13 @@ export class LogInComponent implements OnInit {
   private responseAccessToken!: any;
   private responseRefreshToken!: any;
   private responseUserId!: any;
+  public isRememberMeChecked = true;
 
   loginForm: FormGroup = new FormGroup({});
 
   constructor(
     private userservice: UserService,
-    private tokenStorage: TokenStorageService,
+    private tokenStorageService: TokenStorageService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {}
@@ -47,11 +48,22 @@ export class LogInComponent implements OnInit {
           this.responseAccessToken = resp.headers.get('access_token');
           this.responseRefreshToken = resp.headers.get('refresh_token');
           this.responseUserId = resp.headers.get('user_id');
-          this.tokenStorage.saveTokens(
-            this.responseAccessToken,
-            this.responseRefreshToken
-          );
-          this.tokenStorage.saveUserId(this.responseUserId);
+          if (this.isRememberMeChecked === true) {
+            this.tokenStorageService.saveTokensAndUserId(
+              this.responseAccessToken,
+              this.responseRefreshToken,
+              this.responseUserId,
+              window.localStorage
+            );
+          } else {
+            this.tokenStorageService.saveTokensAndUserId(
+              this.responseAccessToken,
+              this.responseRefreshToken,
+              this.responseUserId,
+              window.sessionStorage
+            );
+          }
+
           this.router.navigate(['/posts']).then(() => window.location.reload());
         },
         error: (error) => {
