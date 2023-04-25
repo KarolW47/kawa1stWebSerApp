@@ -19,6 +19,7 @@ export class EditPostDialogComponent implements OnInit {
     let dialogRef = this.dialog.open(EditPostComponent, {
       data: post,
       panelClass: 'dialogBox',
+      width: '55%'
     });
     dialogRef.afterClosed().subscribe();
   }

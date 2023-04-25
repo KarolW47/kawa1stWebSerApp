@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Post } from 'src/app/interface/post';
 import { PostService } from 'src/app/service/post.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -18,6 +18,7 @@ import {
 })
 export class EditPostComponent implements OnInit {
   editPostForm!: FormGroup;
+  @Input() currentPostToEdit!: Post;
 
   constructor(
     private postService: PostService,

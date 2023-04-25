@@ -19,6 +19,7 @@ export class ChangeAboutMeInfoDialogComponent implements OnInit {
     let dialogRef = this.dialog.open(ChangeAboutMeInfoComponent, {
       data: user,
       panelClass: 'dialogBox',
+      width: '55%'
     });
     dialogRef.afterClosed().subscribe();
   }
