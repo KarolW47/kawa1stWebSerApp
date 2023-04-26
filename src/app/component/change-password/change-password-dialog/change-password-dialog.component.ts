@@ -19,6 +19,7 @@ export class ChangePasswordDialogComponent implements OnInit {
     let dialogRef = this.dialog.open(ChangePasswordComponent, {
       data: user,
       panelClass: 'dialogBox',
+      width: '30%'
     });
     dialogRef.afterClosed().subscribe();
   }

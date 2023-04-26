@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ChatMessage } from 'src/app/interface/chat-message';
 import { User } from 'src/app/interface/user';
 import { ChatService } from 'src/app/service/chat.service';
@@ -17,9 +18,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   chatMessages: ChatMessage[] = [];
 
   constructor(
-    public chatService: ChatService,
+    private chatService: ChatService,
     private tokenStorageService: TokenStorageService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -78,5 +80,9 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.chatService.send(chatMessage, this.chosenUser.username);
     this.chatMessages.push(chatMessage);
     this.sendMessageForm.controls['message'].reset();
+  }
+
+  checkProfile(id: number) {
+    this.router.navigate(['/user_profile/' + id]);
   }
 }

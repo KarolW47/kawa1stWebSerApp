@@ -109,4 +109,8 @@ export class ChangePasswordViaResetTokenComponent implements OnInit {
       return { passwordsNotMatching: true };
     }
   }
+
+  onCancel() {
+    this.router.navigate(['/login']);
+  }
 }

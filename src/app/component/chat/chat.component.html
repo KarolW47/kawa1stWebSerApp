@@ -1,30 +1,47 @@
-<div class="container">
-  <h5>{{ chosenUser.username }}</h5>
-  <div class="chatMessagesBox">
-    <ul>
-      <li *ngFor="let chatMessage of chatMessages">
-        <div *ngIf="chatMessage.idOfSender === chosenUser.id">
-          <strong>{{ chatMessage.usernameOfSender }}: </strong>
-          <div class="chatText">{{ chatMessage.message }}</div>
-          <div class="chatDate">
-            {{ chatMessage.sentDate | date: "medium" }}
-          </div>
-        </div>
-        <div *ngIf="chatMessage.idOfSender !== chosenUser.id">
-          <strong>{{ chatMessage.usernameOfSender }}: </strong>
-          <div class="chatText">{{ chatMessage.message }}</div>
-          <div class="chatDate">
-            {{ chatMessage.sentDate | date: "medium" }}
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
+<h5
+  class="d-flex justify-content-center pt-4 pb-1"
+  (click)="checkProfile(chosenUser.id)"
+>
+  <a href="javascript:void(0)">{{ chosenUser.username | titlecase }}</a>
+</h5>
 
-  <div class="chatMessageInput">
+<!-- Messages window -->
+<div class="row border border-info border-2 rounded-2 p-2 m-2">
+  <ul>
+    <li *ngFor="let chatMessage of chatMessages">
+      <div *ngIf="chatMessage.idOfSender === chosenUser.id">
+        <strong>{{ chatMessage.usernameOfSender }}: </strong>
+        <div class="chatText">{{ chatMessage.message }}</div>
+        <div class="chatDate">
+          {{ chatMessage.sentDate | date : "medium" }}
+        </div>
+      </div>
+      <div *ngIf="chatMessage.idOfSender !== chosenUser.id">
+        <strong>{{ chatMessage.usernameOfSender }}: </strong>
+        <div class="chatText">{{ chatMessage.message }}</div>
+        <div class="chatDate">
+          {{ chatMessage.sentDate | date : "medium" }}
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Message field -->
+<div class="row">
+  <div class="text-center col-md-auto">
     <form [formGroup]="sendMessageForm">
       <textarea id="message" formControlName="message"> </textarea>
-      <button type="button" (click)="sendMessage()">Send</button>
     </form>
+  </div>
+
+  <div class="text-center col-md-auto">
+    <button
+      class="btn btn-primary btn-block px-5 py-2"
+      type="button"
+      (click)="sendMessage()"
+    >
+      Send
+    </button>
   </div>
 </div>
