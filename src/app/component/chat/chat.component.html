@@ -1,47 +1,94 @@
-<h5
-  class="d-flex justify-content-center pt-4 pb-1"
-  (click)="checkProfile(chosenUser.id)"
->
-  <a href="javascript:void(0)">{{ chosenUser.username | titlecase }}</a>
-</h5>
+<section>
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center">
+      <div>
+        <div class="card">
+          <div
+            class="card-header d-flex justify-content-between align-items-center p-3"
+            style="border-top: 4px solid #0de823"
+          >
+            <h5 class="mb-0" (click)="checkProfile(chosenUser.id)">
+              <a href="javascript:void(0)">{{
+                chosenUser.username | titlecase
+              }}</a>
+            </h5>
+            <div class="d-flex flex-row align-items-center">
+              <i class="me-3 text-muted">-</i>
+              <i class="text-muted">x</i>
+            </div>
+          </div>
 
-<!-- Messages window -->
-<div class="row border border-info border-2 rounded-2 p-2 m-2">
-  <ul>
-    <li *ngFor="let chatMessage of chatMessages">
-      <div *ngIf="chatMessage.idOfSender === chosenUser.id">
-        <strong>{{ chatMessage.usernameOfSender }}: </strong>
-        <div class="chatText">{{ chatMessage.message }}</div>
-        <div class="chatDate">
-          {{ chatMessage.sentDate | date : "medium" }}
+          <!-- Messages window -->
+          <div class="card-body py-5" style="position: relative; height: 300px; overflow-y: scroll;">
+            <div *ngFor="let chatMessage of chatMessages">
+              <div *ngIf="chatMessage.idOfSender === chosenUser.id">
+                <div class="d-flex justify-content-between">
+                  <p class="small mb-1 text-muted">{{ chatMessage.usernameOfSender | titlecase }} </p>
+                  <p class="small mb-1 text-muted">
+                    {{ chatMessage.sentDate | date : 'MMM d, y, h:mm a' }}
+                  </p>
+                </div>
+                <div class="d-flex flex-row justify-content-start">
+                  <div>
+                    <p class="small p-2 ms-3 mb-3 rounded-3 bg-warning text-break">
+                      {{ chatMessage.message }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="chatMessage.idOfSender !== chosenUser.id">
+                <div class="d-flex justify-content-between">
+                  <p class="small mb-1 text-muted">
+                    {{ chatMessage.sentDate | date : 'MMM d, y, h:mm a' }}
+                  </p>
+                  <p class="small mb-1 text-muted">{{ chatMessage.usernameOfSender | titlecase }}</p>
+                </div>
+                <div class="d-flex flex-row justify-content-end mb-4 pt-1">
+                  <div>
+                    <p
+                      class="small p-2 me-3 mb-3 text-white rounded-3 bg-primary text-break"
+                    >
+                      {{ chatMessage.message }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Message field -->
+          <div
+            class="card-footer text-muted d-flex justify-content-start align-items-center p-3"
+          >
+            <div class="input-group mb-0">
+              <form [formGroup]="sendMessageForm">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="message"
+                  id="message"
+                  placeholder="Type message"
+                  aria-label="Recipient's username"
+                  aria-describedby="button-addon2"
+                />
+              </form>
+            </div>
+
+            <div>
+              <button
+                class="btn btn-primary"
+                type="button"
+                id="button-addon2"
+                style="padding-top: 0.55rem"
+                (click)="sendMessage()"
+              >
+                Send
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      <div *ngIf="chatMessage.idOfSender !== chosenUser.id">
-        <strong>{{ chatMessage.usernameOfSender }}: </strong>
-        <div class="chatText">{{ chatMessage.message }}</div>
-        <div class="chatDate">
-          {{ chatMessage.sentDate | date : "medium" }}
-        </div>
-      </div>
-    </li>
-  </ul>
-</div>
-
-<!-- Message field -->
-<div class="row">
-  <div class="text-center col-md-auto">
-    <form [formGroup]="sendMessageForm">
-      <textarea id="message" formControlName="message"> </textarea>
-    </form>
+    </div>
   </div>
-
-  <div class="text-center col-md-auto">
-    <button
-      class="btn btn-primary btn-block px-5 py-2"
-      type="button"
-      (click)="sendMessage()"
-    >
-      Send
-    </button>
-  </div>
-</div>
+</section>
